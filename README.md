@@ -38,3 +38,9 @@ Object(
 ### Git involving: 
 1. Undo **git add .**, using **git reset**
 2. Check again using **git status**
+
+### Dart & Flutter involving 
+1. **package:font_awesome_flutter/font_awesome_flutter.dart** is not sound null-safety. Use this instead:
+```
+travel_app $ flutter run --no-sound-null-safety
+```

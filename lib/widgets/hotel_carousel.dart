@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:travel_app/models/destination.model.dart';
+import 'package:travel_app/models/hotel.model.dart';
 
-class DestinationCarousel extends StatelessWidget {
+class HotelCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,7 +14,7 @@ class DestinationCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "Top Destination",
+                "Exclusive Hotels",
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -42,12 +42,12 @@ class DestinationCarousel extends StatelessWidget {
           color: Colors.blue,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: destinations.length,
+              itemCount: hotels.length,
               itemBuilder: (BuildContext context, int index) {
-                Destination destination = destinations[index];
+                Hotel hotel = hotels[index];
                 return Container(
                   margin: const EdgeInsets.all(30.0),
-                  width: 210.0,
+                  width: 240.0,
                   color: Colors.red,
                   child: Stack(
                     alignment: Alignment.topCenter,
@@ -56,7 +56,7 @@ class DestinationCarousel extends StatelessWidget {
                         bottom: 15.0,
                         child: Container(
                           height: 120.0,
-                          width: 200.0,
+                          width: 240.0,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
@@ -65,20 +65,28 @@ class DestinationCarousel extends StatelessWidget {
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${destination.activities?.length} activities',
+                                  hotel.name ?? "",
                                   style: const TextStyle(
                                     fontSize: 22.0,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1.2,
                                   ),
                                 ),
+                                const SizedBox(height: 2.0),
                                 Text(
-                                  destination.description ?? "",
+                                  hotel.address ?? "",
                                   style: const TextStyle(
                                     color: Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(height: 2.0),
+                                Text(
+                                  '\$${hotel.price} / night',
+                                  style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ],
@@ -103,45 +111,10 @@ class DestinationCarousel extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image(
-                                image: AssetImage(destination.imageUrl ?? ""),
+                                image: AssetImage(hotel.imageUrl ?? ""),
                                 height: 100.0,
-                                width: 100.0,
+                                width: 220.0,
                                 fit: BoxFit.cover,
-                              ),
-                            ),
-                            Positioned(
-                              left: 10.0,
-                              bottom: 10.0,
-                              // SERIOUSLY BE WARED OF THIS !
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    destination.city ?? "",
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.2,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        FontAwesomeIcons.locationArrow,
-                                        size: 10.0,
-                                        color: Colors.white,
-                                      ),
-                                      const SizedBox(width: 5.0),
-                                      Text(
-                                        destination.country ?? "",
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
                               ),
                             ),
                           ],

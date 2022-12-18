@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/screens/home.screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
             .copyWith(secondary: const Color(0xFFD8ECF1)),
         // colorScheme secondary is equivalent to accentColor
       ),
+      home: HomeScreen(),
     );
   }
 }

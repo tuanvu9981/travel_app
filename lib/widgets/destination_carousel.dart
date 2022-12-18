@@ -39,7 +39,7 @@ class DestinationCarousel extends StatelessWidget {
         ),
         Container(
           height: 300.0,
-          color: Colors.blue,
+          // color: Colors.blue,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: destinations.length,
@@ -48,21 +48,22 @@ class DestinationCarousel extends StatelessWidget {
                 return Container(
                   margin: const EdgeInsets.all(30.0),
                   width: 210.0,
-                  color: Colors.red,
+                  // color: Colors.red,
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
                       Positioned(
-                        bottom: 15.0,
+                        // bottom: 10.0,
+                        top: 110.0,
                         child: Container(
                           height: 120.0,
-                          width: 200.0,
+                          width: 210.0,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,14 +71,16 @@ class DestinationCarousel extends StatelessWidget {
                                 Text(
                                   '${destination.activities?.length} activities',
                                   style: const TextStyle(
-                                    fontSize: 22.0,
+                                    fontSize: 20.0,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1.2,
                                   ),
                                 ),
+                                const SizedBox(height: 5.0),
                                 Text(
                                   destination.description ?? "",
                                   style: const TextStyle(
+                                    fontSize: 13.5,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -104,8 +107,10 @@ class DestinationCarousel extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image(
                                 image: AssetImage(destination.imageUrl ?? ""),
-                                height: 100.0,
-                                width: 100.0,
+                                // height: 100.0,
+                                // width: 100.0,  iphone 11
+                                height: 140.0,
+                                width: 190.0,
                                 fit: BoxFit.cover,
                               ),
                             ),

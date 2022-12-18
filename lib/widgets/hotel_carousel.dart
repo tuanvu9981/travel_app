@@ -39,7 +39,7 @@ class HotelCarousel extends StatelessWidget {
         ),
         Container(
           height: 300.0,
-          color: Colors.blue,
+          // color: Colors.blue,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: hotels.length,
@@ -48,12 +48,12 @@ class HotelCarousel extends StatelessWidget {
                 return Container(
                   margin: const EdgeInsets.all(30.0),
                   width: 240.0,
-                  color: Colors.red,
+                  // color: Colors.red,
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
                       Positioned(
-                        bottom: 15.0,
+                        bottom: 10.0,
                         child: Container(
                           height: 120.0,
                           width: 240.0,
@@ -85,6 +85,7 @@ class HotelCarousel extends StatelessWidget {
                                 Text(
                                   '\$${hotel.price} / night',
                                   style: const TextStyle(
+                                    color: Colors.greenAccent,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -112,7 +113,9 @@ class HotelCarousel extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image(
                                 image: AssetImage(hotel.imageUrl ?? ""),
-                                height: 100.0,
+                                // height: 100.0,
+                                // width: 220.0,
+                                height: 140.0,
                                 width: 220.0,
                                 fit: BoxFit.cover,
                               ),

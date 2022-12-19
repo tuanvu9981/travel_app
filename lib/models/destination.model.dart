@@ -54,6 +54,13 @@ List<Destination> destinations = [
     activities: activities,
   ),
   Destination(
+    imageUrl: 'assets/images/da-nang.jpg',
+    city: 'Da Nang',
+    country: 'Vietnam',
+    description: 'Visit Da Nang for an amazing and unforgettable adventure.',
+    activities: activities,
+  ),
+  Destination(
     imageUrl: 'assets/images/paris.jpg',
     city: 'Paris',
     country: 'France',
@@ -61,10 +68,24 @@ List<Destination> destinations = [
     activities: activities,
   ),
   Destination(
+    imageUrl: 'assets/images/hue.jpeg',
+    city: 'Hue',
+    country: 'Vietnam',
+    description: 'Visit Hue for an amazing and unforgettable adventure.',
+    activities: activities,
+  ),
+  Destination(
     imageUrl: 'assets/images/newdelhi.jpg',
     city: 'New Delhi',
     country: 'India',
     description: 'Visit New Delhi for an amazing and unforgettable adventure.',
+    activities: activities,
+  ),
+  Destination(
+    imageUrl: 'assets/images/sapa.jpg',
+    city: 'Sa Pa',
+    country: 'Vietnam',
+    description: 'Visit Sa Pa for an amazing and unforgettable adventure.',
     activities: activities,
   ),
   Destination(

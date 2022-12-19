@@ -33,6 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
               : const Color.fromARGB(255, 243, 243, 240),
           // color: const Theme.of(context).accentColor
           borderRadius: BorderRadius.circular(30.0),
+          border: Border.all(
+            width: 0.5,
+            color: Colors.blueGrey.shade100,
+          ),
         ),
         child: Icon(
           _icons[index],
@@ -54,11 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             const Padding(
               // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
-              padding: EdgeInsets.only(left: 20.0, right: 100.0), // xiaomi
+              padding: EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
               child: Text(
                 "What would you like to find ?",
                 style: TextStyle(
-                  fontSize: 27.5,
+                  fontSize: 25.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -76,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20.0),
             DestinationCarousel(),
-            const SizedBox(height: 15.0),
+            const SizedBox(height: 5.0),
             HotelCarousel(),
           ],
         ),

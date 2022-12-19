@@ -18,7 +18,6 @@ class HotelCarousel extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
                 ),
               ),
               GestureDetector(
@@ -30,7 +29,6 @@ class HotelCarousel extends StatelessWidget {
                     // Theme's color is NOT CONSTANT --> ALWAYS CHANGES
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 1.5,
                   ),
                 ),
               ),
@@ -46,8 +44,17 @@ class HotelCarousel extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 Hotel hotel = hotels[index];
                 return Container(
-                  margin: const EdgeInsets.all(30.0),
-                  width: 240.0,
+                  margin: const EdgeInsets.all(20.0),
+                  width: 210.0,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 2.0),
+                        blurRadius: 6.0,
+                      )
+                    ],
+                  ),
                   // color: Colors.red,
                   child: Stack(
                     alignment: Alignment.topCenter,
@@ -55,8 +62,8 @@ class HotelCarousel extends StatelessWidget {
                       Positioned(
                         bottom: 10.0,
                         child: Container(
-                          height: 120.0,
-                          width: 240.0,
+                          height: 140.0,
+                          width: 210.0,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
@@ -69,9 +76,8 @@ class HotelCarousel extends StatelessWidget {
                                 Text(
                                   hotel.name ?? "",
                                   style: const TextStyle(
-                                    fontSize: 22.0,
+                                    fontSize: 20.0,
                                     fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.2,
                                   ),
                                 ),
                                 const SizedBox(height: 2.0),
@@ -83,10 +89,10 @@ class HotelCarousel extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 2.0),
                                 Text(
-                                  '\$${hotel.price} / night',
+                                  '\$${hotel.price} per night',
                                   style: const TextStyle(
                                     color: Colors.greenAccent,
-                                    fontSize: 18.0,
+                                    fontSize: 14.5,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -99,24 +105,20 @@ class HotelCarousel extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(0.0, 2.0),
-                              blurRadius: 6.0,
-                            )
-                          ],
                         ),
                         child: Stack(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                              ),
                               child: Image(
                                 image: AssetImage(hotel.imageUrl ?? ""),
                                 // height: 100.0,
                                 // width: 220.0,
-                                height: 140.0,
-                                width: 220.0,
+                                height: 170.0,
+                                width: 210.0,
                                 fit: BoxFit.cover,
                               ),
                             ),

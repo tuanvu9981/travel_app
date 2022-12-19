@@ -18,7 +18,6 @@ class DestinationCarousel extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
                 ),
               ),
               GestureDetector(
@@ -30,7 +29,6 @@ class DestinationCarousel extends StatelessWidget {
                     // Theme's color is NOT CONSTANT --> ALWAYS CHANGES
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 1.5,
                   ),
                 ),
               ),
@@ -38,7 +36,7 @@ class DestinationCarousel extends StatelessWidget {
           ),
         ),
         Container(
-          height: 300.0,
+          height: 280.0,
           // color: Colors.blue,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -46,9 +44,18 @@ class DestinationCarousel extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 Destination destination = destinations[index];
                 return Container(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(20.0),
                   width: 210.0,
                   // color: Colors.red,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 2.0),
+                        blurRadius: 6.0,
+                      )
+                    ],
+                  ),
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
@@ -73,7 +80,6 @@ class DestinationCarousel extends StatelessWidget {
                                   style: const TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.2,
                                   ),
                                 ),
                                 const SizedBox(height: 5.0),
@@ -93,24 +99,20 @@ class DestinationCarousel extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(0.0, 2.0),
-                              blurRadius: 6.0,
-                            )
-                          ],
                         ),
                         child: Stack(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                              ),
                               child: Image(
                                 image: AssetImage(destination.imageUrl ?? ""),
                                 // height: 100.0,
                                 // width: 100.0,  iphone 11
                                 height: 140.0,
-                                width: 190.0,
+                                width: 210.0, //same as width of white box
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -127,7 +129,6 @@ class DestinationCarousel extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 24.0,
                                       fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.2,
                                     ),
                                   ),
                                   Row(

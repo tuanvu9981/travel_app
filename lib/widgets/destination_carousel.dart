@@ -112,18 +112,22 @@ class DestinationCarousel extends StatelessWidget {
                           ),
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
-                                ),
-                                child: Image(
-                                  image: AssetImage(destination.imageUrl ?? ""),
-                                  // height: 100.0,
-                                  // width: 100.0,  iphone 11
-                                  height: 140.0,
-                                  width: 210.0, //same as width of white box
-                                  fit: BoxFit.cover,
+                              Hero(
+                                tag: destination.imageUrl ?? "",
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                  ),
+                                  child: Image(
+                                    image:
+                                        AssetImage(destination.imageUrl ?? ""),
+                                    // height: 100.0,
+                                    // width: 100.0,  iphone 11
+                                    height: 140.0,
+                                    width: 210.0, //same as width of white box
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Positioned(

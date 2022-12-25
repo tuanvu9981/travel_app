@@ -44,3 +44,43 @@ Object(
 ```
 travel_app $ flutter run --no-sound-null-safety
 ```
+
+2. **When text overflows**
+```
+Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+        Text(
+            activity.name ?? "",
+            style: const TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+            ),
+        ),
+        Text('\$${activity.price}'),
+    ],
+),
+```
+- When add ```Padding``` with ```left = 100.0```, ```Text('\$${activity.price}')``` will be overflowed when displayed. 
+- Solution: Wrap first **Text** in a **Container** with width = 120, so the second **Text** will have its own enough space to display.
+- The code became:
+```
+Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+        Container(
+            width: 120.0,
+            child: Text(
+                activity.name ?? "",
+                style: const TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                ),
+            ),
+        ),
+        Text('\$${activity.price}'),
+    ],
+),
+```

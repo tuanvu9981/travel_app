@@ -112,7 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: CircleAvatar(
                 radius: 15.0,
-                backgroundImage: NetworkImage('http:'),
+                backgroundImage: NetworkImage(
+                  'https://firebasestorage.googleapis.com/v0/b/taskmanagerfirebase-4c4c3.appspot.com/o/image%2Fduck.jpg?alt=media&token=f0f5cbd4-6842-4c07-9e28-689f57903575',
+                ),
               ),
               label: "Personal",
             ),

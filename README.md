@@ -84,3 +84,6 @@ Row(
     ],
 ),
 ```
+
+3. **Noted when coding**
+- Between big image and list view should not render a SizedBox !!!

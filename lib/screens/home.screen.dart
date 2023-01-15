@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   int _currentTab = 0;
+  final int _currentHour = DateTime.now().hour;
+
   final List<IconData> _icons = [
     FontAwesomeIcons.plane,
     FontAwesomeIcons.bed,
@@ -50,6 +52,45 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildGreetingByHour(int hour) {
+    String greeting = "Welcome, Tuan Vu";
+    IconData icons;
+    if (hour <= 12) {
+      greeting = "Good morning, Tuan Vu";
+      icons = Icons.wb_sunny;
+    } else if ((hour > 12) && (hour <= 16)) {
+      greeting = "Good afternoon, Tuan Vu";
+      icons = Icons.sunny;
+    } else if ((hour > 16) && (hour < 20)) {
+      greeting = "Good evening, Tuan Vu";
+      icons = Icons.nights_stay;
+    } else {
+      greeting = "Good night, Tuan Vu";
+      icons = Icons.nights_stay;
+    }
+    return Padding(
+      // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
+      padding: const EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
+      child: Row(
+        children: [
+          Text(
+            greeting,
+            style: const TextStyle(
+              fontSize: 21.5,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(width: 15.0),
+          Icon(
+            icons,
+            size: 37.5,
+            color: Colors.yellow.shade500,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListView(
             padding: const EdgeInsets.symmetric(vertical: 30.0),
             children: <Widget>[
+              _buildGreetingByHour(_currentHour),
+              const SizedBox(height: 20.0),
+
               const Padding(
                 // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
                 padding: EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
@@ -68,17 +112,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: _icons
-                    .asMap()
-                    .entries
-                    .map(
-                      (MapEntry map) => _buildIcon(map.key),
-                    )
-                    .toList(),
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: _icons
+              //       .asMap()
+              //       .entries
+              //       .map(
+              //         (MapEntry map) => _buildIcon(map.key),
+              //       )
+              //       .toList(),
+              // ),
               const SizedBox(height: 20.0),
               DestinationCarousel(),
               const SizedBox(height: 5.0),

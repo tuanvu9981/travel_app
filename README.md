@@ -87,3 +87,16 @@ Row(
 
 3. **Noted when coding**
 - Between big image and list view should not render a SizedBox !!!
+
+4. **Carousel and examples**
+- Reference: [Carousel from pub](https://pub.dev/packages/carousel_slider/example)
+- In order to get animation such as CGV app, adjust CarouselOption as below:
+```
+options: CarouselOptions(
+    aspectRatio: 1.25,
+    enlargeCenterPage: true,
+    autoPlay: false,
+    viewportFraction: 0.65,
+    enableInfiniteScroll: true,
+),
+```

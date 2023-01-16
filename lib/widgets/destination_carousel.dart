@@ -177,7 +177,7 @@ class DestinationCarousel extends StatelessWidget {
               enlargeCenterPage: true,
               autoPlay: false,
               viewportFraction: 0.65,
-              enableInfiniteScroll: false,
+              enableInfiniteScroll: true,
             ),
           ),
           // child: ListView.builder(

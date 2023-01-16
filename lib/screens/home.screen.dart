@@ -55,13 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildGreetingByHour(int hour) {
     String greeting = "Welcome, Tuan Vu";
     IconData icons;
-    if (hour <= 12) {
+    if (hour <= 12 && hour >= 5) {
       greeting = "Good morning, Tuan Vu";
       icons = Icons.wb_sunny;
-    } else if ((hour > 12) && (hour <= 16)) {
+    } else if ((hour > 12) && (hour <= 17)) {
       greeting = "Good afternoon, Tuan Vu";
       icons = Icons.sunny;
-    } else if ((hour > 16) && (hour < 20)) {
+    } else if ((hour > 17) && (hour < 20)) {
       greeting = "Good evening, Tuan Vu";
       icons = Icons.nights_stay;
     } else {
@@ -72,12 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
       // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
       padding: const EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
       child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
             greeting,
             style: const TextStyle(
-              fontSize: 21.5,
-              fontWeight: FontWeight.bold,
+              fontSize: 18.5,
+              // fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
             ),
           ),
           const SizedBox(width: 15.0),
@@ -99,16 +101,15 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(vertical: 30.0),
             children: <Widget>[
               _buildGreetingByHour(_currentHour),
-              const SizedBox(height: 20.0),
-
               const Padding(
                 // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
                 padding: EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
                 child: Text(
                   "What would you like to find ?",
                   style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 18.5,
+                    // fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ),

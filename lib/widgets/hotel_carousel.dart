@@ -39,97 +39,98 @@ class HotelCarousel extends StatelessWidget {
           height: 300.0,
           // color: Colors.blue,
           child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: hotels.length,
-              itemBuilder: (BuildContext context, int index) {
-                Hotel hotel = hotels[index];
-                return Container(
-                  margin: const EdgeInsets.all(20.0),
-                  width: 210.0,
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(0.0, 2.0),
-                        blurRadius: 6.0,
-                      )
-                    ],
-                  ),
-                  // color: Colors.red,
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Positioned(
-                        bottom: 10.0,
-                        child: Container(
-                          height: 140.0,
-                          width: 210.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  hotel.name ?? "",
-                                  style: const TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: 2.0),
-                                Text(
-                                  hotel.address ?? "",
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(height: 2.0),
-                                Text(
-                                  '\$${hotel.price} per night',
-                                  style: const TextStyle(
-                                    color: Colors.greenAccent,
-                                    fontSize: 14.5,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
+            scrollDirection: Axis.horizontal,
+            itemCount: hotels.length,
+            itemBuilder: (BuildContext context, int index) {
+              Hotel hotel = hotels[index];
+              return Container(
+                margin: const EdgeInsets.all(20.0),
+                width: 210.0,
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0.0, 2.0),
+                      blurRadius: 6.0,
+                    )
+                  ],
+                ),
+                // color: Colors.red,
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Positioned(
+                      bottom: 10.0,
+                      child: Container(
+                        height: 140.0,
+                        width: 210.0,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                hotel.name ?? "",
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                              child: Image(
-                                image: AssetImage(hotel.imageUrl ?? ""),
-                                // height: 100.0,
-                                // width: 220.0,
-                                height: 170.0,
-                                width: 210.0,
-                                fit: BoxFit.cover,
+                              const SizedBox(height: 2.0),
+                              Text(
+                                hotel.address ?? "",
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 2.0),
+                              Text(
+                                '\$${hotel.price} per night',
+                                style: const TextStyle(
+                                  color: Colors.greenAccent,
+                                  fontSize: 14.5,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                );
-                // return Text(destination.city ?? "");
-              }),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
+                            child: Image(
+                              image: AssetImage(hotel.imageUrl ?? ""),
+                              // height: 100.0,
+                              // width: 220.0,
+                              height: 170.0,
+                              width: 210.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+              // return Text(destination.city ?? "");
+            },
+          ),
         ),
       ],
     );

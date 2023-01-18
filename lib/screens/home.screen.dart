@@ -140,25 +140,25 @@ class _HomeScreenState extends State<HomeScreen> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.search,
+                Icons.home,
                 size: 30.0,
               ),
               // title: SizedBox.shrink(),
-              label: "Search",
+              label: "Home",
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.cake,
+                Icons.history_edu_outlined,
                 size: 30.0,
               ),
-              label: "Food",
+              label: "Booking History",
             ),
             BottomNavigationBarItem(
               icon: CircleAvatar(
                 radius: 15.0,
                 backgroundImage: AssetImage('assets/images/duck.jpg'),
               ),
-              label: "Personal",
+              label: "Personal Information",
             ),
           ],
         ));

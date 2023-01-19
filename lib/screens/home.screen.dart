@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if ((hour > 12) && (hour <= 17)) {
       greeting = "Good afternoon, Tuan Vu";
       icons = Icons.wb_sunny;
-    } else if ((hour > 17) && (hour < 20)) {
+    } else if ((hour > 17) && (hour < 23)) {
       greeting = "Good evening, Tuan Vu";
       icons = Icons.nights_stay;
     } else {
@@ -154,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
               //       )
               //       .toList(),
               // ),
-              const SizedBox(height: 10.0),
-              DestinationCarousel(),
               const SizedBox(height: 5.0),
               HotelCarousel(),
+              const SizedBox(height: 15.0),
+              DestinationCarousel(),
             ],
           ),
         ),

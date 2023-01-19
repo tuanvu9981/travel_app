@@ -26,7 +26,7 @@ class DescriptionWhiteBox extends StatelessWidget {
               Text(
                 '$length activities',
                 style: const TextStyle(
-                  fontSize: 25.0,
+                  fontSize: 22.0,
                   fontFamily: 'Mukta',
                   fontWeight: FontWeight.w600,
                 ),
@@ -35,7 +35,7 @@ class DescriptionWhiteBox extends StatelessWidget {
               Text(
                 description,
                 style: const TextStyle(
-                  fontSize: 13.5,
+                  fontSize: 12.5,
                   color: Colors.grey,
                 ),
               ),

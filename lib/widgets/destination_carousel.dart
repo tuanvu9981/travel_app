@@ -12,11 +12,14 @@ class DestinationCarousel extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0), // right + left
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 5.0,
+          ), // right + left
           child: DestinationHeader(),
         ),
         SizedBox(
-          height: 350.0,
+          height: 330.0,
           // color: Colors.blue,
           child: CarouselSlider.builder(
             itemCount: destinations.length,

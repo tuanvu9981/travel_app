@@ -10,7 +10,7 @@ class DestinationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 20.0, 0, 20.0),
+      margin: const EdgeInsets.fromLTRB(0, 5.0, 0, 20.0),
       width: 210.0,
       decoration: const BoxDecoration(
         boxShadow: [

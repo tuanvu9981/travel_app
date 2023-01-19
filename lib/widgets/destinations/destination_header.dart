@@ -9,7 +9,8 @@ class DestinationHeader extends StatelessWidget {
         const Text(
           "Top Destinations",
           style: TextStyle(
-            fontSize: 22.0,
+            fontSize: 24.0,
+            fontFamily: 'Mukta',
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -20,7 +21,8 @@ class DestinationHeader extends StatelessWidget {
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               // Theme's color is NOT CONSTANT --> ALWAYS CHANGES
-              fontSize: 16,
+              fontSize: 20.0,
+              fontFamily: 'Mukta',
               fontWeight: FontWeight.w600,
             ),
           ),

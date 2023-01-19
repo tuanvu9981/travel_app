@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildGreetingByHour(int hour) {
+  Widget _buildAppbarGreetingByHour(int hour) {
     String greeting = "Welcome, Tuan Vu";
     IconData icons;
     if (hour <= 12 && hour >= 5) {
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       icons = Icons.wb_sunny;
     } else if ((hour > 12) && (hour <= 17)) {
       greeting = "Good afternoon, Tuan Vu";
-      icons = Icons.sunny;
+      icons = Icons.wb_sunny;
     } else if ((hour > 17) && (hour < 20)) {
       greeting = "Good evening, Tuan Vu";
       icons = Icons.nights_stay;
@@ -68,49 +68,80 @@ class _HomeScreenState extends State<HomeScreen> {
       greeting = "Good night, Tuan Vu";
       icons = Icons.nights_stay;
     }
-    return Padding(
-      // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
-      padding: const EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
-      child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            greeting,
-            style: const TextStyle(
-              fontSize: 18.5,
-              // fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-          const SizedBox(width: 15.0),
-          Icon(
-            icons,
-            size: 37.5,
-            color: Colors.yellow.shade500,
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        Text(
+          greeting,
+          style: const TextStyle(fontSize: 18.5),
+        ),
+        const SizedBox(width: 6.0),
+        Icon(
+          icons,
+          size: 28.5,
+          color: Colors.yellow.shade500,
+        ),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: _buildAppbarGreetingByHour(_currentHour),
+          backgroundColor: Theme.of(context).primaryColorLight,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.notifications, size: 28.5),
+              tooltip: 'Notification',
+              onPressed: () {
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('This is a snackbar')));
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
             children: <Widget>[
-              _buildGreetingByHour(_currentHour),
-              const Padding(
+              Padding(
                 // padding: EdgeInsets.only(left: 20.0, right: 120.0), iphone 11 pro max,
-                padding: EdgeInsets.only(left: 20.0, right: 40.0), // xiaomi
-                child: Text(
-                  "What would you like to find ?",
-                  style: TextStyle(
-                    fontSize: 18.5,
-                    // fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
+                padding: const EdgeInsets.only(
+                  left: 40.0,
+                  right: 40.0,
+                ), // xiaomi
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Let's explore the world",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'DancingScript',
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 170.0),
+                      child: Row(
+                        children: const [
+                          Text(
+                            "with us !",
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontFamily: 'DancingScript',
+                            ),
+                          ),
+                          SizedBox(width: 7.5),
+                          Icon(
+                            Icons.travel_explore_sharp,
+                            size: 30.0,
+                            color: Colors.lightGreen,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
               // Row(
@@ -123,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
               //       )
               //       .toList(),
               // ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 10.0),
               DestinationCarousel(),
               const SizedBox(height: 5.0),
               HotelCarousel(),
@@ -131,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Theme.of(context).primaryColorLight,
           currentIndex: _currentTab,
           onTap: (int value) {
             setState(() {
@@ -143,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.home,
                 size: 30.0,
               ),
-              // title: SizedBox.shrink(),
               label: "Home",
             ),
             BottomNavigationBarItem(
@@ -151,14 +182,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.history_edu_outlined,
                 size: 30.0,
               ),
-              label: "Booking History",
+              label: "Booking",
             ),
             BottomNavigationBarItem(
               icon: CircleAvatar(
                 radius: 15.0,
                 backgroundImage: AssetImage('assets/images/duck.jpg'),
               ),
-              label: "Personal Information",
+              label: "Personal",
             ),
           ],
         ));

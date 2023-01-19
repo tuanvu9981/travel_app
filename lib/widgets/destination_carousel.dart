@@ -16,7 +16,7 @@ class DestinationCarousel extends StatelessWidget {
           child: DestinationHeader(),
         ),
         SizedBox(
-          height: 285.0,
+          height: 350.0,
           // color: Colors.blue,
           child: CarouselSlider.builder(
             itemCount: destinations.length,
@@ -35,10 +35,10 @@ class DestinationCarousel extends StatelessWidget {
               );
             },
             options: CarouselOptions(
-              aspectRatio: 1.25,
+              aspectRatio: 1.2,
               enlargeCenterPage: true,
               autoPlay: false,
-              viewportFraction: 0.65,
+              viewportFraction: 0.6,
               enableInfiniteScroll: true,
             ),
           ),

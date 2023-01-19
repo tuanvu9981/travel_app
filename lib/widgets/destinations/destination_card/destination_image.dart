@@ -31,8 +31,8 @@ class DestinationImage extends StatelessWidget {
               child: Image(
                 // height: 100.0, width: 100.0, iphone 11
                 image: AssetImage(imageUrl),
-                height: 140.0,
-                width: 210.0, //same as width of white box
+                height: 200.0,
+                width: 230.0, //same as width of white box
                 fit: BoxFit.cover,
               ),
             ),

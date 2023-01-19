@@ -9,16 +9,16 @@ class DescriptionWhiteBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 110.0, // bottom: 10.0,
+      bottom: 12.5,
       child: Container(
-        height: 120.0,
-        width: 210.0,
+        height: 170.0,
+        width: 230.0,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,11 +26,12 @@ class DescriptionWhiteBox extends StatelessWidget {
               Text(
                 '$length activities',
                 style: const TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 25.0,
+                  fontFamily: 'Mukta',
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 5.0),
+              const SizedBox(height: 2.5),
               Text(
                 description,
                 style: const TextStyle(

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/models/activity.model.dart';
-import 'package:travel_app/models/classify_result.dart';
-import 'package:travel_app/models/request/request.dart';
 import '../models/destination.model.dart';
-import 'package:http/http.dart';
 
 class DestinationScreen extends StatefulWidget {
   final Destination? destination;
@@ -24,27 +21,9 @@ class DestinationScreenState extends State<DestinationScreen> {
     return Text(stars);
   }
 
-  // ClassifyResult result = ClassifyResult(
-  //   status: 404,
-  //   result: "nothing",
-  //   explanation: {"p": 87, "e": 13},
-  // );
-  String result = "";
-
   @override
   void initState() {
     super.initState();
-    TravelRequest.getResult(
-      "54.255.168.205:8000",
-      "/mushroom/naive-bayes",
-      '{"cap-shape": "c","cap-color": "","bruises": "","odor": "f","stalk-shape": "e","stalk-root": "","spore-print-color": "","habitat": "","population": "","ring-type": ""}',
-    ).then(
-      (value) {
-        setState(() {
-          result = value;
-        });
-      },
-    );
   }
 
   @override
@@ -129,14 +108,6 @@ class DestinationScreenState extends State<DestinationScreen> {
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 35.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        "result: $result",
-                        style: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 12.0,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

@@ -35,8 +35,8 @@ class DestinationScreenState extends State<DestinationScreen> {
             Stack(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.width *
-                      0.9, // height = width * 0.9
+                  // height = width * 0.9
+                  height: MediaQuery.of(context).size.width * 0.75,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     boxShadow: const [
@@ -55,7 +55,7 @@ class DestinationScreenState extends State<DestinationScreen> {
                         bottomRight: Radius.circular(30.0),
                       ),
                       child: Image(
-                        image: AssetImage(
+                        image: NetworkImage(
                           widget.destination?.imageUrl ?? "",
                         ),
                         fit: BoxFit.cover,
@@ -261,7 +261,7 @@ class DestinationScreenState extends State<DestinationScreen> {
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image(
                             width: 110.0,
-                            image: AssetImage(activity.imageUrl ?? ""),
+                            image: NetworkImage(activity.imageUrl ?? ""),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -273,6 +273,12 @@ class DestinationScreenState extends State<DestinationScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).primaryColorLight,
+        onTap: (value) => {},
+        currentIndex: 0,
+        items: [],
       ),
     );
   }

@@ -94,10 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: HomeInfoUtil()
             .btmNavIcons
-            .map((e) => BottomNavigationBarItem(
-                  icon: e.icon,
-                  label: e.label,
-                ))
+            .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.label))
             .toList(),
       ),
     );

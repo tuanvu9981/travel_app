@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-
-class BtmNavInfo {
-  Widget icon;
-  String label;
-  BtmNavInfo({required this.icon, required this.label});
-}
+import './btm.nav.info.dart';
 
 class Greeting {
   String text;

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/models/destination.model.dart';
-import 'package:travel_app/screens/destination_screen.dart';
+import 'package:travel_app/screens/destination_detail/destination_screen.dart';
 import 'package:travel_app/widgets/destinations/destination_card/destination_card.dart';
 import 'package:travel_app/widgets/destinations/destination_header.dart';
 import '../../apis/destination.api.dart';

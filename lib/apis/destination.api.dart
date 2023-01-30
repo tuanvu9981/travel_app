@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:travel_app/models/destination.model.dart';
 import 'package:http/http.dart';
+import 'package:travel_app/models/food.model.dart';
 import 'api.const.dart';
 
 class DestinationApi {

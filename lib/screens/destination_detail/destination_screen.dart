@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/apis/food.api.dart';
+import 'package:travel_app/widgets/foods/food_card.dart';
+import 'package:travel_app/widgets/hotels/hotel_card.dart';
 import '../../models/destination.model.dart';
 import 'package:travel_app/models/activity.model.dart';
 import 'package:travel_app/widgets/activities/activity_card.dart';
+import '../../models/food.model.dart';
+import '../../models/hotel.model.dart';
 import './destination_image.dart';
 import './destination_display_text.dart';
 import '../../utils/destination.info.dart';
@@ -17,6 +22,21 @@ class DestinationScreen extends StatefulWidget {
 
 class DestinationScreenState extends State<DestinationScreen> {
   int _currentTab = 0;
+  EdgeInsets _paddingForTab = EdgeInsets.only(top: 10.0, bottom: 15.0);
+  List<Food>? foodList = [];
+
+  Future<void> _fetchData(String? id) async {
+    List<Food>? data = await FoodApi.getFoodByDestinationId(id);
+    setState(() {
+      foodList = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData(widget.destination?.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +93,33 @@ class DestinationScreenState extends State<DestinationScreen> {
             ),
             // between big image and list view should not render a SizedBox !!!
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                itemCount: widget.destination?.activities?.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Activity activity = widget.destination!.activities![index];
-                  return ActivityCard(activity: activity);
-                },
-              ),
+              child: _currentTab == 0
+                  ? ListView.builder(
+                      padding: _paddingForTab,
+                      itemCount: widget.destination?.activities?.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Activity activity =
+                            widget.destination!.activities![index];
+                        return ActivityCard(activity: activity);
+                      },
+                    )
+                  : _currentTab == 1
+                      ? ListView.builder(
+                          padding: _paddingForTab,
+                          itemCount: foodList?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            Food food = foodList![index];
+                            return FoodCard(food: food);
+                          },
+                        )
+                      : ListView.builder(
+                          padding: _paddingForTab,
+                          itemCount: widget.destination?.hotels?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            Hotel hotel = widget.destination!.hotels![index];
+                            return HotelCard(hotel: hotel);
+                          },
+                        ),
             ),
           ],
         ),

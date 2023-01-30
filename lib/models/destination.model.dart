@@ -4,6 +4,7 @@ import 'activity.model.dart';
 import 'hotel.model.dart';
 
 class Destination {
+  String? id;
   String? imageUrl;
   String? city;
   String? country;
@@ -12,6 +13,7 @@ class Destination {
   List<Hotel>? hotels;
 
   Destination({
+    this.id,
     this.imageUrl,
     this.city,
     this.country,
@@ -21,6 +23,7 @@ class Destination {
   });
 
   Destination.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     imageUrl = json['imageUrl'];
     city = json['city'];
     country = json['country'];
@@ -42,6 +45,7 @@ class Destination {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['imageUrl'] = imageUrl;
     data['city'] = city;
     data['country'] = country;

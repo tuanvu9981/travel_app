@@ -100,3 +100,9 @@ options: CarouselOptions(
     enableInfiniteScroll: true,
 ),
 ```
+
+5. Commands
+- Run without null pointer check, check [this](https://dart.dev/null-safety/unsound-null-safety)
+```
+$ flutter run --no-sound-null-safety
+```

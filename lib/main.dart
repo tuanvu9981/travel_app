@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/screens/home.screen.dart';
 
+import 'package:travel_app/screens/authentication/sign_in.screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +23,11 @@ class MyApp extends StatelessWidget {
         primaryColorLight: Colors.lightBlue.shade300,
         // colorScheme secondary is equivalent to accentColor
       ),
-      home: HomeScreen(),
+      // onGenerateRoute: (RouteSettings settings) => {
+
+      // },
+      // home: HomeScreen(),
+      home: const SignInScreen(),
     );
   }
 }

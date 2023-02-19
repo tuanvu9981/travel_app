@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/screens/home.screen.dart';
 
 import 'package:travel_app/screens/authentication/sign_in.screen.dart';
+import 'package:travel_app/screens/authentication/sign_up.screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,13 @@ class MyApp extends StatelessWidget {
 
       // },
       // home: HomeScreen(),
+      // home: const SignUpScreen(),
       home: const SignInScreen(),
+
+      routes: {
+        '/sign-in': (context) => const SignInScreen(),
+        '/sign-up': (context) => const SignUpScreen()
+      },
     );
   }
 }

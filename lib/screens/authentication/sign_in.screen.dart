@@ -117,7 +117,7 @@ class SignInScreenState extends State<SignInScreen> {
         ),
         onPressed: () => {},
         child: const Text(
-          'LOGIN',
+          'SIGN IN',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -186,7 +186,9 @@ class SignInScreenState extends State<SignInScreen> {
 
   Widget _buildSignUpBtn() {
     return GestureDetector(
-      onTap: () => {},
+      onTap: () => {
+        Navigator.pushNamed(context, '/sign-up'),
+      },
       child: RichText(
         text: const TextSpan(
           children: [
@@ -222,15 +224,11 @@ class SignInScreenState extends State<SignInScreen> {
           ),
           Container(
             height: double.infinity,
-            // decoration: const BoxDecoration(
-            //   color: Colors.white,
-            //   borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            // ),
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 horizontal: 40.0,
-                vertical: 90.0,
+                vertical: 60.0,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -243,9 +241,9 @@ class SignInScreenState extends State<SignInScreen> {
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 30.0),
+                  const SizedBox(height: 32.5),
                   _buildEmailTextField(),
-                  const SizedBox(height: 30.0),
+                  const SizedBox(height: 32.5),
                   _buildPasswordTextField(),
                   _buildForgotPasswordBtn(),
                   _buildSignInBtn(),

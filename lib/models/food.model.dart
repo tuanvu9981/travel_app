@@ -3,7 +3,7 @@ class Food {
   String? foodName;
   String? imageUrl;
   String? english;
-  double? price;
+  num? price;
   String? destinationId;
 
   Food({

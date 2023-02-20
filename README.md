@@ -101,8 +101,22 @@ options: CarouselOptions(
 ),
 ```
 
-5. Commands
+5. **Commands**
 - Run without null pointer check, check [this](https://dart.dev/null-safety/unsound-null-safety)
 ```
 $ flutter run --no-sound-null-safety
+```
+
+6. **With GridView**
+- Cannot adjust **height** or **width** of **Container** inside widget **GridView**
+- Using **childAspectRatio** instead:
+```
+GridView.builder(
+    padding: _paddingGrid,
+    itemCount: foodList?.length,
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.75,
+    )
+);    
 ```

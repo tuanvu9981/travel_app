@@ -22,7 +22,14 @@ class DestinationScreen extends StatefulWidget {
 
 class DestinationScreenState extends State<DestinationScreen> {
   int _currentTab = 0;
-  EdgeInsets _paddingForTab = EdgeInsets.only(top: 10.0, bottom: 15.0);
+  final EdgeInsets _paddingForTab = const EdgeInsets.only(
+    top: 15.0,
+    bottom: 15.0,
+  );
+  final EdgeInsets _paddingGrid = const EdgeInsets.symmetric(
+    horizontal: 10.0,
+    vertical: 15.0,
+  );
   List<Food>? foodList = [];
 
   Future<void> _fetchData(String? id) async {
@@ -104,9 +111,14 @@ class DestinationScreenState extends State<DestinationScreen> {
                       },
                     )
                   : _currentTab == 1
-                      ? ListView.builder(
-                          padding: _paddingForTab,
+                      ? GridView.builder(
+                          padding: _paddingGrid,
                           itemCount: foodList?.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.75,
+                          ),
                           itemBuilder: (BuildContext context, int index) {
                             Food food = foodList![index];
                             return FoodCard(food: food);

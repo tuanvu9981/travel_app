@@ -78,10 +78,9 @@ class ActivityCard extends StatelessWidget {
                 Text(
                   activity.type ?? "",
                   style: const TextStyle(
-                    fontSize: 16.5,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.black54,
+                    color: Colors.black45,
                   ),
                 ),
                 const SizedBox(height: 5.0),

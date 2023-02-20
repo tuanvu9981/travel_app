@@ -21,7 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Text(
           greeting.text,
-          style: const TextStyle(fontSize: 18.5, fontFamily: 'Mukta'),
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontFamily: 'Mukta',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(width: 6.0),
         Icon(
@@ -79,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 5.0),
             const DiscountCarousel(),
-            const SizedBox(height: 15.0),
+            const SizedBox(height: 5.0),
             const DestinationCarousel(),
           ],
         ),

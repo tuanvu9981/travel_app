@@ -6,7 +6,7 @@ class DestinationInfo {
   final List<BtmNavInfo> btmNavIcons = [
     BtmNavInfo(
       icon: const Icon(Icons.run_circle_outlined, size: 30.0),
-      label: "Activity",
+      label: "Activities",
     ),
     BtmNavInfo(
       // icon: const Icon(FontAwesomeIcons.hamburger, size: 30.0),
@@ -14,8 +14,8 @@ class DestinationInfo {
       label: "Food",
     ),
     BtmNavInfo(
-      icon: const Icon(FontAwesomeIcons.hotel, size: 30.0),
-      label: "Hotel",
+      icon: const Icon(Icons.house_outlined, size: 30.0),
+      label: "Hotels",
     )
   ];
 }

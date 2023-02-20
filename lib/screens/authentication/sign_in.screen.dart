@@ -115,7 +115,9 @@ class SignInScreenState extends State<SignInScreen> {
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-        onPressed: () => {},
+        onPressed: () => {
+          Navigator.pushNamed(context, '/home'),
+        },
         child: const Text(
           'SIGN IN',
           style: TextStyle(

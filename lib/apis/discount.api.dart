@@ -4,17 +4,21 @@ import 'package:http/http.dart';
 import 'package:travel_app/models/discount.model.dart';
 
 class DiscountApi {
-  static String endpoint = "/discount";
+  static String endpoint = "discount-info";
 
   static Future<List<DiscountInfo>?> getTopDiscountInfos() async {
     var response = await get(
-      Uri.https(ApiConst.baseUrl, "$endpoint/top"),
+      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/top"),
       headers: ApiConst.headers,
     );
     if (response.statusCode == 200) {
-      List<DiscountInfo> discountInfos = jsonDecode(response.body).map(
-        (d) => DiscountInfo.fromJson(d),
-      );
+      List<Map<String, dynamic>> mapData =
+          jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
+      List<DiscountInfo> discountInfos = mapData
+          .map(
+            (d) => DiscountInfo.fromJson(d),
+          )
+          .toList();
       return discountInfos;
     }
     return null;
@@ -22,13 +26,17 @@ class DiscountApi {
 
   static Future<List<DiscountInfo>?> getAllDiscountInfos() async {
     var response = await get(
-      Uri.https(ApiConst.baseUrl, "$endpoint/all"),
+      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/all"),
       headers: ApiConst.headers,
     );
     if (response.statusCode == 200) {
-      List<DiscountInfo> discountInfos = jsonDecode(response.body).map(
-        (d) => DiscountInfo.fromJson(d),
-      );
+      List<Map<String, dynamic>> mapData =
+          jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
+      List<DiscountInfo> discountInfos = mapData
+          .map(
+            (d) => DiscountInfo.fromJson(d),
+          )
+          .toList();
       return discountInfos;
     }
     return null;

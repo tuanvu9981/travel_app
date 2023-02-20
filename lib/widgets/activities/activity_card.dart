@@ -85,7 +85,7 @@ class ActivityCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 5.0),
-                _buildRatingStar(activity.rating ?? 0),
+                _buildRatingStar(activity.rating?.toInt() ?? 0),
                 const SizedBox(height: 12.5),
                 Row(
                   children: [

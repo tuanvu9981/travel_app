@@ -30,16 +30,24 @@ class Destination {
     description = json['description'];
 
     if (json['activities'] != null) {
-      activities = <Activity>[];
-      json['activities'].forEach((v) {
-        activities!.add(Activity.fromJson(v));
-      });
+      List<Map<String, dynamic>> mapActivities =
+          json['activities'].cast<Map<String, dynamic>>();
+
+      activities = mapActivities
+          .map(
+            (d) => Activity.fromJson(d),
+          )
+          .toList();
     }
     if (json['hotels'] != null) {
-      hotels = <Hotel>[];
-      json['hotels'].forEach((v) {
-        hotels!.add(Hotel.fromJson(v));
-      });
+      List<Map<String, dynamic>> mapHotels =
+          json['activities'].cast<Map<String, dynamic>>();
+
+      hotels = mapHotels
+          .map(
+            (h) => Hotel.fromJson(h),
+          )
+          .toList();
     }
   }
 

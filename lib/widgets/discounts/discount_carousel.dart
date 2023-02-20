@@ -38,7 +38,7 @@ class DiscountCarouselState extends State<DiscountCarousel> {
           child: DiscountHeader(),
         ),
         SizedBox(
-          height: 120.0,
+          height: 170.0,
           width: 650.0,
           child: discounts == null || discounts?.length == 0
               ? Center(
@@ -82,7 +82,7 @@ class DiscountCarouselState extends State<DiscountCarousel> {
   }
 }
 
-// enableInfiniteScroll: false, 
+// enableInfiniteScroll: false,
 // meaning: start again from the first element
 
 // Theme is always changing --> Theme is not a constant

@@ -16,15 +16,15 @@ class Room {
   });
 
   Room.fromJson(Map<String, dynamic> json) {
-    roomId = json['roomId'];
-    status = json['status'];
-    floor = json['floor'];
-    level = json['level'];
+    roomId = json['roomId'] as String;
+    status = json['status'] as String;
+    floor = json['floor'] as int;
+    level = json['level'] as String;
     if (json['intendedCheckinTime'] != null) {
-      intendedCheckinTime = json['intendedCheckinTime'];
+      intendedCheckinTime = json['intendedCheckinTime'] as String;
     }
     if (json['intendedCheckoutTime'] != null) {
-      intendedCheckoutTime = json['intendedCheckoutTime'];
+      intendedCheckoutTime = json['intendedCheckoutTime'] as String;
     }
   }
 
@@ -44,7 +44,7 @@ class Hotel {
   String? imageUrl;
   String? name;
   String? address;
-  int? price;
+  num? price;
   List<Room>? rooms;
 
   Hotel({

@@ -1,21 +1,24 @@
 import 'dart:convert';
 import 'package:travel_app/models/destination.model.dart';
 import 'package:http/http.dart';
-import 'package:travel_app/models/food.model.dart';
 import 'api.const.dart';
 
 class DestinationApi {
-  static String endpoint = '/destination';
+  static String endpoint = 'destination';
 
   static Future<List<Destination>?> getTopDestinations() async {
     var response = await get(
-      Uri.https(ApiConst.baseUrl, "$endpoint/top"),
+      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/top"),
       headers: ApiConst.headers,
     );
     if (response.statusCode == 200) {
-      List<Destination> destinations = jsonDecode(response.body).map(
-        (d) => Destination.fromJson(d),
-      );
+      List<Map<String, dynamic>> mapData =
+          jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
+      List<Destination> destinations = mapData
+          .map(
+            (d) => Destination.fromJson(d),
+          )
+          .toList();
       return destinations;
     }
     return null;
@@ -23,13 +26,17 @@ class DestinationApi {
 
   static Future<List<Destination>?> getAllDestinations() async {
     var response = await get(
-      Uri.https(ApiConst.baseUrl, "$endpoint/all"),
+      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/all"),
       headers: ApiConst.headers,
     );
     if (response.statusCode == 200) {
-      List<Destination> destinations = jsonDecode(response.body).map(
-        (d) => Destination.fromJson(d),
-      );
+      List<Map<String, dynamic>> mapData =
+          jsonDecode(response.body)['data'].cast<Map<String, dynamic>>();
+      List<Destination> destinations = mapData
+          .map(
+            (d) => Destination.fromJson(d),
+          )
+          .toList();
       return destinations;
     }
     return null;

@@ -16,12 +16,12 @@ class Food {
   });
 
   Food.fromJson(Map<String, dynamic> json) {
-    address = json['address'];
-    foodName = json['foodName'];
-    imageUrl = json['imageUrl'];
-    english = json['english'];
-    price = json['price'];
-    destinationId = json['destinationId'];
+    address = json['address'] as String;
+    foodName = json['foodName'] as String;
+    imageUrl = json['imageUrl'] as String;
+    english = json['english'] as String;
+    price = json['price'] as double;
+    destinationId = json['destinationId'] as String;
   }
 
   Map<String, dynamic> toJson() {

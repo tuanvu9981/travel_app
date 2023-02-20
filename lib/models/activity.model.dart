@@ -3,8 +3,8 @@ class Activity {
   String? name;
   String? type;
   List<String>? startTimes;
-  int? rating;
-  int? price;
+  num? rating;
+  num? price;
 
   Activity({
     this.imageUrl,

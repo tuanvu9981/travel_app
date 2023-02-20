@@ -18,12 +18,12 @@ class DiscountInfo {
   });
 
   DiscountInfo.fromJson(Map<String, dynamic> json) {
-    startDate = json['startDate'];
-    endDate = json['endDate'];
-    title = json['title'];
-    instruction = json['instruction'];
-    imageUrl = json['imageUrl'];
-    appliedPlace = json['appliedPlace'];
+    startDate = json['startDate'] as String;
+    endDate = json['endDate'] as String;
+    title = json['title'] as String;
+    instruction = json['instruction'] as String;
+    imageUrl = json['imageUrl'] as String;
+    appliedPlace = json['appliedPlace'] as String;
     if (json['contact'] != null) {
       contact = <Contact>[];
       json['contact'].forEach((v) {
@@ -54,8 +54,8 @@ class Contact {
   Contact({this.email, this.phone});
 
   Contact.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    phone = json['phone'];
+    email = json['email'] as String;
+    phone = json['phone'] as String;
   }
 
   Map<String, dynamic> toJson() {

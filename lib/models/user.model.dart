@@ -14,11 +14,11 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    fullname = json['fullname'];
-    avatarUrl = json['avatarUrl'];
-    role = json['role'];
-    money = json['money'];
+    email = json['email'] as String;
+    fullname = json['fullname'] as String;
+    avatarUrl = json['avatarUrl'] as String;
+    role = json['role'] as String;
+    money = json['money'] as String;
   }
 
   Map<String, dynamic> toJson() {

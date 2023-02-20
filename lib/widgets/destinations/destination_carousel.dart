@@ -35,7 +35,7 @@ class DestinationCarouselState extends State<DestinationCarousel> {
     return Column(
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: DestinationHeader(),
         ),
         SizedBox(

@@ -60,36 +60,39 @@ class FoodCard extends StatelessWidget {
               color: Colors.green.shade600,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text(
-              food.address ?? "",
-              style: const TextStyle(
-                fontFamily: 'VnPro',
-                fontSize: 13.5,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          // Row(
-          //   children: [
-          //     const Icon(
-          //       Icons.location_on,
-          //       size: 17.5,
-          //       color: Colors.black,
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          //   child: Text(
+          //     food.address ?? "",
+          //     style: const TextStyle(
+          //       fontFamily: 'VnPro',
+          //       fontSize: 13.5,
           //     ),
-          //     Text(
-          //       food.address ?? "",
-          //       style: const TextStyle(
-          //         fontFamily: 'Mukta',
-          //         fontSize: 13.5,
-          //       ),
-          //       maxLines: 2,
-          //       overflow: TextOverflow.clip,
-          //     ),
-          //   ],
+          //     maxLines: 2,
+          //     overflow: TextOverflow.ellipsis,
+          //   ),
           // ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(
+                Icons.location_on,
+                size: 20.0,
+                color: Colors.black,
+              ),
+              Flexible(
+                child: Text(
+                  food.address ?? "",
+                  style: const TextStyle(
+                    fontFamily: 'VNPro',
+                    fontSize: 13.5,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

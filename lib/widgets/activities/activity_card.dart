@@ -49,8 +49,9 @@ class ActivityCard extends StatelessWidget {
                       child: Text(
                         activity.name ?? "",
                         style: const TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 16.0,
                           fontWeight: FontWeight.w600,
+                          fontFamily: 'VNPro',
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -61,9 +62,10 @@ class ActivityCard extends StatelessWidget {
                         Text(
                           '\$${activity.price}',
                           style: const TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.w600,
                             color: Colors.greenAccent,
+                            fontFamily: 'VNPro',
                           ),
                         ),
                         const Text(

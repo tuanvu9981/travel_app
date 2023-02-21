@@ -8,88 +8,120 @@ class HotelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5.5),
+      padding: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(12.5),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(0.0, 2.0),
+            blurRadius: 6.0,
+          ),
+        ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12.5),
+        padding: const EdgeInsets.all(7.5),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(30.0),
-                bottomRight: Radius.circular(30.0),
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
               child: Image(
-                width: 60.0,
-                height: 60.0,
+                width: 125.0,
+                height: 110.0,
                 image: NetworkImage(hotel.imageUrl ?? ""),
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(width: 15.0),
+            const SizedBox(width: 10.0),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      hotel.name ?? "",
-                      style: const TextStyle(
-                        fontFamily: 'Mukta',
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: 150.0,
+                      child: Text(
+                        hotel.name ?? "",
+                        style: const TextStyle(
+                          fontFamily: 'VNPro',
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Text(
-                      "\$${hotel.price}",
-                      style: TextStyle(
-                        fontFamily: 'Mukta',
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green.shade600,
-                      ),
-                    )
+                    Column(
+                      children: [
+                        Text(
+                          "\$${hotel.price}",
+                          style: TextStyle(
+                            fontFamily: 'VNPro',
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green.shade600,
+                          ),
+                        ),
+                        const Text(
+                          'per night',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12.5),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(
                       Icons.location_on,
-                      size: 17.5,
-                      color: Colors.white,
+                      size: 20.0,
+                      color: Colors.red,
                     ),
-                    const SizedBox(width: 5.0),
-                    Text(
-                      hotel.address ?? "",
-                      style: const TextStyle(
-                        fontFamily: 'Mukta',
-                        fontSize: 13.5,
+                    SizedBox(
+                      width: 180.0,
+                      child: Text(
+                        hotel.address ?? "",
+                        style: const TextStyle(
+                          fontFamily: 'VNPro',
+                          fontSize: 12.0,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 7.0),
-                Row(
-                  children: [
-                    Text(
-                      "Check available rooms",
-                      style: TextStyle(
-                        fontFamily: 'Mukta',
-                        fontSize: 13.5,
-                        color: Colors.lightBlue.shade300,
+                GestureDetector(
+                  onTap: () => {
+                    // print("Show the rooms in hotel: ${hotel.name}"),
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        "Check available rooms",
+                        style: TextStyle(
+                          fontFamily: 'Mukta',
+                          fontSize: 15.0,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 5.0),
-                    const Icon(
-                      Icons.arrow_forward,
-                      size: 17.5,
-                      color: Colors.white,
-                    ),
-                  ],
+                      SizedBox(width: 5.0),
+                      Icon(
+                        Icons.arrow_forward,
+                        size: 18.5,
+                        color: Colors.blue,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

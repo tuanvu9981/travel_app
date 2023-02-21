@@ -20,7 +20,7 @@ class Food {
     foodName = json['foodName'] as String;
     imageUrl = json['imageUrl'] as String;
     english = json['english'] as String;
-    price = json['price'] as double;
+    price = json['price'];
     destinationId = json['destinationId'] as String;
   }
 

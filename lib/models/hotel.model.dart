@@ -58,13 +58,18 @@ class Hotel {
   Hotel.fromJson(Map<String, dynamic> json) {
     imageUrl = json['imageUrl'];
     name = json['name'];
-    address = json['type'];
+    address = json['address'];
     price = json['price'];
+
     if (json['rooms'] != null) {
-      rooms = <Room>[];
-      json['rooms'].forEach((r) {
-        rooms!.add(Room.fromJson(r));
-      });
+      List<Map<String, dynamic>> mapRooms =
+          json['rooms'].cast<Map<String, dynamic>>();
+
+      rooms = mapRooms
+          .map(
+            (h) => Room.fromJson(h),
+          )
+          .toList();
     }
   }
 

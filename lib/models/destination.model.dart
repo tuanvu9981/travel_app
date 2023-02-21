@@ -35,13 +35,13 @@ class Destination {
 
       activities = mapActivities
           .map(
-            (d) => Activity.fromJson(d),
+            (a) => Activity.fromJson(a),
           )
           .toList();
     }
     if (json['hotels'] != null) {
       List<Map<String, dynamic>> mapHotels =
-          json['activities'].cast<Map<String, dynamic>>();
+          json['hotels'].cast<Map<String, dynamic>>();
 
       hotels = mapHotels
           .map(

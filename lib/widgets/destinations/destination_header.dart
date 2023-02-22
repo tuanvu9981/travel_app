@@ -17,7 +17,9 @@ class DestinationHeader extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {},
+          onTap: () => {
+            Navigator.pushNamed(context, '/destination-all'),
+          },
           child: Text(
             "See all",
             style: TextStyle(

@@ -29,58 +29,78 @@ class FoodCard extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
             child: Image(
               width: 150.0,
-              height: 90.0,
+              height: 95.0,
               image: NetworkImage(food.imageUrl ?? ""),
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 3.5),
-          Text(
-            food.foodName ?? "",
-            style: const TextStyle(
-              fontFamily: 'VnPro',
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            food.english ?? "",
-            style: const TextStyle(
-              fontFamily: 'Mukta',
-              fontSize: 12.5,
-              color: Colors.black54,
-            ),
-          ),
-          Text(
-            "\$${food.price}",
-            style: TextStyle(
-              fontFamily: 'Mukta',
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.green.shade600,
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(
-                Icons.location_on,
-                size: 20.0,
-                color: Colors.red,
-              ),
-              Flexible(
-                child: Text(
-                  food.address ?? "",
-                  style: const TextStyle(
-                    fontFamily: 'VNPro',
-                    fontSize: 13.5,
+          const SizedBox(height: 5.0),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 9,
+                  child: Column(
+                    children: [
+                      Text(
+                        food.foodName ?? "",
+                        style: const TextStyle(
+                          fontFamily: 'VnPro',
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        food.english ?? "",
+                        style: const TextStyle(
+                          fontFamily: 'VNPro',
+                          fontSize: 12.5,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ],
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
                 ),
-              ),
-            ],
-          )
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    "\$${food.price}",
+                    style: TextStyle(
+                      fontFamily: 'Mukta',
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green.shade600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.location_on,
+                  size: 20.0,
+                  color: Colors.red,
+                ),
+                Flexible(
+                  child: Text(
+                    food.address ?? "",
+                    style: const TextStyle(
+                      fontFamily: 'VNPro',
+                      fontSize: 13.5,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

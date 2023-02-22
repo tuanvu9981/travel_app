@@ -8,15 +8,20 @@ class DestinationLine extends StatelessWidget {
     required this.destination,
   }) : super(key: key);
 
+  final _textStl = const TextStyle(
+    fontSize: 15.0,
+    fontFamily: 'VNPro',
+    fontWeight: FontWeight.w600,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(15.0),
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        // borderRadius: BorderRadius.circular(10.0),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: Colors.black26,
             offset: Offset(0.0, 2.0),
@@ -42,11 +47,7 @@ class DestinationLine extends StatelessWidget {
                   const SizedBox(width: 10.0),
                   Text(
                     "${destination.city}, ${destination.country}",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'VNPro',
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: _textStl,
                   )
                 ],
               ),
@@ -61,10 +62,7 @@ class DestinationLine extends StatelessWidget {
                   const SizedBox(width: 10.0),
                   Text(
                     "${destination.activities?.length} activities",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'VNPro',
-                    ),
+                    style: _textStl,
                   )
                 ],
               ),
@@ -79,10 +77,7 @@ class DestinationLine extends StatelessWidget {
                   const SizedBox(width: 10.0),
                   Text(
                     "${destination.hotels?.length} hotels",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'VNPro',
-                    ),
+                    style: _textStl,
                   )
                 ],
               )

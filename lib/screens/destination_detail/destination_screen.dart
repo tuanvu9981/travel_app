@@ -117,7 +117,7 @@ class DestinationScreenState extends State<DestinationScreen> {
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            childAspectRatio: 0.75,
+                            childAspectRatio: 0.73,
                           ),
                           itemBuilder: (BuildContext context, int index) {
                             Food food = foodList![index];

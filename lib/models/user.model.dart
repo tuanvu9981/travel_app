@@ -3,13 +3,17 @@ class User {
   String? fullname;
   String? avatarUrl;
   String? role;
-  String? money;
+  String? phoneNumber;
+  String? birthday;
+  num? money;
 
   User({
     this.email,
     this.fullname,
     this.avatarUrl,
     this.role,
+    this.phoneNumber,
+    this.birthday,
     this.money,
   });
 
@@ -18,7 +22,9 @@ class User {
     fullname = json['fullname'] as String;
     avatarUrl = json['avatarUrl'] as String;
     role = json['role'] as String;
-    money = json['money'] as String;
+    phoneNumber = json['phoneNumber'] as String;
+    birthday = json['birthday'] as String;
+    money = json['money'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +34,8 @@ class User {
     data['avatarUrl'] = avatarUrl;
     data['role'] = role;
     data['money'] = money;
+    data['phoneNumber'] = phoneNumber;
+    data['birthday'] = birthday;
     return data;
   }
 }

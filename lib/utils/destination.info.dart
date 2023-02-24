@@ -9,7 +9,6 @@ class DestinationInfo {
       label: "Activities",
     ),
     BtmNavInfo(
-      // icon: const Icon(FontAwesomeIcons.hamburger, size: 30.0),
       icon: const Icon(Icons.food_bank_outlined, size: 30.0),
       label: "Food",
     ),

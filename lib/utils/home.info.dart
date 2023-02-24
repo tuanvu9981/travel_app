@@ -12,8 +12,8 @@ class HomeInfoUtil {
   final List<BtmNavInfo> btmNavIcons = [
     BtmNavInfo(icon: const Icon(Icons.home, size: 30.0), label: "Home"),
     BtmNavInfo(
-      icon: const Icon(Icons.history_edu_outlined, size: 30.0),
-      label: "Booking",
+      icon: const Icon(Icons.collections_bookmark_outlined, size: 30.0),
+      label: "History",
     ),
     BtmNavInfo(
       icon: const CircleAvatar(

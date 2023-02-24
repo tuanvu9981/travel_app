@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './btm.nav.info.dart';
 
 class Greeting {
@@ -40,5 +41,13 @@ class HomeInfoUtil {
       greeting.icons = Icons.nights_stay;
     }
     return greeting;
+  }
+
+  String formatDateTime(DateTime? datetime) {
+    return DateFormat('EEEE, d MMM yyyy - HH:mm').format(datetime!);
+  }
+
+  int calculateStayedDays(DateTime? checkInDay, DateTime? checkOutDay) {
+    return checkOutDay!.difference(checkInDay!).inDays;
   }
 }

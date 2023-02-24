@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/booking-history.model.dart';
+import 'package:travel_app/utils/home.info.dart';
 
 class BookingHistoryLine extends StatelessWidget {
   final History userHistory;
+  late int stayedDays;
 
-  const BookingHistoryLine({
-    Key? key,
+  BookingHistoryLine({
     required this.userHistory,
-  }) : super(key: key);
+    Key? key,
+  }) : super(key: key) {
+    stayedDays = HomeInfoUtil().calculateStayedDays(
+      userHistory.checkInDate,
+      userHistory.checkOutDate,
+    );
+  }
 
   final _boldText = const TextStyle(
     fontFamily: 'VNPro',
@@ -115,7 +122,7 @@ class BookingHistoryLine extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Total: ${userHistory.price! * 2 * 3} \$',
+                        'Total: ${userHistory.price! * stayedDays} \$',
                         style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontWeight: FontWeight.bold,
@@ -123,10 +130,7 @@ class BookingHistoryLine extends StatelessWidget {
                           color: Colors.green,
                         ),
                       ),
-                      Text(
-                        '${userHistory.checkOutDate!.difference(userHistory.checkInDate!).inDays.toString()} days',
-                        style: _normalText,
-                      ),
+                      Text('$stayedDays days', style: _normalText),
                     ],
                   ),
                 ),
@@ -147,7 +151,7 @@ class BookingHistoryLine extends StatelessWidget {
                     ),
                     const SizedBox(width: 15.0),
                     Text(
-                      userHistory.checkInDate.toString(),
+                      HomeInfoUtil().formatDateTime(userHistory.checkInDate),
                       style: _normalText,
                     ),
                   ],
@@ -162,7 +166,7 @@ class BookingHistoryLine extends StatelessWidget {
                     ),
                     const SizedBox(width: 15.0),
                     Text(
-                      userHistory.checkOutDate.toString(),
+                      HomeInfoUtil().formatDateTime(userHistory.checkOutDate),
                       style: _normalText,
                     )
                   ],

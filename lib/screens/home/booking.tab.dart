@@ -20,8 +20,8 @@ class BookingTabState extends State<BookingTab> {
     roomLevel: 'Luxury',
     price: 509,
     bookingDate: DateTime.parse('2023-01-20 20:18:04Z'),
-    checkInDate: DateTime.parse('2023-01-23 09:30:01Z'),
-    checkOutDate: DateTime.parse('2023-01-26 16:30:02Z'),
+    checkInDate: DateTime.parse('2023-01-18T16:00:00Z'),
+    checkOutDate: DateTime.parse('2023-01-26T16:30:02Z'),
   );
 
   final history2 = History(
@@ -32,44 +32,40 @@ class BookingTabState extends State<BookingTab> {
     roomLevel: 'Economy',
     price: 200,
     bookingDate: DateTime.parse('2022-11-18 18:57:05Z'),
-    checkInDate: DateTime.parse('2022-11-24 11:30:04Z'),
-    checkOutDate: DateTime.parse('2022-11-28 18:00:09Z'),
+    checkInDate: DateTime.parse('2022-11-24T11:30:04Z'),
+    checkOutDate: DateTime.parse('2022-11-28T18:00:09Z'),
   );
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  children: [
-                    Text("Your Booking History", style: _sloganStyle),
-                    Icon(
-                      Icons.history_edu_outlined,
-                      size: 35.0,
-                      color: Colors.lightGreen[300],
-                    ),
-                  ],
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
+      child: ListView(
+        // default of ListView: vertical
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                Text("Your Booking History", style: _sloganStyle),
+                Icon(
+                  Icons.history_edu_outlined,
+                  size: 35.0,
+                  color: Colors.lightGreen[300],
                 ),
-              ),
-              const SizedBox(height: 12.5),
-              BookingHistoryLine(userHistory: history1),
-              const SizedBox(height: 12.5),
-              BookingHistoryLine(userHistory: history2),
-              const SizedBox(height: 12.5),
-              BookingHistoryLine(userHistory: history1),
-              const SizedBox(height: 12.5),
-              BookingHistoryLine(userHistory: history2),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 12.5),
+          BookingHistoryLine(userHistory: history1),
+          const SizedBox(height: 12.5),
+          BookingHistoryLine(userHistory: history2),
+          const SizedBox(height: 12.5),
+          BookingHistoryLine(userHistory: history1),
+          const SizedBox(height: 12.5),
+          BookingHistoryLine(userHistory: history2),
+        ],
+      ),
     );
   }
 }

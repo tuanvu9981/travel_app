@@ -21,10 +21,10 @@ class Room {
     floor = json['floor'] as int;
     level = json['level'] as String;
     if (json['intendedCheckinTime'] != null) {
-      intendedCheckinTime = json['intendedCheckinTime'] as String;
+      intendedCheckinTime = json['intendedCheckinTime'];
     }
     if (json['intendedCheckoutTime'] != null) {
-      intendedCheckoutTime = json['intendedCheckoutTime'] as String;
+      intendedCheckoutTime = json['intendedCheckoutTime'];
     }
   }
 

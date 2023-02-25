@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/screens/booking_room/booking_room.dart';
 import 'package:travel_app/screens/destination_all_list/destination_all_list.dart';
 import 'package:travel_app/screens/home/home.screen.dart';
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       // onGenerateRoute: (RouteSettings settings) => {
 
       // },
-      home: HomeScreen(),
+      home: BookingRoom(),
+      // home: HomeScreen(),
       // home: const SignUpScreen(),
       // home: const SignInScreen(),
 

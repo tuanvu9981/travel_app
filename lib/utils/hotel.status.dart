@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/models/hotel.model.dart';
+import 'package:travel_app/utils/home.info.dart';
 
 class RoomStatus {
   Icon icon;
@@ -9,25 +11,42 @@ class RoomStatus {
 class LStatus {
   final status = <RoomStatus>[
     RoomStatus(
-      icon: Icon(Icons.circle, size: 25.0, color: Colors.green[300]),
+      icon: Icon(Icons.circle, size: 22.5, color: Colors.green[300]),
       text: const Text(
         'Vacant',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 18.0),
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
       ),
     ),
     RoomStatus(
-      icon: Icon(Icons.circle, size: 25.0, color: Colors.orange[200]),
+      icon: Icon(Icons.circle, size: 22.5, color: Colors.orange[200]),
       text: const Text(
-        'Booked & Waiting',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 18.0),
+        'Booked',
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
       ),
     ),
     RoomStatus(
-      icon: Icon(Icons.circle, size: 25.0, color: Colors.red[400]),
+      icon: Icon(Icons.circle, size: 22.5, color: Colors.red[400]),
       text: const Text(
         'Staying',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 18.0),
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
       ),
     )
+  ];
+
+  final levels = <RoomStatus>[
+    RoomStatus(
+      icon: const Icon(Icons.eco, size: 22.5, color: Colors.black54),
+      text: const Text(
+        'Economy',
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
+      ),
+    ),
+    RoomStatus(
+      icon: const Icon(Icons.stars_rounded, size: 22.5, color: Colors.black54),
+      text: const Text(
+        'Luxury',
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
+      ),
+    ),
   ];
 }

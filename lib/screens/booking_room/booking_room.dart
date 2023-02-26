@@ -9,91 +9,97 @@ class BookingRoom extends StatefulWidget {
     name: 'ShengWang Hotel',
     address: '1234 Yunnan street, Renmin Avenue, Shanghai',
     price: 509,
-    rooms: <Room>[
-      Room(
-        roomId: '200',
-        status: 'booked',
+    floors: <Floor>[
+      Floor(
         floor: 2,
-        level: 'luxury',
-        intendedCheckinTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-23 09:30:01Z'),
-        ),
-        intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-26 16:30:02Z'),
-        ),
+        rooms: <Room>[
+          Room(
+            roomId: '200',
+            status: 'booked',
+            level: 'luxury',
+            intendedCheckinTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-23 09:30:01Z'),
+            ),
+            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-26 16:30:02Z'),
+            ),
+          ),
+          Room(
+            roomId: '201',
+            status: 'vacant',
+            level: 'luxury',
+          ),
+          Room(
+            roomId: '202',
+            status: 'stayed',
+            level: 'economy',
+            intendedCheckinTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-23 09:30:01Z'),
+            ),
+            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-26 16:30:02Z'),
+            ),
+          ),
+        ],
       ),
-      Room(
-        roomId: '201',
-        status: 'vacant',
-        floor: 2,
-        level: 'luxury',
-      ),
-      Room(
-        roomId: '202',
-        status: 'stayed',
-        floor: 2,
-        level: 'economy',
-        intendedCheckinTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-23 09:30:01Z'),
-        ),
-        intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-26 16:30:02Z'),
-        ),
-      ),
-      Room(
-        roomId: '300',
-        status: 'vacant',
+      Floor(
         floor: 3,
-        level: 'luxury',
+        rooms: <Room>[
+          Room(
+            roomId: '300',
+            status: 'vacant',
+            level: 'luxury',
+          ),
+          Room(
+            roomId: '301',
+            status: 'stayed',
+            level: 'economy',
+            intendedCheckinTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-23 09:30:01Z'),
+            ),
+            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-26 16:30:02Z'),
+            ),
+          ),
+          Room(
+            roomId: '302',
+            status: 'stayed',
+            level: 'economy',
+            intendedCheckinTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-23 09:30:01Z'),
+            ),
+            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-26 16:30:02Z'),
+            ),
+          ),
+        ],
       ),
-      Room(
-        roomId: '301',
-        status: 'stayed',
-        floor: 3,
-        level: 'economy',
-        intendedCheckinTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-23 09:30:01Z'),
-        ),
-        intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-26 16:30:02Z'),
-        ),
-      ),
-      Room(
-        roomId: '302',
-        status: 'stayed',
-        floor: 3,
-        level: 'economy',
-        intendedCheckinTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-23 09:30:01Z'),
-        ),
-        intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-26 16:30:02Z'),
-        ),
-      ),
-      Room(
-        roomId: '400',
-        status: 'booked',
+      Floor(
         floor: 4,
-        level: 'luxury',
-        intendedCheckinTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-03-18T16:00:00Z'),
-        ),
-        intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-          DateTime.parse('2023-01-26 16:30:02Z'),
-        ),
-      ),
-      Room(
-        roomId: '401',
-        status: 'vacant',
-        floor: 4,
-        level: 'economy',
-      ),
-      Room(
-        roomId: '402',
-        status: 'vacant',
-        floor: 4,
-        level: 'economy',
-      ),
+        rooms: <Room>[
+          Room(
+            roomId: '400',
+            status: 'booked',
+            level: 'luxury',
+            intendedCheckinTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-03-18T16:00:00Z'),
+            ),
+            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
+              DateTime.parse('2023-01-26 16:30:02Z'),
+            ),
+          ),
+          Room(
+            roomId: '401',
+            status: 'vacant',
+            level: 'economy',
+          ),
+          Room(
+            roomId: '402',
+            status: 'vacant',
+            level: 'economy',
+          ),
+        ],
+      )
     ],
   );
 

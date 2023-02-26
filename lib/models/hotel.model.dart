@@ -1,7 +1,6 @@
 class Room {
   String? roomId;
   String? status;
-  int? floor;
   String? level;
   String? intendedCheckinTime;
   String? intendedCheckoutTime;
@@ -9,7 +8,6 @@ class Room {
   Room({
     this.roomId,
     this.status,
-    this.floor,
     this.level,
     this.intendedCheckinTime,
     this.intendedCheckoutTime,
@@ -18,7 +16,6 @@ class Room {
   Room.fromJson(Map<String, dynamic> json) {
     roomId = json['roomId'] as String;
     status = json['status'] as String;
-    floor = json['floor'] as int;
     level = json['level'] as String;
     if (json['intendedCheckinTime'] != null) {
       intendedCheckinTime = json['intendedCheckinTime'];
@@ -32,10 +29,38 @@ class Room {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['roomId'] = roomId;
     data['status'] = status;
-    data['floor'] = floor;
     data['level'] = level;
     data['intendedCheckinTime'] = intendedCheckinTime;
     data['intendedCheckoutTime'] = intendedCheckoutTime;
+    return data;
+  }
+}
+
+class Floor {
+  int? floor;
+  List<Room>? rooms;
+  Floor({this.floor, this.rooms});
+
+  Floor.fromJson(Map<String, dynamic> json) {
+    floor = json['floor'] as int;
+    if (json['rooms'] != null) {
+      List<Map<String, dynamic>> mapRooms =
+          json['rooms'].cast<Map<String, dynamic>>();
+
+      rooms = mapRooms
+          .map(
+            (r) => Room.fromJson(r),
+          )
+          .toList();
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['floor'] = floor;
+    if (rooms != null) {
+      data['rooms'] = rooms!.map((r) => r.toJson()).toList();
+    }
     return data;
   }
 }
@@ -45,14 +70,14 @@ class Hotel {
   String? name;
   String? address;
   num? price;
-  List<Room>? rooms;
+  List<Floor>? floors;
 
   Hotel({
     this.imageUrl,
     this.name,
     this.address,
     this.price,
-    this.rooms,
+    this.floors,
   });
 
   Hotel.fromJson(Map<String, dynamic> json) {
@@ -61,13 +86,13 @@ class Hotel {
     address = json['address'];
     price = json['price'];
 
-    if (json['rooms'] != null) {
-      List<Map<String, dynamic>> mapRooms =
-          json['rooms'].cast<Map<String, dynamic>>();
+    if (json['floors'] != null) {
+      List<Map<String, dynamic>> mapFloors =
+          json['floors'].cast<Map<String, dynamic>>();
 
-      rooms = mapRooms
+      floors = mapFloors
           .map(
-            (h) => Room.fromJson(h),
+            (f) => Floor.fromJson(f),
           )
           .toList();
     }
@@ -80,8 +105,8 @@ class Hotel {
     data['address'] = address;
     data['price'] = price;
 
-    if (rooms != null) {
-      data['rooms'] = rooms!.map((r) => r.toJson()).toList();
+    if (floors != null) {
+      data['floors'] = floors!.map((f) => f.toJson()).toList();
     }
     return data;
   }

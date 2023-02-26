@@ -42,6 +42,17 @@ class LStatus {
       ),
     ),
     RoomStatus(
+      icon: const Icon(
+        Icons.business_center,
+        size: 22.5,
+        color: Colors.black54,
+      ),
+      text: const Text(
+        'Business',
+        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
+      ),
+    ),
+    RoomStatus(
       icon: const Icon(Icons.stars_rounded, size: 22.5, color: Colors.black54),
       text: const Text(
         'Luxury',

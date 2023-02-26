@@ -43,7 +43,7 @@ class BookingRoom extends StatefulWidget {
           Room(
             roomId: '203',
             status: 'vacant',
-            level: 'luxury',
+            level: 'business',
           ),
         ],
       ),
@@ -101,7 +101,7 @@ class BookingRoom extends StatefulWidget {
           Room(
             roomId: '401',
             status: 'vacant',
-            level: 'economy',
+            level: 'business',
           ),
           Room(
             roomId: '402',
@@ -111,7 +111,7 @@ class BookingRoom extends StatefulWidget {
           Room(
             roomId: '403',
             status: 'booked',
-            level: 'economy',
+            level: 'business',
             intendedCheckinTime: HomeInfoUtil().formatDateTime(
               DateTime.parse('2023-01-23 09:30:01Z'),
             ),
@@ -264,7 +264,9 @@ class BookingRoomState extends State<BookingRoom> {
               child: Icon(
                 room.level == 'economy'
                     ? Icons.eco_rounded
-                    : Icons.stars_rounded,
+                    : room.level == 'business'
+                        ? Icons.business_center
+                        : Icons.stars_rounded,
                 size: 27.5,
                 color: Colors.black54,
               ),
@@ -435,16 +437,18 @@ class BookingRoomState extends State<BookingRoom> {
                 ],
               ),
               const SizedBox(height: 15.0),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 22.5,
-                  vertical: 7.5,
-                ),
-                child: const Text(
-                  'All rooms in our hotel',
-                  style: TextStyle(
-                    fontFamily: 'DancingScript',
-                    fontSize: 30.0,
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 22.5,
+                    vertical: 7.5,
+                  ),
+                  child: const Text(
+                    'All rooms in our hotel',
+                    style: TextStyle(
+                      fontFamily: 'DancingScript',
+                      fontSize: 30.0,
+                    ),
                   ),
                 ),
               ),

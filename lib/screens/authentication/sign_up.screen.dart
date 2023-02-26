@@ -109,11 +109,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                 },
                 child: _isObscure
                     ? const Icon(
-                        Icons.lock,
+                        Icons.visibility_off_outlined,
                         color: Colors.white,
                       )
                     : const Icon(
-                        Icons.lock_open_rounded,
+                        Icons.visibility_outlined,
                         color: Colors.white,
                       ),
               ),

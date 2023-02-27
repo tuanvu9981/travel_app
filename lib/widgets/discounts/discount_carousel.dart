@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/models/discount.model.dart';
+import 'package:travel_app/screens/discount-info/discount_info_detail.dart';
 import 'package:travel_app/widgets/discounts/discount_card.dart';
 import '../discounts/discount_header.dart';
 import '../../apis/discount.api.dart';
@@ -50,22 +51,32 @@ class DiscountCarouselState extends State<DiscountCarousel> {
                   itemCount: discounts?.length,
                   itemBuilder: (BuildContext context, int index, int realIdx) {
                     DiscountInfo discount = discounts![index];
-                    return Container(
-                      margin: const EdgeInsets.all(7.5),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0.0, 2.0),
-                            blurRadius: 6.0,
-                          )
-                        ],
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DiscountInfoDetail(
+                            discountInfo: discounts![index],
+                          ),
+                        ),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(12.5)),
-                        child: DiscountCard(
-                          imgUrl: discount.imageUrl,
-                          title: discount.title,
+                      child: Container(
+                        margin: const EdgeInsets.all(7.5),
+                        decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(0.0, 2.0),
+                              blurRadius: 6.0,
+                            )
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(12.5)),
+                          child: DiscountCard(
+                            imgUrl: discount.imageUrl,
+                            title: discount.title,
+                          ),
                         ),
                       ),
                     );

@@ -14,24 +14,21 @@ class BookingRoom extends StatefulWidget {
 class BookingRoomState extends State<BookingRoom> {
   Hotel? hotel;
 
-  Future<void> fetchData(String id) async {
+  Future<void> _fetchData(String id) async {
     Hotel? data = await HotelApi.getHotelById(id);
     setState(() {
       hotel = data;
     });
   }
 
-  Future<void> updateHotel(String id, Hotel newHotel) async {
-    Hotel? data = await HotelApi.updateHotelById(id, newHotel);
-    setState(() {
-      hotel = data;
-    });
+  Future<void> _updateHotel(String id, Hotel? newHotel) async {
+    await HotelApi.updateHotelById(id, newHotel);
   }
 
   @override
   void initState() {
     super.initState();
-    fetchData(widget.hotelId);
+    _fetchData(widget.hotelId);
   }
 
   Widget? _buildMessageWithStatus(String? roomStatus, num? price) {
@@ -64,16 +61,17 @@ class BookingRoomState extends State<BookingRoom> {
               'This room is vacant. You can hire it',
               style: TextStyle(
                 fontFamily: 'VNPro',
-                fontSize: 14.0,
+                fontSize: 15.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.green[300],
               ),
             ),
+            const SizedBox(height: 15.0),
             Text(
               'Deposit: $price \$',
               style: const TextStyle(
                 fontFamily: 'VNPro',
-                fontSize: 14.0,
+                fontSize: 15.0,
                 color: Colors.black,
               ),
             ),
@@ -100,14 +98,21 @@ class BookingRoomState extends State<BookingRoom> {
         const SizedBox(height: 2.5),
         TextButton(
           onPressed: () => {
-            // call API
+            // update color of room
             setState(() {
-              hotel?.floors!.map((e) => {
-                    e.rooms!.map((r) => {
-                          if (r.roomId == roomId) {r.status = 'booked'}
-                        })
-                  });
+              hotel?.floors = hotel?.floors!.map<Floor>((f) {
+                f.rooms = f.rooms!.map<Room>((r) {
+                  if (r.roomId == roomId) {
+                    r.status = 'booked';
+                  }
+                  return r;
+                }).toList();
+                return f;
+              }).toList();
             }),
+
+            // update state back to API Backend
+            _updateHotel(widget.hotelId, hotel),
             Navigator.pop(context, 'I\'ll hire it')
           },
           child: const Text('I\'ll hire it', style: TextStyle(fontSize: 16.0)),
@@ -152,8 +157,8 @@ class BookingRoomState extends State<BookingRoom> {
       child: Column(
         children: [
           Container(
-            height: 40,
-            width: 50,
+            height: 45,
+            width: 45,
             margin: const EdgeInsets.symmetric(horizontal: 10.0),
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
@@ -210,13 +215,15 @@ class BookingRoomState extends State<BookingRoom> {
           Container(
             width: double.maxFinite,
             margin: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: floor.rooms!
-                  .map(
-                    (e) => _buildRoom(context, e),
-                  )
-                  .toList(),
+            child: Center(
+              child: Wrap(
+                spacing: 1.0,
+                children: floor.rooms!
+                    .map(
+                      (e) => _buildRoom(context, e),
+                    )
+                    .toList(),
+              ),
             ),
           )
         ],
@@ -256,110 +263,118 @@ class BookingRoomState extends State<BookingRoom> {
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
-          child: ListView(
-            children: [
-              Stack(
-                alignment: Alignment.bottomLeft,
-                children: [
-                  Image(
-                    image: NetworkImage(hotel?.imageUrl ?? ""),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.width * 0.4,
-                    color: Colors.white.withOpacity(0.35),
-                    colorBlendMode: BlendMode.modulate,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          child: hotel?.imageUrl == null
+              ? const Center(
+                  child: CircularProgressIndicator(color: Colors.lightBlue),
+                )
+              : ListView(
+                  children: [
+                    Stack(
+                      alignment: Alignment.bottomLeft,
                       children: [
-                        Text(
-                          hotel?.name ?? "",
-                          style: const TextStyle(
-                            fontFamily: 'Mukta',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+                        Image(
+                          image: NetworkImage(hotel?.imageUrl ?? ""),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.width * 0.4,
+                          color: Colors.white.withOpacity(0.35),
+                          colorBlendMode: BlendMode.modulate,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(
-                              Icons.location_on,
-                              size: 22.5,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(width: 5.0),
-                            Container(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Text(
-                                hotel?.address ?? "",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                hotel?.name ?? "",
                                 style: const TextStyle(
                                   fontFamily: 'Mukta',
-                                  fontSize: 15.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                          ],
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Icon(
+                                    Icons.location_on,
+                                    size: 22.5,
+                                    color: Colors.black,
+                                  ),
+                                  const SizedBox(width: 5.0),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                    padding: const EdgeInsets.only(right: 10.0),
+                                    child: Text(
+                                      hotel?.address ?? "",
+                                      style: const TextStyle(
+                                        fontFamily: 'Mukta',
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12.5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Column(
+                    const SizedBox(height: 12.5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ...LStatus()
-                            .status
-                            .map((e) => _buildStatusLine(e, 30.0))
-                            .toList(),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              ...LStatus()
+                                  .status
+                                  .map((e) => _buildStatusLine(e, 30.0))
+                                  .toList(),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              ...LStatus()
+                                  .levels
+                                  .map((e) => _buildStatusLine(e, 10.0))
+                                  .toList(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      children: [
-                        ...LStatus()
-                            .levels
-                            .map((e) => _buildStatusLine(e, 10.0))
-                            .toList(),
-                      ],
+                    const SizedBox(height: 15.0),
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 22.5,
+                          vertical: 7.5,
+                        ),
+                        child: const Text(
+                          'All rooms in our hotel',
+                          style: TextStyle(
+                            fontFamily: 'DancingScript',
+                            fontSize: 30.0,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15.0),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 22.5,
-                    vertical: 7.5,
-                  ),
-                  child: const Text(
-                    'All rooms in our hotel',
-                    style: TextStyle(
-                      fontFamily: 'DancingScript',
-                      fontSize: 30.0,
-                    ),
-                  ),
+                    ...?hotel?.floors!
+                        .map((f) => _buildFloor(context, f))
+                        .toList(),
+                  ],
                 ),
-              ),
-              ...?hotel?.floors!.map((f) => _buildFloor(context, f)).toList(),
-            ],
-          ),
         ),
       ),
     );

@@ -24,11 +24,11 @@ class DiscountInfo {
     instruction = json['instruction'] as String;
     imageUrl = json['imageUrl'] as String;
     appliedPlace = json['appliedPlace'] as String;
+
     if (json['contact'] != null) {
-      contact = <Contact>[];
-      json['contact'].forEach((v) {
-        contact!.add(Contact.fromJson(v));
-      });
+      List<Map<String, dynamic>> mapContacts =
+          json['contact'].cast<Map<String, dynamic>>();
+      contact = mapContacts.map((c) => Contact.fromJson(c)).toList();
     }
   }
 

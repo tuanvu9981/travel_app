@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/hotel.model.dart';
+import 'package:travel_app/screens/booking_room/booking_room.dart';
 
 class HotelCard extends StatelessWidget {
   Hotel hotel;
@@ -99,9 +100,14 @@ class HotelCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 7.0),
                 GestureDetector(
-                  onTap: () => {
-                    // print("Show the rooms in hotel: ${hotel.name}"),
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BookingRoom(
+                        hotelId: hotel.id!,
+                      ),
+                    ),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [

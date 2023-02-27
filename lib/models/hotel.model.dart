@@ -66,6 +66,7 @@ class Floor {
 }
 
 class Hotel {
+  String? id;
   String? imageUrl;
   String? name;
   String? address;
@@ -81,6 +82,7 @@ class Hotel {
   });
 
   Hotel.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     imageUrl = json['imageUrl'];
     name = json['name'];
     address = json['address'];
@@ -104,6 +106,7 @@ class Hotel {
     data['name'] = name;
     data['address'] = address;
     data['price'] = price;
+    data['id'] = id;
 
     if (floors != null) {
       data['floors'] = floors!.map((f) => f.toJson()).toList();

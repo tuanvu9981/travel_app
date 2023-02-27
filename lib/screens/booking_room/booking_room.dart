@@ -1,139 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/apis/hotel.api.dart';
 import 'package:travel_app/models/hotel.model.dart';
-import 'package:travel_app/utils/home.info.dart';
 import 'package:travel_app/utils/hotel.status.dart';
 
 class BookingRoom extends StatefulWidget {
-  final hotel = Hotel(
-    imageUrl: 'assets/images/hotel1.jpeg',
-    name: 'ShengWang Hotel',
-    address: '1234 Yunnan street, Renmin Avenue, Shanghai',
-    price: 509,
-    floors: <Floor>[
-      Floor(
-        floor: 2,
-        rooms: <Room>[
-          Room(
-            roomId: '200',
-            status: 'booked',
-            level: 'luxury',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-23 09:30:01Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-          Room(
-            roomId: '201',
-            status: 'vacant',
-            level: 'luxury',
-          ),
-          Room(
-            roomId: '202',
-            status: 'stayed',
-            level: 'economy',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-23 09:30:01Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-          Room(
-            roomId: '203',
-            status: 'vacant',
-            level: 'business',
-          ),
-        ],
-      ),
-      Floor(
-        floor: 3,
-        rooms: <Room>[
-          Room(
-            roomId: '300',
-            status: 'vacant',
-            level: 'luxury',
-          ),
-          Room(
-            roomId: '301',
-            status: 'stayed',
-            level: 'economy',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-23 09:30:01Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-          Room(
-            roomId: '302',
-            status: 'booked',
-            level: 'economy',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-23 09:30:01Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-          Room(
-            roomId: '303',
-            status: 'vacant',
-            level: 'luxury',
-          ),
-        ],
-      ),
-      Floor(
-        floor: 4,
-        rooms: <Room>[
-          Room(
-            roomId: '400',
-            status: 'booked',
-            level: 'luxury',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-03-18T16:00:00Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-          Room(
-            roomId: '401',
-            status: 'vacant',
-            level: 'business',
-          ),
-          Room(
-            roomId: '402',
-            status: 'vacant',
-            level: 'economy',
-          ),
-          Room(
-            roomId: '403',
-            status: 'booked',
-            level: 'business',
-            intendedCheckinTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-23 09:30:01Z'),
-            ),
-            intendedCheckoutTime: HomeInfoUtil().formatDateTime(
-              DateTime.parse('2023-01-26 16:30:02Z'),
-            ),
-          ),
-        ],
-      )
-    ],
-  );
-
-  BookingRoom({Key? key}) : super(key: key);
+  final String hotelId;
+  BookingRoom({required this.hotelId, Key? key}) : super(key: key);
 
   @override
   BookingRoomState createState() => BookingRoomState();
 }
 
 class BookingRoomState extends State<BookingRoom> {
+  Hotel? hotel;
+
+  Future<void> fetchData(String id) async {
+    Hotel? data = await HotelApi.getHotelById(id);
+    setState(() {
+      hotel = data;
+    });
+  }
+
+  Future<void> updateHotel(String id, Hotel newHotel) async {
+    Hotel? data = await HotelApi.updateHotelById(id, newHotel);
+    setState(() {
+      hotel = data;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    fetchData(widget.hotelId);
   }
 
   Widget? _buildMessageWithStatus(String? roomStatus, num? price) {
@@ -185,7 +83,7 @@ class BookingRoomState extends State<BookingRoom> {
     }
   }
 
-  List<Widget>? _buildActionWithStatus(String? status) {
+  List<Widget>? _buildActionWithStatus(String? status, String? roomId) {
     if (status == 'booked' || status == 'stayed') {
       return [
         TextButton(
@@ -203,7 +101,14 @@ class BookingRoomState extends State<BookingRoom> {
         TextButton(
           onPressed: () => {
             // call API
-            Navigator.pop(context, 'I\'ll hire it'),
+            setState(() {
+              hotel?.floors!.map((e) => {
+                    e.rooms!.map((r) => {
+                          if (r.roomId == roomId) {r.status = 'booked'}
+                        })
+                  });
+            }),
+            Navigator.pop(context, 'I\'ll hire it')
           },
           child: const Text('I\'ll hire it', style: TextStyle(fontSize: 16.0)),
         ),
@@ -240,8 +145,8 @@ class BookingRoomState extends State<BookingRoom> {
               ],
             ),
           ),
-          content: _buildMessageWithStatus(room.status, widget.hotel.price),
-          actions: _buildActionWithStatus(room.status),
+          content: _buildMessageWithStatus(room.status, hotel?.price),
+          actions: _buildActionWithStatus(room.status, room.roomId),
         ),
       ),
       child: Column(
@@ -357,7 +262,7 @@ class BookingRoomState extends State<BookingRoom> {
                 alignment: Alignment.bottomLeft,
                 children: [
                   Image(
-                    image: AssetImage(widget.hotel.imageUrl!),
+                    image: NetworkImage(hotel?.imageUrl ?? ""),
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: MediaQuery.of(context).size.width * 0.4,
@@ -370,7 +275,7 @@ class BookingRoomState extends State<BookingRoom> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.hotel.name!,
+                          hotel?.name ?? "",
                           style: const TextStyle(
                             fontFamily: 'Mukta',
                             fontSize: 20.0,
@@ -390,7 +295,7 @@ class BookingRoomState extends State<BookingRoom> {
                             Container(
                               padding: const EdgeInsets.only(right: 15.0),
                               child: Text(
-                                widget.hotel.address!,
+                                hotel?.address ?? "",
                                 style: const TextStyle(
                                   fontFamily: 'Mukta',
                                   fontSize: 15.0,
@@ -452,9 +357,7 @@ class BookingRoomState extends State<BookingRoom> {
                   ),
                 ),
               ),
-              ...widget.hotel.floors!
-                  .map((f) => _buildFloor(context, f))
-                  .toList(),
+              ...?hotel?.floors!.map((f) => _buildFloor(context, f)).toList(),
             ],
           ),
         ),

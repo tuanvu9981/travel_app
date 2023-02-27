@@ -29,8 +29,7 @@ class MyApp extends StatelessWidget {
       // onGenerateRoute: (RouteSettings settings) => {
 
       // },
-      home: BookingRoom(),
-      // home: HomeScreen(),
+      home: HomeScreen(),
       // home: const SignUpScreen(),
       // home: const SignInScreen(),
 

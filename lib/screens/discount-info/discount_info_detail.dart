@@ -28,7 +28,6 @@ class DiscountInfoDetail extends StatelessWidget {
   final tNormalContent = const TextStyle(fontFamily: 'VNPro', fontSize: 15.0);
 
   Widget _buildContact(Contact? contact) {
-    final _txtStl = TextStyle(fontFamily: 'VNPro', fontSize: 15.0);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
@@ -37,14 +36,14 @@ class DiscountInfoDetail extends StatelessWidget {
             children: [
               const Icon(Icons.email, size: 22.5),
               const SizedBox(width: 15.0),
-              Text(contact?.email ?? "", style: _txtStl),
+              Text(contact?.email ?? "", style: tNormalContent),
             ],
           ),
           Row(
             children: [
               const Icon(Icons.phone, size: 22.5),
               const SizedBox(width: 15.0),
-              Text(contact?.phone ?? "", style: _txtStl),
+              Text(contact?.phone ?? "", style: tNormalContent),
             ],
           ),
         ],
@@ -119,7 +118,7 @@ class DiscountInfoDetail extends StatelessWidget {
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
-                "2. Instruction",
+                "2. Information",
                 Text(discountInfo.instruction!, style: tNormalContent),
               ),
               const SizedBox(height: 15.0),

@@ -10,6 +10,23 @@ class SignUpScreen extends StatefulWidget {
 
 class SignUpScreenState extends State<SignUpScreen> {
   bool _isObscure = true;
+  final txtStyle = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Mukta',
+    fontSize: 18.0,
+  );
+  var passwordEditor = TextEditingController();
+  var emailEditor = TextEditingController();
+  var fullnameEditor = TextEditingController();
+
+  @override
+  void dispose() {
+    // clean TextInput when widget removed from the widget tree.
+    emailEditor.dispose();
+    passwordEditor.dispose();
+    fullnameEditor.dispose();
+    super.dispose();
+  }
 
   Widget _buildFullnameTextField() {
     return Column(
@@ -22,20 +39,14 @@ class SignUpScreenState extends State<SignUpScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextField(
+            controller: fullnameEditor,
             keyboardType: TextInputType.name,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Mukta',
-              fontSize: 18.0,
-            ),
-            decoration: InputDecoration(
+            style: txtStyle,
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-              suffixIcon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
+              suffixIcon: Icon(Icons.person, color: Colors.white),
               hintText: 'Enter your fullname',
               hintStyle: kHintTextStyle,
             ),
@@ -56,20 +67,14 @@ class SignUpScreenState extends State<SignUpScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextField(
+            controller: emailEditor,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Mukta',
-              fontSize: 18.0,
-            ),
-            decoration: InputDecoration(
+            style: txtStyle,
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-              suffixIcon: Icon(
-                Icons.email,
-                color: Colors.white,
-              ),
+              suffixIcon: Icon(Icons.email, color: Colors.white),
               hintText: 'Enter your email',
               hintStyle: kHintTextStyle,
             ),
@@ -91,13 +96,10 @@ class SignUpScreenState extends State<SignUpScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: passwordEditor,
             keyboardType: TextInputType.visiblePassword,
             obscureText: _isObscure,
-            style: const TextStyle(
-              fontFamily: 'Mukta',
-              color: Colors.white,
-              fontSize: 18.0,
-            ),
+            style: txtStyle,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(vertical: 10.0),

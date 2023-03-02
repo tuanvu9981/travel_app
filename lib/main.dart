@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
       // onGenerateRoute: (RouteSettings settings) => {
 
       // },
-      home: HomeScreen(),
+      // home: HomeScreen(),
       // home: const SignUpScreen(),
-      // home: const SignInScreen(),
+      home: const SignInScreen(),
 
       routes: {
         '/sign-in': (context) => const SignInScreen(),

@@ -10,6 +10,22 @@ class SignInScreen extends StatefulWidget {
 
 class SignInScreenState extends State<SignInScreen> {
   bool _isObscure = true;
+  bool isLoading = false;
+  final txtStyle = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Mukta',
+    fontSize: 18.0,
+  );
+  var passwordEditor = TextEditingController();
+  var emailEditor = TextEditingController();
+
+  @override
+  void dispose() {
+    // clean TextInput when widget removed from the widget tree.
+    emailEditor.dispose();
+    passwordEditor.dispose();
+    super.dispose();
+  }
 
   Widget _buildEmailTextField() {
     return Column(
@@ -22,20 +38,14 @@ class SignInScreenState extends State<SignInScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextField(
+            controller: emailEditor,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Mukta',
-              fontSize: 18.0,
-            ),
-            decoration: InputDecoration(
+            style: txtStyle,
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-              suffixIcon: Icon(
-                Icons.email,
-                color: Colors.white,
-              ),
+              suffixIcon: Icon(Icons.email, color: Colors.white),
               hintText: 'Enter your email',
               hintStyle: kHintTextStyle,
             ),
@@ -57,13 +67,10 @@ class SignInScreenState extends State<SignInScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: passwordEditor,
             keyboardType: TextInputType.visiblePassword,
             obscureText: _isObscure,
-            style: const TextStyle(
-              fontFamily: 'Mukta',
-              color: Colors.white,
-              fontSize: 18.0,
-            ),
+            style: txtStyle,
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -116,18 +123,26 @@ class SignInScreenState extends State<SignInScreen> {
           ),
         ),
         onPressed: () => {
-          Navigator.pushNamed(context, '/home'),
+          if (emailEditor.text == 'tuanvu@gmail.com' &&
+              passwordEditor.text == '123456')
+            {
+              Navigator.pushNamed(context, '/home'),
+            }
         },
-        child: const Text(
-          'SIGN IN',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Mukta',
-          ),
-        ),
+        child: isLoading == false
+            ? const Text(
+                'SIGN IN',
+                style: TextStyle(
+                  color: Color(0xFF527DAA),
+                  letterSpacing: 1.5,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Mukta',
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(color: Color(0xFF527DAA)),
+              ),
       ),
     );
   }

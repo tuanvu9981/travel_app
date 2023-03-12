@@ -1,17 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/screens/booking_room/booking_room.dart';
 import 'package:travel_app/screens/destination_all_list/destination_all_list.dart';
 import 'package:travel_app/screens/home/home.screen.dart';
 
 import 'package:travel_app/screens/authentication/sign_in.screen.dart';
 import 'package:travel_app/screens/authentication/sign_up.screen.dart';
+import 'package:travel_app/utils/storage.service.dart';
+
+import 'models/user.model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TravelApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class TravelApp extends StatefulWidget {
+  const TravelApp({Key? key}) : super(key: key);
+
+  @override
+  TravelAppState createState() => TravelAppState();
+}
+
+class TravelAppState extends State<TravelApp> {
+  final _storageService = StorageService();
+  bool isAuthenticated = false;
+  User? user;
+
+  Future<void> preProcess() async {
+    // no exist token
+    final isTokenExisted = await _storageService.hasKey('access_token');
+    if (isTokenExisted == false) {
+      setState(() {
+        isAuthenticated = false;
+      });
+    } else {
+      final token = await _storageService.getValueByKey('access_token');
+      final user = await AuthApi.getProfile(token!);
+      if (user == null) {
+        setState(() {
+          isAuthenticated = false;
+        });
+      } else {
+        setState(() {
+          isAuthenticated = true;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    preProcess();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +70,7 @@ class MyApp extends StatelessWidget {
       // onGenerateRoute: (RouteSettings settings) => {
 
       // },
-      // home: HomeScreen(),
-      // home: const SignUpScreen(),
-      home: const SignInScreen(),
+      home: isAuthenticated ? const HomeScreen() : const SignInScreen(),
 
       routes: {
         '/sign-in': (context) => const SignInScreen(),

@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/screens/discount-info/discount_info_detail.dart';
 import 'package:travel_app/widgets/discounts/discount_card.dart';

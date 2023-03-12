@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/apis/food.api.dart';
 import 'package:travel_app/widgets/foods/food_card.dart';
 import 'package:travel_app/widgets/hotels/hotel_card.dart';
@@ -78,7 +77,7 @@ class DestinationScreenState extends State<DestinationScreen> {
                           ),
                           IconButton(
                             onPressed: () => {},
-                            icon: const Icon(FontAwesomeIcons.sortAmountDown),
+                            icon: const Icon(Icons.sort_outlined),
                             iconSize: 30.0,
                             color: Colors.black,
                           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DestinationImage extends StatelessWidget {
   final String imageUrl;
@@ -55,7 +54,7 @@ class DestinationImage extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(
-                      FontAwesomeIcons.locationArrow,
+                      Icons.connecting_airports_outlined,
                       size: 10.0,
                       color: Colors.white,
                     ),

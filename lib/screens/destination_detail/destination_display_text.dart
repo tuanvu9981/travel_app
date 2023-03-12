@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DestinationDisplayText extends StatelessWidget {
   String? city;
@@ -22,7 +21,7 @@ class DestinationDisplayText extends StatelessWidget {
         Row(
           children: [
             const Icon(
-              FontAwesomeIcons.locationArrow,
+              Icons.connecting_airports_outlined,
               size: 16.0,
               color: Colors.white,
             ),

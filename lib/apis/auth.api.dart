@@ -16,6 +16,14 @@ class AuthApi {
 
   final String endpoint = 'auth';
 
+  Future<String?> getCurrentAccessToken() async {
+    return await _storageApi.getAccessToken();
+  }
+
+  Future<String?> getCurrentRefreshToken() async {
+    return await _storageApi.getRefreshToken();
+  }
+
   Future<User?> getProfile() async {
     String? accessToken = await _storageApi.getAccessToken();
     if (accessToken != null) {
@@ -103,6 +111,7 @@ class AuthApi {
         },
       );
       if (response.statusCode == 200) {
+        await _storageApi.removeTokens();
         return true;
       } else if (response.statusCode == 401) {
         final newAccessToken = await regenerateToken();

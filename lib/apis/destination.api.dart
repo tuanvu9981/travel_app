@@ -4,12 +4,17 @@ import 'package:http/http.dart';
 import 'api.const.dart';
 
 class DestinationApi {
-  static String endpoint = 'destination';
+  String endpoint = 'destination';
 
-  static Future<List<Destination>?> getTopDestinations() async {
+  Future<List<Destination>?> getTopDestinations(
+    String accessToken,
+  ) async {
     var response = await get(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/top"),
-      headers: ApiConst.headers,
+      headers: {
+        ...ApiConst.headers,
+        "Authorization": "Bearer $accessToken",
+      },
     );
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> mapData =
@@ -24,10 +29,15 @@ class DestinationApi {
     return null;
   }
 
-  static Future<List<Destination>?> getAllDestinations() async {
+  Future<List<Destination>?> getAllDestinations(
+    String accessToken,
+  ) async {
     var response = await get(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/all"),
-      headers: ApiConst.headers,
+      headers: {
+        ...ApiConst.headers,
+        "Authorization": "Bearer $accessToken",
+      },
     );
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> mapData =

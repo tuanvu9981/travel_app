@@ -23,4 +23,10 @@ class StorageApi {
     final preference = await SharedPreferences.getInstance();
     return preference.getString(refreshToken);
   }
+
+  Future<void> removeTokens() async {
+    final preference = await SharedPreferences.getInstance();
+    await preference.remove(accessToken);
+    await preference.remove(refreshToken);
+  }
 }

@@ -1,23 +1,38 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/destination.model.dart';
 import 'package:travel_app/screens/destination_detail/destination_screen.dart';
 import 'package:travel_app/widgets/destinations/destination_card/destination_card.dart';
 import 'package:travel_app/widgets/destinations/destination_header.dart';
 import '../../apis/destination.api.dart';
 
-class DestinationCarousel extends StatefulWidget {
+class DestinationCarousel extends ConsumerStatefulWidget {
   const DestinationCarousel({Key? key}) : super(key: key);
 
   @override
   DestinationCarouselState createState() => DestinationCarouselState();
 }
 
-class DestinationCarouselState extends State<DestinationCarousel> {
+class DestinationCarouselState extends ConsumerState<DestinationCarousel> {
   List<Destination>? destinations = [];
 
   Future<void> _fetchData() async {
-    List<Destination>? data = await DestinationApi.getTopDestinations();
+    String? accessToken = await ref.watch(authProvider).getCurrentAccessToken();
+    List<Destination>? data = await DestinationApi().getTopDestinations(
+      accessToken!,
+    );
+    if (data == null) {
+      // Unauthorized
+      String? newAccessToken = await ref.watch(authProvider).regenerateToken();
+      List<Destination>? newData = await DestinationApi().getTopDestinations(
+        newAccessToken!,
+      );
+      setState(() {
+        destinations = newData;
+      });
+    }
     setState(() {
       destinations = data;
     });

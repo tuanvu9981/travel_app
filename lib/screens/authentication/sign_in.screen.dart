@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
   SignInScreenState createState() => SignInScreenState();
 }
 
-class SignInScreenState extends State<SignInScreen> {
+class SignInScreenState extends ConsumerState<SignInScreen> {
   bool _isObscure = true;
   bool isLoading = false;
   final txtStyle = const TextStyle(
@@ -18,6 +21,30 @@ class SignInScreenState extends State<SignInScreen> {
   );
   var passwordEditor = TextEditingController();
   var emailEditor = TextEditingController();
+
+  Future<void> signIn(
+    BuildContext context,
+    String email,
+    String password,
+  ) async {
+    final sMessenger = ScaffoldMessenger.of(context);
+    final navigator = Routemaster.of(context);
+    final result = await ref.read(authProvider).signIn(email, password);
+    if (result == true) {
+      final user = await ref.read(authProvider).getProfile();
+      if (user != null) {
+        ref.read(userProvider.notifier).update((state) => user);
+        navigator.replace('/');
+      }
+    } else {
+      sMessenger.showSnackBar(
+        const SnackBar(
+          content: Text("Authentication failed"),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -109,7 +136,7 @@ class SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _buildSignInBtn() {
+  Widget _buildSignInBtn(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity, // width: 100%
@@ -122,12 +149,11 @@ class SignInScreenState extends State<SignInScreen> {
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-        onPressed: () => {
-          if (emailEditor.text == 'tuanvu@gmail.com' &&
-              passwordEditor.text == '123456')
-            {
-              Navigator.pushNamed(context, '/home'),
-            }
+        onPressed: () {
+          signIn(context, emailEditor.text, passwordEditor.text);
+          setState(() {
+            isLoading = true;
+          });
         },
         child: isLoading == false
             ? const Text(
@@ -263,7 +289,7 @@ class SignInScreenState extends State<SignInScreen> {
                   const SizedBox(height: 32.5),
                   _buildPasswordTextField(),
                   _buildForgotPasswordBtn(),
-                  _buildSignInBtn(),
+                  _buildSignInBtn(context),
                   _buildSignInWithText(),
                   _buildSocialBtnRow(),
                   _buildSignUpBtn()

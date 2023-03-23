@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   SignUpScreenState createState() => SignUpScreenState();
 }
 
-class SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends ConsumerState<SignUpScreen> {
+  bool isLoading = false;
   bool _isObscure = true;
   final txtStyle = const TextStyle(
     color: Colors.white,
@@ -18,6 +22,32 @@ class SignUpScreenState extends State<SignUpScreen> {
   var passwordEditor = TextEditingController();
   var emailEditor = TextEditingController();
   var fullnameEditor = TextEditingController();
+
+  Future<void> signUp(
+    BuildContext context,
+    String email,
+    String password,
+    String fullname,
+  ) async {
+    final sMessenger = ScaffoldMessenger.of(context);
+    final navigator = Routemaster.of(context);
+    final result =
+        await ref.read(authProvider).signUp(email, password, fullname);
+    if (result == true) {
+      final user = await ref.read(authProvider).getProfile();
+      if (user != null) {
+        ref.read(userProvider.notifier).update((state) => user);
+        navigator.replace('/');
+      }
+    } else {
+      sMessenger.showSnackBar(
+        const SnackBar(
+          content: Text("Authentication failed"),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -128,7 +158,7 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildSignUpBtn() {
+  Widget _buildSignUpBtn(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity, // width: 100%
@@ -141,17 +171,31 @@ class SignUpScreenState extends State<SignUpScreen> {
             borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-        onPressed: () => {},
-        child: const Text(
-          'SIGN UP',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Mukta',
-          ),
-        ),
+        onPressed: () {
+          signUp(
+            context,
+            emailEditor.text,
+            passwordEditor.text,
+            fullnameEditor.text,
+          );
+          setState(() {
+            isLoading = true;
+          });
+        },
+        child: isLoading == false
+            ? const Text(
+                'SIGN UP',
+                style: TextStyle(
+                  color: Color(0xFF527DAA),
+                  letterSpacing: 1.5,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Mukta',
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(color: Color(0xFF527DAA)),
+              ),
       ),
     );
   }
@@ -273,7 +317,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                   _buildEmailTextField(),
                   const SizedBox(height: 20.0),
                   _buildPasswordTextField(),
-                  _buildSignUpBtn(),
+                  _buildSignUpBtn(context),
                   _buildSignUpWithText(),
                   _buildSocialBtnRow(),
                   _buildSignInBtn()

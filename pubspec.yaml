@@ -37,7 +37,9 @@ dependencies:
   carousel_slider: ^4.2.1
   http: ^0.13.5
   intl: ^0.18.0
-  flutter_secure_storage: ^8.0.0
+  flutter_riverpod: ^2.3.2
+  shared_preferences: ^2.0.20
+  routemaster: ^1.0.1
 
 dev_dependencies:
   flutter_test:

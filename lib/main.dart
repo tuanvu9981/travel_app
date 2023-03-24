@@ -26,6 +26,7 @@ class TravelAppState extends ConsumerState<TravelApp> {
   @override
   void initState() {
     super.initState();
+    getUserData();
   }
 
   @override

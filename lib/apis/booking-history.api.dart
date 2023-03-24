@@ -52,7 +52,7 @@ class BookingHistoryApi {
         ...ApiConst.headers,
         "Authorization": "Bearer $accessToken",
       },
-      body: newHistory.toJson(),
+      body: jsonEncode(newHistory.toJson()),
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> mapData = jsonDecode(response.body)['data'];

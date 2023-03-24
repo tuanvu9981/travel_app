@@ -55,25 +55,42 @@ class BookingTabState extends ConsumerState<BookingTab> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
-      child: ListView(
-        // default of ListView: vertical
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                Text("Your Booking History", style: _sloganStyle),
-                Icon(
-                  Icons.history_edu_outlined,
-                  size: 35.0,
-                  color: Colors.lightGreen[300],
+      child: bookingHistory == null || bookingHistory!.histories == null
+          ? const Center(
+              child: CircularProgressIndicator(color: Colors.lightBlue),
+            )
+          : bookingHistory!.histories!.isEmpty
+              ? const Center(
+                  child: Text(
+                    "You haven't made any booking history yet.",
+                    style: TextStyle(
+                      fontFamily: 'Mukta',
+                      fontSize: 17.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                )
+              : ListView(
+                  // default of ListView: vertical
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Text("Your Booking History", style: _sloganStyle),
+                          Icon(
+                            Icons.history_edu_outlined,
+                            size: 35.0,
+                            color: Colors.lightGreen[300],
+                          ),
+                        ],
+                      ),
+                    ),
+                    ...bookingHistory!.histories!
+                        .map((e) => _buildLine(e))
+                        .toList(),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          ...bookingHistory!.histories!.map((e) => _buildLine(e)).toList(),
-        ],
-      ),
     );
   }
 }

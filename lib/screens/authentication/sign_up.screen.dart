@@ -200,8 +200,13 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                   fontFamily: 'Mukta',
                 ),
               )
-            : const Center(
-                child: CircularProgressIndicator(color: Colors.lightBlue),
+            : Center(
+                child: Transform.scale(
+                  scale: 0.6,
+                  child: const CircularProgressIndicator(
+                    color: Colors.lightBlue,
+                  ),
+                ),
               ),
       ),
     );

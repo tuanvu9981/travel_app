@@ -69,13 +69,9 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
       roomId: roomId,
       roomLevel: level,
       price: LStatus().calculateRoomPriceWithLevel(level!, newHotel.price!),
-      bookingDate: HomeInfoUtil().formatDateTime(DateTime.now()),
-      checkInDate: HomeInfoUtil().formatDateTime(
-        DateTime.now().add(const Duration(days: 1)),
-      ),
-      checkOutDate: HomeInfoUtil().formatDateTime(
-        DateTime.now().add(const Duration(days: 5)),
-      ),
+      bookingDate: DateTime.now().toString(),
+      checkInDate: DateTime.now().add(const Duration(days: 3)).toString(),
+      checkOutDate: DateTime.now().add(const Duration(days: 7)).toString(),
     );
     await BookingHistoryApi().addNewHistory(accessToken, history);
   }

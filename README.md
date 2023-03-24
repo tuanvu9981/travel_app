@@ -136,3 +136,15 @@ void initState() {
     Future.delayed(Duration.zero, _fetchData);
 }
 ```
+
+9. Call API
+- With assumption: 
+```
+static Map<String, String> headers = {
+    "Content-type": "application/json",
+    "Accept": "application/json",
+};
+```
+- Your request's body must be the form of stringified JSON. That's why we need to use
+**body: JsonEncode(History.toJson())**
+- Solution: [Solution source](https://stackoverflow.com/questions/54849725/bad-state-cannot-set-the-body-fields-of-a-request-with-content-type-applicatio)

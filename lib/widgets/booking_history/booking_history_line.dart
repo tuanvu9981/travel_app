@@ -59,7 +59,7 @@ class BookingHistoryCard extends ConsumerWidget {
                   flex: 1,
                   child: CircleAvatar(
                     radius: 37.5,
-                    backgroundImage: AssetImage(userHistory!.hotelImgUrl!),
+                    backgroundImage: NetworkImage(userHistory!.hotelImgUrl!),
                   ),
                 ),
                 Expanded(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/hotel.api.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/utils/hotel.status.dart';
 
-class BookingRoom extends StatefulWidget {
+class BookingRoom extends ConsumerStatefulWidget {
   final String hotelId;
   BookingRoom({required this.hotelId, Key? key}) : super(key: key);
 
@@ -11,18 +13,33 @@ class BookingRoom extends StatefulWidget {
   BookingRoomState createState() => BookingRoomState();
 }
 
-class BookingRoomState extends State<BookingRoom> {
+class BookingRoomState extends ConsumerState<BookingRoom> {
   Hotel? hotel;
 
   Future<void> _fetchData(String id) async {
-    Hotel? data = await HotelApi.getHotelById(id);
+    String? accessToken = await ref.read(authProvider).getCurrentAccessToken();
+    Hotel? data = await HotelApi().getHotelById(id, accessToken!);
+    if (data == null) {
+      // Unauthorized
+      String? newAccessToken = await ref.read(authProvider).regenerateToken();
+      Hotel? newData = await HotelApi().getHotelById(id, newAccessToken!);
+      setState(() {
+        hotel = newData;
+      });
+    }
     setState(() {
       hotel = data;
     });
   }
 
   Future<void> _updateHotel(String id, Hotel? newHotel) async {
-    await HotelApi.updateHotelById(id, newHotel);
+    String? accessToken = await ref.read(authProvider).getCurrentAccessToken();
+    Hotel? data = await HotelApi().updateHotelById(id, newHotel, accessToken!);
+    if (data == null) {
+      // Unauthorized
+      String? newAccessToken = await ref.read(authProvider).regenerateToken();
+      await HotelApi().updateHotelById(id, newHotel, newAccessToken!);
+    }
   }
 
   @override

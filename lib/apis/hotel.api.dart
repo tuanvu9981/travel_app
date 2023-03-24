@@ -4,11 +4,17 @@ import 'api.const.dart';
 import 'dart:convert';
 
 class HotelApi {
-  static String endpoint = 'hotel';
-  static Future<Hotel?> getHotelById(id) async {
+  String endpoint = 'hotel';
+  Future<Hotel?> getHotelById(
+    String id,
+    String accessToken,
+  ) async {
     var response = await get(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/$id"),
-      headers: ApiConst.headers,
+      headers: {
+        ...ApiConst.headers,
+        "Authorization": "Bearer $accessToken",
+      },
     );
     if (response.statusCode == 200) {
       final mapData = jsonDecode(response.body)['data'];
@@ -17,10 +23,17 @@ class HotelApi {
     return null;
   }
 
-  static Future<Hotel?> updateHotelById(String id, Hotel? newHotel) async {
+  Future<Hotel?> updateHotelById(
+    String id,
+    Hotel? newHotel,
+    String accessToken,
+  ) async {
     var response = await put(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/$id"),
-      headers: ApiConst.headers,
+      headers: {
+        ...ApiConst.headers,
+        "Authorization": "Bearer $accessToken",
+      },
       body: jsonEncode(newHotel?.toJson()),
     );
     if (response.statusCode == 200) {

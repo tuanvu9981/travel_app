@@ -17,7 +17,7 @@ class HotelApi {
       },
     );
     if (response.statusCode == 200) {
-      final mapData = jsonDecode(response.body)['data'];
+      Map<String, dynamic> mapData = jsonDecode(response.body)['data'];
       return Hotel.fromJson(mapData);
     }
     return null;
@@ -37,7 +37,7 @@ class HotelApi {
       body: jsonEncode(newHotel?.toJson()),
     );
     if (response.statusCode == 200) {
-      final mapData = jsonDecode(response.body)['data'];
+      Map<String, dynamic> mapData = jsonDecode(response.body)['data'];
       return Hotel.fromJson(mapData);
     }
     return null;

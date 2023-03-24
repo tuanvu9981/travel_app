@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/utils/home.info.dart';
 
-class BookingHistoryLine extends StatelessWidget {
-  final History userHistory;
-  late int stayedDays;
+class BookingHistoryCard extends ConsumerWidget {
+  History? userHistory;
+  int? stayedDays;
 
-  BookingHistoryLine({
+  BookingHistoryCard({
     required this.userHistory,
     Key? key,
   }) : super(key: key) {
     stayedDays = HomeInfoUtil().calculateStayedDays(
-      userHistory.checkInDate,
-      userHistory.checkOutDate,
+      DateTime.parse(userHistory!.checkInDate!),
+      DateTime.parse(userHistory!.checkOutDate!),
     );
   }
 
@@ -36,7 +37,7 @@ class BookingHistoryLine extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
@@ -58,7 +59,7 @@ class BookingHistoryLine extends StatelessWidget {
                   flex: 1,
                   child: CircleAvatar(
                     radius: 37.5,
-                    backgroundImage: AssetImage(userHistory.hotelImgUrl ?? ""),
+                    backgroundImage: AssetImage(userHistory!.hotelImgUrl!),
                   ),
                 ),
                 Expanded(
@@ -74,7 +75,7 @@ class BookingHistoryLine extends StatelessWidget {
                             color: Colors.orange[300],
                           ),
                           const SizedBox(width: 7.5),
-                          Text(userHistory.hotelName ?? "", style: _boldText),
+                          Text(userHistory!.hotelName!, style: _boldText),
                         ],
                       ),
                       const SizedBox(height: 10.0),
@@ -89,7 +90,7 @@ class BookingHistoryLine extends StatelessWidget {
                           SizedBox(
                             width: 220,
                             child: Text(
-                              userHistory.hotelAddress ?? "",
+                              userHistory!.hotelAddress!,
                               style: _normalText,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -112,8 +113,8 @@ class BookingHistoryLine extends StatelessWidget {
                   flex: 1,
                   child: Column(
                     children: [
-                      Text("Room ${userHistory.roomId}", style: _boldText),
-                      Text(userHistory.roomLevel ?? "", style: _normalText),
+                      Text("Room ${userHistory!.roomId}", style: _boldText),
+                      Text(userHistory!.roomLevel!, style: _normalText),
                     ],
                   ),
                 ),
@@ -122,7 +123,7 @@ class BookingHistoryLine extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Total: ${userHistory.price! * stayedDays} \$',
+                        'Total: ${userHistory!.price! * stayedDays!} \$',
                         style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontWeight: FontWeight.bold,
@@ -151,7 +152,9 @@ class BookingHistoryLine extends StatelessWidget {
                     ),
                     const SizedBox(width: 15.0),
                     Text(
-                      HomeInfoUtil().formatDateTime(userHistory.checkInDate),
+                      HomeInfoUtil().formatDateTime(
+                        DateTime.parse(userHistory!.checkInDate!),
+                      ),
                       style: _normalText,
                     ),
                   ],
@@ -166,7 +169,9 @@ class BookingHistoryLine extends StatelessWidget {
                     ),
                     const SizedBox(width: 15.0),
                     Text(
-                      HomeInfoUtil().formatDateTime(userHistory.checkOutDate),
+                      HomeInfoUtil().formatDateTime(
+                        DateTime.parse(userHistory!.checkOutDate!),
+                      ),
                       style: _normalText,
                     )
                   ],

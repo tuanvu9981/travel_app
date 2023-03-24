@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
+import 'package:travel_app/apis/booking-history.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
@@ -36,6 +37,12 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     if (result == true) {
       final user = await ref.read(authProvider).getProfile();
       if (user != null) {
+        // create booking history (no worry of expiration because just signing up)
+        String? accessToken =
+            await ref.read(authProvider).getCurrentAccessToken();
+        await BookingHistoryApi().createUserBookingHistory(accessToken!);
+
+        // update state & navigation
         ref.read(userProvider.notifier).update((state) => user);
         navigator.replace('/');
       }

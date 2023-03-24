@@ -53,7 +53,7 @@ class BookingHistory {
   String? userId;
   List<History>? histories;
 
-  BookingHistory({this.userId, this.histories});
+  BookingHistory({this.userId, this.histories, this.bookingHistoryId});
 
   BookingHistory.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];

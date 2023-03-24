@@ -45,10 +45,9 @@ class BookingHistoryApi {
   Future<BookingHistory?> addNewHistory(
     String accessToken,
     History newHistory,
-    String bookingHistoryId,
   ) async {
     var response = await put(
-      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/$bookingHistoryId"),
+      Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint"),
       headers: {
         ...ApiConst.headers,
         "Authorization": "Bearer $accessToken",

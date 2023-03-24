@@ -1,4 +1,5 @@
 class User {
+  String? id;
   String? email;
   String? fullname;
   String? avatarUrl;
@@ -8,6 +9,7 @@ class User {
   num? money;
 
   User({
+    this.id,
     this.email,
     this.fullname,
     this.avatarUrl,
@@ -18,6 +20,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     email = json['email'] as String;
     fullname = json['fullname'] as String;
     avatarUrl = json['avatarUrl'] as String;
@@ -36,6 +39,7 @@ class User {
     data['money'] = money;
     data['phoneNumber'] = phoneNumber;
     data['birthday'] = birthday;
+    data['id'] = id;
     return data;
   }
 }

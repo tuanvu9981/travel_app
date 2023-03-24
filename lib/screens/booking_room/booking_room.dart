@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
+import 'package:travel_app/apis/booking-history.api.dart';
 import 'package:travel_app/apis/hotel.api.dart';
+import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/models/hotel.model.dart';
+import 'package:travel_app/utils/home.info.dart';
 import 'package:travel_app/utils/hotel.status.dart';
 
 class BookingRoom extends ConsumerStatefulWidget {
@@ -32,14 +35,49 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
     });
   }
 
-  Future<void> _updateHotel(String id, Hotel? newHotel) async {
+  Future<void> _updateHotel(
+      String id, Hotel? newHotel, String? roomId, String? level) async {
     String? accessToken = await ref.read(authProvider).getCurrentAccessToken();
     Hotel? data = await HotelApi().updateHotelById(id, newHotel, accessToken!);
     if (data == null) {
       // Unauthorized
       String? newAccessToken = await ref.read(authProvider).regenerateToken();
       await HotelApi().updateHotelById(id, newHotel, newAccessToken!);
+      final newHistory = History(
+        hotelImgUrl: newHotel!.imageUrl,
+        hotelAddress: newHotel.address,
+        hotelName: newHotel.name,
+        roomId: roomId,
+        roomLevel: level,
+        price: LStatus().calculateRoomPriceWithLevel(level!, newHotel.price!),
+        bookingDate: HomeInfoUtil().formatDateTime(DateTime.now()),
+        checkInDate: HomeInfoUtil().formatDateTime(
+          DateTime.now().add(const Duration(days: 1)),
+        ),
+        checkOutDate: HomeInfoUtil().formatDateTime(
+          DateTime.now().add(const Duration(days: 5)),
+        ),
+      );
+      await BookingHistoryApi().addNewHistory(newAccessToken, newHistory);
     }
+    // data != null -> update booking history (access token not expired yet)
+    // MOCK DATA
+    final history = History(
+      hotelImgUrl: newHotel!.imageUrl,
+      hotelAddress: newHotel.address,
+      hotelName: newHotel.name,
+      roomId: roomId,
+      roomLevel: level,
+      price: LStatus().calculateRoomPriceWithLevel(level!, newHotel.price!),
+      bookingDate: HomeInfoUtil().formatDateTime(DateTime.now()),
+      checkInDate: HomeInfoUtil().formatDateTime(
+        DateTime.now().add(const Duration(days: 1)),
+      ),
+      checkOutDate: HomeInfoUtil().formatDateTime(
+        DateTime.now().add(const Duration(days: 5)),
+      ),
+    );
+    await BookingHistoryApi().addNewHistory(accessToken, history);
   }
 
   @override
@@ -98,7 +136,8 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
     }
   }
 
-  List<Widget>? _buildActionWithStatus(String? status, String? roomId) {
+  List<Widget>? _buildActionWithStatus(
+      String? status, String? roomId, String? level) {
     if (status == 'booked' || status == 'stayed') {
       return [
         TextButton(
@@ -129,7 +168,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
             }),
 
             // update state back to API Backend
-            _updateHotel(widget.hotelId, hotel),
+            _updateHotel(widget.hotelId, hotel, roomId, level),
             Navigator.pop(context, 'I\'ll hire it')
           },
           child: const Text('I\'ll hire it', style: TextStyle(fontSize: 16.0)),
@@ -168,7 +207,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
             ),
           ),
           content: _buildMessageWithStatus(room.status, hotel?.price),
-          actions: _buildActionWithStatus(room.status, room.roomId),
+          actions: _buildActionWithStatus(room.status, room.roomId, room.level),
         ),
       ),
       child: Column(

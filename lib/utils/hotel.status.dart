@@ -60,4 +60,14 @@ class LStatus {
       ),
     ),
   ];
+
+  num calculateRoomPriceWithLevel(String level, num price) {
+    if (level == 'economy') {
+      return price;
+    } else if (level == 'business') {
+      return price * 1.2;
+    } else {
+      return price * 1.5;
+    }
+  }
 }

@@ -10,20 +10,24 @@ class Greeting {
 
 class HomeInfoUtil {
   // futureL: call api to get user avatar instead of hard-coded
-  final List<BtmNavInfo> btmNavIcons = [
-    BtmNavInfo(icon: const Icon(Icons.home, size: 30.0), label: "Home"),
-    BtmNavInfo(
-      icon: const Icon(Icons.collections_bookmark_outlined, size: 30.0),
-      label: "History",
-    ),
-    BtmNavInfo(
-      icon: const CircleAvatar(
-        radius: 15.0,
-        backgroundImage: AssetImage('assets/images/duck.jpg'),
+
+  List<BtmNavInfo> buildBtmNavIcons(String avatarUrl) {
+    List<BtmNavInfo> btmNavIcons = [
+      BtmNavInfo(icon: const Icon(Icons.home, size: 30.0), label: "Home"),
+      BtmNavInfo(
+        icon: const Icon(Icons.collections_bookmark_outlined, size: 30.0),
+        label: "History",
       ),
-      label: "Personal",
-    ),
-  ];
+      BtmNavInfo(
+        icon: CircleAvatar(
+          radius: 14.0,
+          backgroundImage: NetworkImage(avatarUrl),
+        ),
+        label: "Personal",
+      ),
+    ];
+    return btmNavIcons;
+  }
 
   Greeting greetingByHour(int hour, String fullname) {
     Greeting greeting = Greeting(

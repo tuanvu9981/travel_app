@@ -42,6 +42,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String? avatarUrl = ref.watch(userProvider)!.avatarUrl;
     return Scaffold(
       appBar: AppBar(
         title: _buildAppbarGreetingByHour(_currentHour),
@@ -73,7 +74,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           });
         },
         items: HomeInfoUtil()
-            .btmNavIcons
+            .buildBtmNavIcons(avatarUrl!)
             .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.label))
             .toList(),
       ),

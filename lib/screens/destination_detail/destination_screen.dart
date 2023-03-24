@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/food.api.dart';
 import 'package:travel_app/widgets/foods/food_card.dart';
 import 'package:travel_app/widgets/hotels/hotel_card.dart';
@@ -11,7 +13,7 @@ import './destination_image.dart';
 import './destination_display_text.dart';
 import '../../utils/destination.info.dart';
 
-class DestinationScreen extends StatefulWidget {
+class DestinationScreen extends ConsumerStatefulWidget {
   Destination? destination;
   DestinationScreen({Key? key, this.destination}) : super(key: key);
 
@@ -19,7 +21,7 @@ class DestinationScreen extends StatefulWidget {
   DestinationScreenState createState() => DestinationScreenState();
 }
 
-class DestinationScreenState extends State<DestinationScreen> {
+class DestinationScreenState extends ConsumerState<DestinationScreen> {
   int _currentTab = 0;
   final EdgeInsets _paddingForTab = const EdgeInsets.only(
     top: 15.0,
@@ -32,7 +34,22 @@ class DestinationScreenState extends State<DestinationScreen> {
   List<Food>? foodList = [];
 
   Future<void> _fetchData(String? id) async {
-    List<Food>? data = await FoodApi.getFoodByDestinationId(id);
+    String? accessToken = await ref.watch(authProvider).getCurrentAccessToken();
+    List<Food>? data = await FoodApi().getFoodByDestinationId(
+      id!,
+      accessToken!,
+    );
+    if (data == null) {
+      // Unauthorized
+      String? newAccessToken = await ref.watch(authProvider).regenerateToken();
+      List<Food>? newData = await FoodApi().getFoodByDestinationId(
+        id,
+        newAccessToken!,
+      );
+      setState(() {
+        foodList = newData;
+      });
+    }
     setState(() {
       foodList = data;
     });

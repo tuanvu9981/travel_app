@@ -4,11 +4,17 @@ import 'api.const.dart';
 import 'dart:convert';
 
 class FoodApi {
-  static String endpoint = 'food';
-  static Future<List<Food>?> getFoodByDestinationId(id) async {
+  String endpoint = 'food';
+  Future<List<Food>?> getFoodByDestinationId(
+    String id,
+    String accessToken,
+  ) async {
     var response = await get(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/$id"),
-      headers: ApiConst.headers,
+      headers: {
+        ...ApiConst.headers,
+        "Authorization": "Bearer $accessToken",
+      },
     );
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> mapData =

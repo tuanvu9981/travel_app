@@ -209,11 +209,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     );
   }
 
-  Widget _buildSignInBtn() {
+  Widget _buildSignInBtn(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
-        Navigator.pop(context),
-      },
+      onTap: () => Routemaster.of(context).replace('/'),
       child: RichText(
         text: const TextSpan(
           children: [
@@ -320,7 +318,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                   _buildSignUpBtn(context),
                   _buildSignUpWithText(),
                   _buildSocialBtnRow(),
-                  _buildSignInBtn()
+                  _buildSignInBtn(context)
                 ],
               ),
             ),

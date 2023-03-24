@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/screens/home/booking.tab.dart';
 import 'package:travel_app/screens/home/main.tab.dart';
 import 'package:travel_app/screens/home/personal.tab.dart';
 import '../../utils/home.info.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState<HomeScreen> {
   int _currentTab = 0;
   final int _currentHour = DateTime.now().hour;
 
   Widget _buildAppbarGreetingByHour(int hour) {
-    Greeting greeting = HomeInfoUtil().greetingByHour(hour);
+    String? fullname = ref.watch(userProvider)!.fullname;
+    Greeting greeting = HomeInfoUtil().greetingByHour(hour, fullname!);
     return Row(
       children: [
         Text(

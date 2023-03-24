@@ -39,7 +39,7 @@ class DestinationAllListState extends ConsumerState<DestinationAllList> {
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    Future.delayed(Duration.zero, _fetchData);
   }
 
   @override
@@ -66,25 +66,31 @@ class DestinationAllListState extends ConsumerState<DestinationAllList> {
         backgroundColor: Theme.of(context).primaryColorLight,
       ),
       body: SafeArea(
-        child: ListView.builder(
-          padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-          itemCount: destinations?.length,
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              child: DestinationLine(destination: destinations![index]),
-              onTap: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DestinationScreen(
-                      destination: destinations![index],
-                    ),
-                  ),
+        child: destinations == null || destinations!.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.lightBlue,
                 ),
-              },
-            );
-          },
-        ),
+              )
+            : ListView.builder(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                itemCount: destinations?.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    child: DestinationLine(destination: destinations![index]),
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DestinationScreen(
+                            destination: destinations![index],
+                          ),
+                        ),
+                      ),
+                    },
+                  );
+                },
+              ),
       ),
     );
   }

@@ -32,10 +32,11 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
       setState(() {
         discounts = newData;
       });
+    } else {
+      setState(() {
+        discounts = data;
+      });
     }
-    setState(() {
-      discounts = data;
-    });
   }
 
   @override

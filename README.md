@@ -120,3 +120,19 @@ GridView.builder(
     )
 );    
 ```
+
+7. **Naming Convention**
+- Constant: lowercase camelcase 
+```
+final accessToken = 'accessToken';
+```
+
+8. Api & Rebuild completed before initState() finished.
+- Solution: [Solution URL](https://stackoverflow.com/questions/56395081/unhandled-exception-inheritfromwidgetofexacttype-localizationsscope-or-inheri)
+```
+@override
+void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, _fetchData);
+}
+```

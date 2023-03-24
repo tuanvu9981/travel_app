@@ -70,6 +70,11 @@ class AuthApi {
     var response = await post(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/sign-up"),
       headers: ApiConst.headers,
+      body: jsonEncode({
+        "email": email,
+        "password": password,
+        "fullname": fullname,
+      }),
     );
     if (response.statusCode == 201) {
       Map<String, dynamic> mapData = jsonDecode(response.body);
@@ -89,6 +94,7 @@ class AuthApi {
     var response = await post(
       Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/sign-in"),
       headers: ApiConst.headers,
+      body: jsonEncode({"email": email, "password": password}),
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> mapData = jsonDecode(response.body);

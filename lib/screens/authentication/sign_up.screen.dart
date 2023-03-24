@@ -181,9 +181,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
         onPressed: () {
           signUp(
             context,
-            emailEditor.text,
-            passwordEditor.text,
-            fullnameEditor.text,
+            emailEditor.text.trim(),
+            passwordEditor.text.trim(),
+            fullnameEditor.text.trim(),
           );
           setState(() {
             isLoading = true;
@@ -201,7 +201,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
               )
             : const Center(
-                child: CircularProgressIndicator(color: Color(0xFF527DAA)),
+                child: CircularProgressIndicator(color: Colors.lightBlue),
               ),
       ),
     );

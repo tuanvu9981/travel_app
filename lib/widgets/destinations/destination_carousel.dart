@@ -32,16 +32,17 @@ class DestinationCarouselState extends ConsumerState<DestinationCarousel> {
       setState(() {
         destinations = newData;
       });
+    } else {
+      setState(() {
+        destinations = data;
+      });
     }
-    setState(() {
-      destinations = data;
-    });
   }
 
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    Future.delayed(Duration.zero, _fetchData);
   }
 
   @override
@@ -54,7 +55,7 @@ class DestinationCarouselState extends ConsumerState<DestinationCarousel> {
         ),
         SizedBox(
           height: 330.0,
-          child: destinations == null || destinations?.length == 0
+          child: destinations == null || destinations!.isEmpty
               ? const Center(
                   child: CircularProgressIndicator(color: Colors.lightBlue),
                 )

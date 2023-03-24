@@ -4,9 +4,9 @@ class StorageApi {
   final String accessToken = 'accessToken';
   final String refreshToken = 'refreshToken';
 
-  Future<void> setAccessToken(String accessToken) async {
+  Future<void> setAccessToken(String apiAccessToken) async {
     final preference = await SharedPreferences.getInstance();
-    await preference.setString(accessToken, accessToken);
+    await preference.setString(accessToken, apiAccessToken);
   }
 
   Future<String?> getAccessToken() async {
@@ -14,9 +14,9 @@ class StorageApi {
     return preference.getString(accessToken);
   }
 
-  Future<void> setRefreshToken(String refreshToken) async {
+  Future<void> setRefreshToken(String apiRefreshToken) async {
     final preference = await SharedPreferences.getInstance();
-    await preference.setString(refreshToken, refreshToken);
+    await preference.setString(refreshToken, apiRefreshToken);
   }
 
   Future<String?> getRefreshToken() async {

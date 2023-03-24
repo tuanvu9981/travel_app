@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/widgets/destinations/destination_carousel.dart';
 import 'package:travel_app/widgets/discounts/discount_carousel.dart';
 
-class MainTab extends StatelessWidget {
+class MainTab extends ConsumerWidget {
   final _sloganStyle = TextStyle(fontSize: 30.0, fontFamily: 'DancingScript');
 
   MainTab({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       children: <Widget>[

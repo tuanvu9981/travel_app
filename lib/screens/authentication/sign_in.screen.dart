@@ -150,7 +150,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
           ),
         ),
         onPressed: () {
-          signIn(context, emailEditor.text, passwordEditor.text);
+          signIn(context, emailEditor.text.trim(), passwordEditor.text.trim());
           setState(() {
             isLoading = true;
           });
@@ -166,8 +166,13 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
                   fontFamily: 'Mukta',
                 ),
               )
-            : const Center(
-                child: CircularProgressIndicator(color: Color(0xFF527DAA)),
+            : Center(
+                child: Transform.scale(
+                  scale: 0.6,
+                  child: const CircularProgressIndicator(
+                    color: Colors.lightBlue,
+                  ),
+                ),
               ),
       ),
     );

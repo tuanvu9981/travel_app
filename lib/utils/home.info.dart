@@ -25,19 +25,22 @@ class HomeInfoUtil {
     ),
   ];
 
-  Greeting greetingByHour(int hour) {
-    Greeting greeting = Greeting(text: "Welcome, Tuan Vu", icons: Icons.block);
+  Greeting greetingByHour(int hour, String fullname) {
+    Greeting greeting = Greeting(
+      text: "Welcome, $fullname",
+      icons: Icons.block,
+    );
     if (hour <= 12 && hour >= 5) {
-      greeting.text = "Good morning, Tuan Vu";
+      greeting.text = "Good morning, $fullname";
       greeting.icons = Icons.wb_sunny;
     } else if ((hour > 12) && (hour <= 17)) {
-      greeting.text = "Good afternoon, Tuan Vu";
+      greeting.text = "Good afternoon, $fullname";
       greeting.icons = Icons.wb_sunny;
     } else if ((hour > 17) && (hour < 23)) {
-      greeting.text = "Good evening, Tuan Vu";
+      greeting.text = "Good evening, $fullname";
       greeting.icons = Icons.nights_stay;
     } else {
-      greeting.text = "Good night, Tuan Vu";
+      greeting.text = "Good night, $fullname";
       greeting.icons = Icons.nights_stay;
     }
     return greeting;

@@ -58,7 +58,9 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchData(widget.destination?.id);
+    Future.delayed(Duration.zero, () {
+      _fetchData(widget.destination?.id);
+    });
   }
 
   @override

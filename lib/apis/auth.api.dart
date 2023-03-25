@@ -116,7 +116,7 @@ class AuthApi {
           "Authorization": "Bearer $accessToken",
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         await _storageApi.removeTokens();
         return true;
       } else if (response.statusCode == 401) {
@@ -129,7 +129,7 @@ class AuthApi {
               "Authorization": "Bearer $newAccessToken",
             },
           );
-          return newResponse.statusCode == 200 ? true : false;
+          return newResponse.statusCode == 201 ? true : false;
         }
         return false;
       }

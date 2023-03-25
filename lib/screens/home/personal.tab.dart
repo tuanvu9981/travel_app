@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/user.model.dart';
 
-class PersonalTab extends StatefulWidget {
+class PersonalTab extends ConsumerStatefulWidget {
   const PersonalTab({Key? key}) : super(key: key);
 
   @override
   PersonalTabState createState() => PersonalTabState();
 }
 
-class PersonalTabState extends State<PersonalTab> {
+class PersonalTabState extends ConsumerState<PersonalTab> {
   User user = User(
     email: 'vutuanvu9999@gmail.com',
     fullname: 'Vũ Tuấn Vũ',
@@ -16,6 +19,23 @@ class PersonalTabState extends State<PersonalTab> {
     phoneNumber: '+84 78 898 2653',
     birthday: 'February 9th 2001',
   );
+
+  Future<void> signOut(BuildContext context) async {
+    final navigator = Routemaster.of(context);
+    final sMessenger = ScaffoldMessenger.of(context);
+    bool result = await ref.read(authProvider).signOut();
+    if (result == true) {
+      ref.read(userProvider.notifier).update((state) => null);
+      navigator.replace('/');
+    } else {
+      sMessenger.showSnackBar(
+        const SnackBar(
+          content: Text("Log out failed"),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -42,43 +62,39 @@ class PersonalTabState extends State<PersonalTab> {
     bool farFromTitle,
     void Function() tFunc,
   ) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: farFromTitle == true
-            ? const Border(
-                top: BorderSide(width: 0.5, color: Colors.grey),
-              )
-            : null,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Icon(tIcon, size: 35.0, color: tColor),
-          ),
-          Expanded(
-            flex: 5,
-            child: tNormalText == null
-                ? Text(tBoldText, style: tBoldStl)
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(tBoldText, style: tBoldStl),
-                      const SizedBox(height: 5.0),
-                      Text(tNormalText, style: tNormalStl)
-                    ],
-                  ),
-          ),
-          Expanded(
-            flex: 1,
-            child: GestureDetector(
-              onTap: tFunc,
-              child: Icon(Icons.arrow_forward, size: 35.0, color: tColor),
+    return GestureDetector(
+      onTap: tFunc,
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: farFromTitle == true
+              ? const Border(
+                  top: BorderSide(width: 0.5, color: Colors.grey),
+                )
+              : null,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Icon(tIcon, size: 35.0, color: tColor),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 5,
+              child: tNormalText == null
+                  ? Text(tBoldText, style: tBoldStl)
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(tBoldText, style: tBoldStl),
+                        const SizedBox(height: 5.0),
+                        Text(tNormalText, style: tNormalStl)
+                      ],
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -107,7 +123,7 @@ class PersonalTabState extends State<PersonalTab> {
     );
   }
 
-  Widget _buildAvatar(AssetImage image) {
+  Widget _buildAvatar(NetworkImage image) {
     return GestureDetector(
       onTap: () => {},
       child: Stack(
@@ -171,6 +187,7 @@ class PersonalTabState extends State<PersonalTab> {
 
   @override
   Widget build(BuildContext context) {
+    final userRef = ref.watch(userProvider);
     return ListView(
       children: <Widget>[
         _buildGroupTitle(Colors.blue[400], "Personal Information"),
@@ -182,9 +199,9 @@ class PersonalTabState extends State<PersonalTab> {
             children: [
               Row(
                 children: [
-                  _buildAvatar(AssetImage(user.avatarUrl ?? "")),
+                  _buildAvatar(NetworkImage(userRef!.avatarUrl!)),
                   const SizedBox(width: 15.0),
-                  _buildNameAndStatus('Vũ Tuấn Vũ'),
+                  _buildNameAndStatus(userRef.fullname!),
                 ],
               ),
             ],
@@ -194,18 +211,22 @@ class PersonalTabState extends State<PersonalTab> {
           Icons.account_circle,
           Colors.lightBlue[100],
           'Change your fullname',
-          user.fullname,
+          userRef.fullname,
           true,
           () {},
         ),
+
+        // --------- NOTICE THIS ---------
         _buildItemLine(
           Icons.calendar_month_outlined,
           Colors.lightBlue[100],
           'Change your birthday',
-          user.birthday,
+          userRef.birthday,
           true,
           () {},
         ),
+        // --------- NOTICE THIS ---------
+
         const SizedBox(height: 15.0),
         _buildGroupTitle(Colors.blue[400], "Security & Contact"),
         _buildItemLine(
@@ -220,18 +241,22 @@ class PersonalTabState extends State<PersonalTab> {
           Icons.email,
           Colors.lightBlue[100],
           'Change your email',
-          user.email,
+          userRef.email,
           true,
           () {},
         ),
+
+        // --------- NOTICE THIS ---------
         _buildItemLine(
           Icons.phone,
           Colors.lightBlue[100],
           'Change your phone number',
-          user.phoneNumber,
+          userRef.phoneNumber,
           true,
           () {},
         ),
+        // --------- NOTICE THIS ---------
+
         const SizedBox(height: 15.0),
         _buildGroupTitle(Colors.green[500], "Recharge"),
         _buildItemLine(
@@ -266,7 +291,9 @@ class PersonalTabState extends State<PersonalTab> {
           'Sign out',
           null,
           false,
-          () {},
+          () {
+            signOut(context);
+          },
         ),
       ],
     );

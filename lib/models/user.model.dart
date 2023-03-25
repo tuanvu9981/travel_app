@@ -25,8 +25,8 @@ class User {
     fullname = json['fullname'] as String;
     avatarUrl = json['avatarUrl'] as String;
     role = json['role'] as String;
-    // phoneNumber = json['phoneNumber'] as String;
-    // birthday = json['birthday'] as String;
+    phoneNumber = json['phoneNumber'] as String;
+    birthday = json['birthday'] as String;
     money = json['money'];
   }
 
@@ -37,8 +37,8 @@ class User {
     data['avatarUrl'] = avatarUrl;
     data['role'] = role;
     data['money'] = money;
-    // data['phoneNumber'] = phoneNumber;
-    // data['birthday'] = birthday;
+    data['phoneNumber'] = phoneNumber;
+    data['birthday'] = birthday;
     data['id'] = id;
     return data;
   }

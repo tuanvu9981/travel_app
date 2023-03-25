@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/screens/update_info_screen/update_email_screen.dart';
+import 'package:travel_app/screens/update_info_screen/update_password_screen.dart';
 
 class PersonalTab extends ConsumerStatefulWidget {
   const PersonalTab({Key? key}) : super(key: key);
@@ -227,7 +228,12 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           'Change your password',
           '**********',
           false,
-          () {},
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UpdatePasswordScreen()),
+            );
+          },
         ),
         _buildItemLine(
           Icons.email,

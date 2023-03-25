@@ -36,7 +36,11 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
   }
 
   Future<void> _updateHotel(
-      String id, Hotel? newHotel, String? roomId, String? level) async {
+    String id,
+    Hotel? newHotel,
+    String? roomId,
+    String? level,
+  ) async {
     String? accessToken = await ref.read(authProvider).getCurrentAccessToken();
     Hotel? data = await HotelApi().updateHotelById(id, newHotel, accessToken!);
     if (data == null) {

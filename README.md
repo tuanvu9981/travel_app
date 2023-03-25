@@ -148,3 +148,6 @@ static Map<String, String> headers = {
 - Your request's body must be the form of stringified JSON. That's why we need to use
 **body: JsonEncode(History.toJson())**
 - Solution: [Solution source](https://stackoverflow.com/questions/54849725/bad-state-cannot-set-the-body-fields-of-a-request-with-content-type-applicatio)
+
+10. After Navigator.pop(), how to refresh the previous page
+- Solution: [Refresh after back to previous page](https://stackoverflow.com/questions/58951312/flutter-how-to-refresh-the-last-page-state-on-navigator-pop)

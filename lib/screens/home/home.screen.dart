@@ -25,8 +25,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         Text(
           greeting.text,
           style: const TextStyle(
-            fontSize: 20.0,
-            fontFamily: 'Mukta',
+            fontSize: 15.0,
+            fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
           ),
         ),

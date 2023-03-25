@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
-import 'package:travel_app/models/user.model.dart';
+import 'package:travel_app/screens/update_info_screen/update_email_screen.dart';
 
 class PersonalTab extends ConsumerStatefulWidget {
   const PersonalTab({Key? key}) : super(key: key);
@@ -12,14 +12,6 @@ class PersonalTab extends ConsumerStatefulWidget {
 }
 
 class PersonalTabState extends ConsumerState<PersonalTab> {
-  User user = User(
-    email: 'vutuanvu9999@gmail.com',
-    fullname: 'Vũ Tuấn Vũ',
-    avatarUrl: 'assets/images/duck.jpg',
-    phoneNumber: '+84 78 898 2653',
-    birthday: 'February 9th 2001',
-  );
-
   Future<void> signOut(BuildContext context) async {
     final navigator = Routemaster.of(context);
     final sMessenger = ScaffoldMessenger.of(context);
@@ -243,7 +235,19 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           'Change your email',
           userRef.email,
           true,
-          () {},
+          () async {
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UpdateEmailScreen(
+                  oldEmail: userRef.email!,
+                ),
+              ),
+            );
+            if (result != null && result == true) {
+              setState(() {});
+            }
+          },
         ),
 
         // --------- NOTICE THIS ---------

@@ -2,7 +2,14 @@
 
 Travelling app, made by an amateur
 
-## Reference
+### Demo
+<p align='center'>
+    <img
+        src='https://drive.google.com/file/d/18radgM5Ruc2WOLd9xMCGOprt3YH5hATU/view?usp=sharing'
+    >
+</p>
+
+### Reference
 1. Github: [Travel App github URL](https://github.com/MarcusNg/flutter_travel_ui)
 2. Youtube: [Travel App youtube URL](https://www.youtube.com/watch?v=CSa6Ocyog4U&list=PL7BCz8m1M7-tsEB45bZZ3tEjcxk2OqWKa&index=25&t=2657s)
 

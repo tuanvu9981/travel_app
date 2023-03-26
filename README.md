@@ -4,9 +4,7 @@ Travelling app, made by an amateur
 
 ### Demo
 <p align='center'>
-    <img
-        src='https://drive.google.com/file/d/18radgM5Ruc2WOLd9xMCGOprt3YH5hATU/view?usp=sharing'
-    >
+    <img src='https://firebasestorage.googleapis.com/v0/b/fir-getx-flutter-bd7d8.appspot.com/o/demo_app.gif?alt=media&token=91f1a54d-14a8-42d7-a192-a55de253694f'>
 </p>
 
 ### Reference

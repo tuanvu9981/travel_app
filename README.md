@@ -3,7 +3,10 @@
 Travelling app, made by an amateur
 
 ### Demo
-![Demo Travelling app](https://firebasestorage.googleapis.com/v0/b/fir-getx-flutter-bd7d8.appspot.com/o/demo_app.gif?alt=media&token=91f1a54d-14a8-42d7-a192-a55de253694f)
+
+![Brief demo](travel_app_short.gif)
+
+[Demo full app's function](https://firebasestorage.googleapis.com/v0/b/fir-getx-flutter-bd7d8.appspot.com/o/demo_app.gif?alt=media&token=91f1a54d-14a8-42d7-a192-a55de253694f)
 
 ### Reference
 1. Github: [Travel App github URL](https://github.com/MarcusNg/flutter_travel_ui)

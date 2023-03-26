@@ -5,7 +5,7 @@ Travelling app, made by an amateur
 ### Demo
 
 <p align="center">
-    <img src='travel_app_short.gif' width='55%' height='55%'>
+    <img src='travel_app_short.gif' width="50%" height="50%"/>
 <p>
 
 [Demo full app's function](https://firebasestorage.googleapis.com/v0/b/fir-getx-flutter-bd7d8.appspot.com/o/demo_app.gif?alt=media&token=91f1a54d-14a8-42d7-a192-a55de253694f)

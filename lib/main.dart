@@ -27,6 +27,7 @@ class TravelAppState extends ConsumerState<TravelApp> {
   void initState() {
     super.initState();
     getUserData();
+    // Future.delayed(const Duration(seconds: 4));
   }
 
   @override

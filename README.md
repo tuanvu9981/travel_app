@@ -134,7 +134,7 @@ GridView.builder(
 final accessToken = 'accessToken';
 ```
 
-8. Api & Rebuild completed before initState() finished.
+8. **Api & Rebuild completed before initState() finished.**
 - Solution: [Solution URL](https://stackoverflow.com/questions/56395081/unhandled-exception-inheritfromwidgetofexacttype-localizationsscope-or-inheri)
 ```
 @override
@@ -144,7 +144,7 @@ void initState() {
 }
 ```
 
-9. Call API
+9. **Call API**
 - With assumption: 
 ```
 static Map<String, String> headers = {
@@ -156,5 +156,8 @@ static Map<String, String> headers = {
 **body: JsonEncode(History.toJson())**
 - Solution: [Solution source](https://stackoverflow.com/questions/54849725/bad-state-cannot-set-the-body-fields-of-a-request-with-content-type-applicatio)
 
-10. After Navigator.pop(), how to refresh the previous page
+10. **After Navigator.pop(), how to refresh the previous page**
 - Solution: [Refresh after back to previous page](https://stackoverflow.com/questions/58951312/flutter-how-to-refresh-the-last-page-state-on-navigator-pop)
+
+11. **Round doubles**
+- **double_number**.toStringAsFixed(2); // rounding to 2 digit after dot (.)

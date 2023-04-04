@@ -38,6 +38,8 @@ class BookingHistoryCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final totalPrice = (userHistory!.price! * stayedDays!).toStringAsFixed(2);
+
     return Container(
       decoration: const BoxDecoration(
         boxShadow: [
@@ -123,7 +125,7 @@ class BookingHistoryCard extends ConsumerWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Total: ${userHistory!.price! * stayedDays!} \$',
+                        'Total: $totalPrice \$',
                         style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontWeight: FontWeight.bold,

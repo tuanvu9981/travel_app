@@ -161,3 +161,9 @@ static Map<String, String> headers = {
 
 11. **Round doubles**
 - **double_number**.toStringAsFixed(2); // rounding to 2 digit after dot (.)
+
+12. **Change flash screen icon**
+- [Change Flash Screen Icon Instruction Video](https://www.youtube.com/watch?v=JVpFNfnuOZM&list=LL&index=13&t=195s)
+
+13. **Change Flutter default lauch icon**
+- [Change Flutter default lauch icon Instruction Video](https://www.youtube.com/watch?v=1VGlLjBxYQ4)

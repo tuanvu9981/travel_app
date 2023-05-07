@@ -105,8 +105,8 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           Text(
             groupTitle,
             style: TextStyle(
-              fontSize: 18.0,
-              fontFamily: 'Mukta',
+              fontSize: 16.0,
+              fontFamily: 'VNPro',
               fontWeight: FontWeight.bold,
               color: tColor,
             ),

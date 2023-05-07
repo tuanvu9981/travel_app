@@ -307,8 +307,8 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
         title: const Text(
           'Booking rooms',
           style: TextStyle(
-            fontSize: 20.0,
-            fontFamily: 'Mukta',
+            fontSize: 18.0,
+            fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -344,18 +344,19 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                               Text(
                                 hotel?.name ?? "",
                                 style: const TextStyle(
-                                  fontFamily: 'Mukta',
-                                  fontSize: 20.0,
+                                  fontFamily: 'VNPro',
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
                               ),
+                              const SizedBox(height: 6.0),
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   const Icon(
                                     Icons.location_on,
-                                    size: 22.5,
+                                    size: 20.0,
                                     color: Colors.black,
                                   ),
                                   const SizedBox(width: 5.0),
@@ -366,8 +367,8 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                                     child: Text(
                                       hotel?.address ?? "",
                                       style: const TextStyle(
-                                        fontFamily: 'Mukta',
-                                        fontSize: 15.0,
+                                        fontFamily: 'VNPro',
+                                        fontSize: 14.0,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),

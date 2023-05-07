@@ -76,8 +76,8 @@ class DiscountInfoDetail extends StatelessWidget {
         title: const Text(
           'News & Discount Information',
           style: TextStyle(
-            fontSize: 20.0,
-            fontFamily: 'Mukta',
+            fontSize: 18.0,
+            fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
           ),
         ),

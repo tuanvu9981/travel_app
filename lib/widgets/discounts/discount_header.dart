@@ -7,12 +7,12 @@ class DiscountHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
+      children: const [
+        Text(
           "Latest discounts & Information",
           style: TextStyle(
-            fontSize: 22.0,
-            fontFamily: 'Mukta',
+            fontSize: 18.5,
+            fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -16,8 +16,8 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
   bool isLoading = false;
   final txtStyle = const TextStyle(
     color: Colors.white,
-    fontFamily: 'Mukta',
-    fontSize: 18.0,
+    fontFamily: 'VNPro',
+    fontSize: 16.5,
   );
   var passwordEditor = TextEditingController();
   var emailEditor = TextEditingController();
@@ -161,9 +161,9 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
                 style: TextStyle(
                   color: Color(0xFF527DAA),
                   letterSpacing: 1.5,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Mukta',
+                  fontFamily: 'VNPro',
                 ),
               )
             : Center(

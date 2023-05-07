@@ -67,8 +67,8 @@ class FoodCard extends StatelessWidget {
                   child: Text(
                     "\$${food.price}",
                     style: TextStyle(
-                      fontFamily: 'Mukta',
-                      fontSize: 20.0,
+                      fontFamily: 'VNPro',
+                      fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.green.shade600,
                     ),

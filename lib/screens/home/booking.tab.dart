@@ -64,8 +64,8 @@ class BookingTabState extends ConsumerState<BookingTab> {
                   child: Text(
                     "You haven't made any booking history yet.",
                     style: TextStyle(
-                      fontFamily: 'Mukta',
-                      fontSize: 17.0,
+                      fontFamily: 'VNPro',
+                      fontSize: 15.0,
                       color: Colors.grey,
                     ),
                   ),

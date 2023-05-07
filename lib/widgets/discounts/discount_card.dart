@@ -35,8 +35,8 @@ class DiscountCard extends StatelessWidget {
           child: Text(
             title!,
             style: const TextStyle(
-              fontSize: 12.5,
-              fontFamily: 'Mukta',
+              fontSize: 12.0,
+              fontFamily: 'VNPro',
               fontWeight: FontWeight.bold,
             ),
           ),

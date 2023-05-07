@@ -51,8 +51,8 @@ class DestinationAllListState extends ConsumerState<DestinationAllList> {
             Text(
               "All Destinations",
               style: TextStyle(
-                fontFamily: 'Mukta',
-                fontSize: 25.0,
+                fontFamily: 'VNPro',
+                fontSize: 22.5,
               ),
             ),
             SizedBox(width: 7.5),

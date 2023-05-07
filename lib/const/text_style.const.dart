@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 const kHintTextStyle = TextStyle(
   color: Colors.white60,
-  fontFamily: 'Mukta',
-  fontSize: 18.0,
+  fontFamily: 'VNPro',
+  fontSize: 16.0,
 );
 
 const kLabelStyle = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.bold,
-  fontFamily: 'Mukta',
-  fontSize: 18.0,
+  fontFamily: 'VNPro',
+  fontSize: 16.0,
 );
 
 const kStyle = TextStyle(
   color: Colors.white,
-  fontFamily: 'Mukta',
-  fontSize: 18.0,
+  fontFamily: 'VNPro',
+  fontSize: 16.0,
 );
 
 final kBoxDecorationStyle = BoxDecoration(

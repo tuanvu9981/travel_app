@@ -114,8 +114,8 @@ class HotelCard extends StatelessWidget {
                       Text(
                         "Check available rooms",
                         style: TextStyle(
-                          fontFamily: 'Mukta',
-                          fontSize: 15.0,
+                          fontFamily: 'VNPro',
+                          fontSize: 13.0,
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),

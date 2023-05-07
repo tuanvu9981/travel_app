@@ -12,13 +12,13 @@ class UpdatePasswordScreen extends ConsumerStatefulWidget {
 class UpdatePasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
   final txtStyle = const TextStyle(
     color: Colors.black,
-    fontFamily: 'Mukta',
-    fontSize: 18.0,
+    fontFamily: 'VNPro',
+    fontSize: 16.0,
   );
   final kHint = const TextStyle(
     color: Colors.black26,
-    fontFamily: 'Mukta',
-    fontSize: 18.0,
+    fontFamily: 'VNPro',
+    fontSize: 16.0,
   );
   final kInputStyle = BoxDecoration(
     color: Colors.white,

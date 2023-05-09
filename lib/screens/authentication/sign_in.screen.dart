@@ -161,7 +161,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
         },
         child: isLoading == false
             ? Text(
-                AppLocalizations.of(context)!.signUp,
+                AppLocalizations.of(context)!.signIn,
                 style: const TextStyle(
                   color: Color(0xFF527DAA),
                   letterSpacing: 1.5,

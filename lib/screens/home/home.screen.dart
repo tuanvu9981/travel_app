@@ -17,9 +17,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   int _currentTab = 0;
   final int _currentHour = DateTime.now().hour;
 
-  Widget _buildAppbarGreetingByHour(int hour) {
+  Widget _buildAppbarGreetingByHour(int hour, BuildContext context) {
     String? fullname = ref.watch(userProvider)!.fullname;
-    Greeting greeting = HomeInfoUtil().greetingByHour(hour, fullname!);
+    Greeting greeting = HomeInfoUtil().greetingByHour(hour, fullname!, context);
     return Row(
       children: [
         Text(
@@ -45,7 +45,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     String? avatarUrl = ref.watch(userProvider)!.avatarUrl;
     return Scaffold(
       appBar: AppBar(
-        title: _buildAppbarGreetingByHour(_currentHour),
+        title: _buildAppbarGreetingByHour(_currentHour, context),
         backgroundColor: Theme.of(context).primaryColorLight,
         actions: [
           IconButton(
@@ -74,7 +74,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           });
         },
         items: HomeInfoUtil()
-            .buildBtmNavIcons(avatarUrl!)
+            .buildBtmNavIcons(avatarUrl!, context)
             .map((e) => BottomNavigationBarItem(icon: e.icon, label: e.label))
             .toList(),
       ),

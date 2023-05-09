@@ -1,5 +1,7 @@
 {
+  "allDestination": "全ての旅行先",
   "authFailed": "パスワードあるいはメールが間違いました",
+  "discountInfo": "最新情報・ホット割引",
   "dontHaveAcc": "アカウントを持ってませんか？",
   "email": "メール",
   "enterEmail": "メールを入力してください",
@@ -7,14 +9,22 @@
   "enterPassword": "パスワードを入力してください",
   "forgotPassword": "パスワードを忘れた？",
   "fullname": "姓名",
+  "gAfternoon": "こんにちは",
+  "gEvening": "こんばんは",
+  "gMorning": "お早うございます",
+  "gNight": "お休みなさい",
   "gotAnAcc": "アカウントを持っています？",
+  "haveNoHistory": "あなたはホテル予約の履歴はありません",
+  "history": "履歴",
+  "home": "ホーム",
   "or": "あるいは",
   "password": "パスワード",
+  "personal": "個人",
   "seeAll": "全てを見る",
   "signIn": "サインイン",
   "signInWith": "以下のサービスでサイイン",
   "signUp": "サインアップ",
   "signUpWith": "以下のサービスでサイアップ",
   "topDestination": "旅行先のトップ",
-  "topDiscount": "割引のトップ"
+  "yourHistory": "ホテル予約履歴"
 }

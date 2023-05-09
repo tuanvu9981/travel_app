@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DiscountHeader extends StatelessWidget {
   const DiscountHeader({Key? key}) : super(key: key);
@@ -7,10 +8,10 @@ class DiscountHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
-          "Latest discounts & Information",
-          style: TextStyle(
+          AppLocalizations.of(context)!.discountInfo,
+          style: const TextStyle(
             fontSize: 18.5,
             fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DestinationHeader extends StatelessWidget {
   const DestinationHeader({Key? key}) : super(key: key);
@@ -11,9 +12,9 @@ class DestinationHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "Top Destinations",
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)!.topDestination,
+          style: const TextStyle(
             fontSize: 18.5,
             fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
@@ -24,7 +25,7 @@ class DestinationHeader extends StatelessWidget {
             navigator.replace('/all-destination'),
           },
           child: Text(
-            "See all",
+            AppLocalizations.of(context)!.seeAll,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               // Theme's color is NOT CONSTANT --> ALWAYS CHANGES

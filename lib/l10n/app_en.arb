@@ -1,5 +1,7 @@
 {
+  "allDestination": "All Destination",
   "authFailed": "Authentication Failed !",
+  "discountInfo": "Hot discounts & Latest Information",
   "dontHaveAcc": "Don't have an account ? ",
   "email": "Email",
   "enterEmail": "Enter your email",
@@ -7,14 +9,22 @@
   "enterPassword": "Enter your password",
   "forgotPassword": "Forgot your password ?",
   "fullname": "Fullname",
+  "gAfternoon": "Good afternoon",
+  "gEvening": "Good evening",
+  "gMorning": "Good morning",
+  "gNight": "Good night",
   "gotAnAcc": "You've got an account ? ",
+  "haveNoHistory": "You haven't made any booking history yet.",
+  "history": "History",
+  "home": "Home",
   "or": "OR",
   "password": "Password",
+  "personal": "Personal",
   "seeAll": "See All",
   "signIn": "SIGN IN",
   "signInWith": "Sign in with",
   "signUp": "SIGN UP",
   "signUpWith": "Sign up with",
   "topDestination": "Top Destination",
-  "topDiscount": "Top Discount"
+  "yourHistory": "Your Booking History"
 }

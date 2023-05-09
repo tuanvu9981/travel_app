@@ -4,6 +4,7 @@ import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/booking-history.api.dart';
 import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/widgets/booking_history/booking_history_line.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingTab extends ConsumerStatefulWidget {
   const BookingTab({Key? key}) : super(key: key);
@@ -60,10 +61,10 @@ class BookingTabState extends ConsumerState<BookingTab> {
               child: CircularProgressIndicator(color: Colors.lightBlue),
             )
           : bookingHistory!.histories!.isEmpty
-              ? const Center(
+              ? Center(
                   child: Text(
-                    "You haven't made any booking history yet.",
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.haveNoHistory,
+                    style: const TextStyle(
                       fontFamily: 'VNPro',
                       fontSize: 15.0,
                       color: Colors.grey,
@@ -77,7 +78,10 @@ class BookingTabState extends ConsumerState<BookingTab> {
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
                         children: [
-                          Text("Your Booking History", style: _sloganStyle),
+                          Text(
+                            AppLocalizations.of(context)!.yourHistory,
+                            style: _sloganStyle,
+                          ),
                           Icon(
                             Icons.history_edu_outlined,
                             size: 35.0,

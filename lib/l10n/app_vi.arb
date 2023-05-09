@@ -1,5 +1,7 @@
 {
+  "allDestination": "Tất cả các điểm đến",
   "authFailed": "Mật khẩu hoặc email không đúng ",
+  "discountInfo": "Giảm giá hot & Thông tin mới nhất ",
   "dontHaveAcc": "Chưa có tài khoản ? ",
   "email": "Email",
   "enterEmail": "Nhập email của bạn ",
@@ -7,14 +9,22 @@
   "enterPassword": "Nhập mật khẩu của bạn",
   "forgotPassword": "Quên mật khẩu ? ",
   "fullname": "Họ và tên",
+  "gAfternoon": " Chào buổi chiều",
+  "gEvening": " Chào buổi tối",
+  "gMorning": "Chào buổi sáng",
+  "gNight": "Chúc ngủ ngon",
   "gotAnAcc": "Bạn đã có tài khoản ?",
+  "haveNoHistory": "Bạn chưa có lịch sử đặt phòng khách sạn ",
+  "history": "Lịch sử",
+  "home": "Trang chủ",
   "or": "Hoặc",
   "password": "Mật khẩu",
+  "personal": "Cá nhân",
   "seeAll": "Xem tất cả",
   "signIn": "Đăng nhập",
   "signInWith": "Đăng nhập bằng",
   "signUp": "Đăng ký ",
   "signUpWith": "Đăng ký bằng ",
   "topDestination": "Điểm đến hot",
-  "topDiscount": "Giảm giá hot"
+  "yourHistory": "Lịch sử đặt phòng của bạn "
 }

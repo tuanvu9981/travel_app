@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -38,8 +39,8 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
       }
     } else {
       sMessenger.showSnackBar(
-        const SnackBar(
-          content: Text("Authentication failed"),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.authFailed),
           duration: Duration(seconds: 5),
         ),
       );
@@ -58,7 +59,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Email', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.email, style: kLabelStyle),
         const SizedBox(height: 10.0),
         Container(
           padding: const EdgeInsets.only(left: 15.0),
@@ -69,11 +70,11 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
             controller: emailEditor,
             keyboardType: TextInputType.emailAddress,
             style: txtStyle,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0),
               suffixIcon: Icon(Icons.email, color: Colors.white),
-              hintText: 'Enter your email',
+              hintText: AppLocalizations.of(context)!.enterEmail,
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -82,11 +83,11 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     );
   }
 
-  Widget _buildPasswordTextField() {
+  Widget _buildPasswordTextField(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Password', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.password, style: kLabelStyle),
         const SizedBox(height: 10.0),
         Container(
           padding: const EdgeInsets.only(left: 15.0),
@@ -100,7 +101,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
             style: txtStyle,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
               suffixIcon: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -117,7 +118,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
                         color: Colors.white,
                       ),
               ),
-              hintText: 'Enter your password',
+              hintText: AppLocalizations.of(context)!.enterPassword,
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -126,11 +127,14 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
+  Widget _buildForgotPasswordBtn(BuildContext context) {
     return Container(
       alignment: Alignment.centerRight,
       child: TextButton(
-        child: const Text("Forgot your password ?", style: kLabelStyle),
+        child: Text(
+          AppLocalizations.of(context)!.forgotPassword,
+          style: kLabelStyle,
+        ),
         onPressed: () => {},
       ),
     );
@@ -156,9 +160,9 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
           });
         },
         child: isLoading == false
-            ? const Text(
-                'SIGN IN',
-                style: TextStyle(
+            ? Text(
+                AppLocalizations.of(context)!.signUp,
+                style: const TextStyle(
                   color: Color(0xFF527DAA),
                   letterSpacing: 1.5,
                   fontSize: 18.0,
@@ -178,11 +182,11 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     );
   }
 
-  Widget _buildSignInWithText() {
+  Widget _buildSignInWithText(BuildContext context) {
     return Column(
-      children: const [
-        Text('- OR -', style: kLabelStyle),
-        Text('Sign in with', style: kLabelStyle),
+      children: [
+        Text('- ${AppLocalizations.of(context)!.or} -', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.signInWith, style: kLabelStyle),
       ],
     );
   }
@@ -236,10 +240,16 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
     return GestureDetector(
       onTap: () => Routemaster.of(context).replace('/sign-up'),
       child: RichText(
-        text: const TextSpan(
+        text: TextSpan(
           children: [
-            TextSpan(text: 'Don\'t have an account ?', style: kStyle),
-            TextSpan(text: ' Sign Up', style: kLabelStyle),
+            TextSpan(
+              text: AppLocalizations.of(context)!.dontHaveAcc,
+              style: kStyle,
+            ),
+            TextSpan(
+              text: ' ${AppLocalizations.of(context)!.signUp}',
+              style: kLabelStyle,
+            ),
           ],
         ),
       ),
@@ -273,27 +283,28 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(
-                horizontal: 40.0,
+                horizontal: 35.0,
                 vertical: 60.0,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Sign In',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Mukta',
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold),
+                  Text(
+                    AppLocalizations.of(context)!.signIn,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'VNPro',
+                      fontSize: 27.5,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 32.5),
                   _buildEmailTextField(),
                   const SizedBox(height: 32.5),
-                  _buildPasswordTextField(),
-                  _buildForgotPasswordBtn(),
+                  _buildPasswordTextField(context),
+                  _buildForgotPasswordBtn(context),
                   _buildSignInBtn(context),
-                  _buildSignInWithText(),
+                  _buildSignInWithText(context),
                   _buildSocialBtnRow(),
                   _buildSignUpBtn(context)
                 ],

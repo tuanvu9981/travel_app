@@ -1,0 +1,20 @@
+{
+  "authFailed": "Authentication Failed !",
+  "dontHaveAcc": "Don't have an account ? ",
+  "email": "Email",
+  "enterEmail": "Enter your email",
+  "enterFullname": "Enter your fullname",
+  "enterPassword": "Enter your password",
+  "forgotPassword": "Forgot your password ?",
+  "fullname": "Fullname",
+  "gotAnAcc": "You've got an account ? ",
+  "or": "OR",
+  "password": "Password",
+  "seeAll": "See All",
+  "signIn": "SIGN IN",
+  "signInWith": "Sign in with",
+  "signUp": "SIGN UP",
+  "signUpWith": "Sign up with",
+  "topDestination": "Top Destination",
+  "topDiscount": "Top Discount"
+}

@@ -1,0 +1,20 @@
+{
+  "authFailed": "Mật khẩu hoặc email không đúng ",
+  "dontHaveAcc": "Chưa có tài khoản ? ",
+  "email": "Email",
+  "enterEmail": "Nhập email của bạn ",
+  "enterFullname": "Nhập họ và tên của bạn",
+  "enterPassword": "Nhập mật khẩu của bạn",
+  "forgotPassword": "Quên mật khẩu ? ",
+  "fullname": "Họ và tên",
+  "gotAnAcc": "Bạn đã có tài khoản ?",
+  "or": "Hoặc",
+  "password": "Mật khẩu",
+  "seeAll": "Xem tất cả",
+  "signIn": "Đăng nhập",
+  "signInWith": "Đăng nhập bằng",
+  "signUp": "Đăng ký ",
+  "signUpWith": "Đăng ký bằng ",
+  "topDestination": "Điểm đến hot",
+  "topDiscount": "Giảm giá hot"
+}

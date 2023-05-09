@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
@@ -16,6 +18,14 @@ class TravelApp extends ConsumerStatefulWidget {
 }
 
 class TravelAppState extends ConsumerState<TravelApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   Future<void> getUserData() async {
     final user = await ref.read(authProvider).getProfile();
     if (user != null) {
@@ -34,6 +44,10 @@ class TravelAppState extends ConsumerState<TravelApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Travel App',
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: _locale ?? const Locale('vi'),
       theme: ThemeData(
         primaryColor: const Color(0xFF3EBACE),
         scaffoldBackgroundColor: const Color(0xFFF3F5F7),

@@ -1,0 +1,20 @@
+{
+  "authFailed": "パスワードあるいはメールが間違いました",
+  "dontHaveAcc": "アカウントを持ってませんか？",
+  "email": "メール",
+  "enterEmail": "メールを入力してください",
+  "enterFullname": "姓名を入力してください",
+  "enterPassword": "パスワードを入力してください",
+  "forgotPassword": "パスワードを忘れた？",
+  "fullname": "姓名",
+  "gotAnAcc": "アカウントを持っています？",
+  "or": "あるいは",
+  "password": "パスワード",
+  "seeAll": "全てを見る",
+  "signIn": "サインイン",
+  "signInWith": "以下のサービスでサイイン",
+  "signUp": "サインアップ",
+  "signUpWith": "以下のサービスでサイアップ",
+  "topDestination": "旅行先のトップ",
+  "topDiscount": "割引のトップ"
+}

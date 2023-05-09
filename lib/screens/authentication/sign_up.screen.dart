@@ -4,6 +4,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/booking-history.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -48,8 +49,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
       }
     } else {
       sMessenger.showSnackBar(
-        const SnackBar(
-          content: Text("Authentication failed"),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.authFailed),
           duration: Duration(seconds: 5),
         ),
       );
@@ -65,11 +66,11 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     super.dispose();
   }
 
-  Widget _buildFullnameTextField() {
+  Widget _buildFullnameTextField(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Fullname', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.fullname, style: kLabelStyle),
         const SizedBox(height: 10.0),
         Container(
           padding: const EdgeInsets.only(left: 15.0),
@@ -80,11 +81,11 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
             controller: fullnameEditor,
             keyboardType: TextInputType.name,
             style: txtStyle,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0),
               suffixIcon: Icon(Icons.person, color: Colors.white),
-              hintText: 'Enter your fullname',
+              hintText: AppLocalizations.of(context)!.enterFullname,
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -97,7 +98,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Email', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.email, style: kLabelStyle),
         const SizedBox(height: 10.0),
         Container(
           padding: const EdgeInsets.only(left: 15.0),
@@ -108,11 +109,11 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
             controller: emailEditor,
             keyboardType: TextInputType.emailAddress,
             style: txtStyle,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0),
               suffixIcon: Icon(Icons.email, color: Colors.white),
-              hintText: 'Enter your email',
+              hintText: AppLocalizations.of(context)!.enterEmail,
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -125,7 +126,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Password', style: kLabelStyle),
+        Text(AppLocalizations.of(context)!.password, style: kLabelStyle),
         const SizedBox(height: 10.0),
         Container(
           padding: const EdgeInsets.only(left: 15.0),
@@ -139,7 +140,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
             style: txtStyle,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
               suffixIcon: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -156,7 +157,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                         color: Colors.white,
                       ),
               ),
-              hintText: 'Enter your password',
+              hintText: AppLocalizations.of(context)!.enterPassword,
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -190,9 +191,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
           });
         },
         child: isLoading == false
-            ? const Text(
-                'SIGN UP',
-                style: TextStyle(
+            ? Text(
+                AppLocalizations.of(context)!.signUp,
+                style: const TextStyle(
                   color: Color(0xFF527DAA),
                   letterSpacing: 1.5,
                   fontSize: 18.0,
@@ -212,11 +213,14 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     );
   }
 
-  Widget _buildSignUpWithText() {
+  Widget _buildSignUpWithText(BuildContext context) {
     return Column(
-      children: const [
-        Text('- OR -', style: kLabelStyle),
-        Text('Sign up with', style: kLabelStyle),
+      children: [
+        Text(
+          '- ${AppLocalizations.of(context)!.or} -',
+          style: kLabelStyle,
+        ),
+        Text(AppLocalizations.of(context)!.signUpWith, style: kLabelStyle),
       ],
     );
   }
@@ -225,10 +229,14 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
     return GestureDetector(
       onTap: () => Routemaster.of(context).replace('/'),
       child: RichText(
-        text: const TextSpan(
+        text: TextSpan(
           children: [
-            TextSpan(text: 'You\'ve got an account ?', style: kStyle),
-            TextSpan(text: ' Sign In', style: kLabelStyle),
+            TextSpan(
+                text: AppLocalizations.of(context)!.gotAnAcc, style: kStyle),
+            TextSpan(
+              text: ' ${AppLocalizations.of(context)!.signIn}',
+              style: kLabelStyle,
+            ),
           ],
         ),
       ),
@@ -313,22 +321,23 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Mukta',
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold),
+                  Text(
+                    AppLocalizations.of(context)!.signUp,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Mukta',
+                      fontSize: 27.5,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 20.0),
-                  _buildFullnameTextField(),
+                  _buildFullnameTextField(context),
                   const SizedBox(height: 20.0),
                   _buildEmailTextField(),
                   const SizedBox(height: 20.0),
                   _buildPasswordTextField(),
                   _buildSignUpBtn(context),
-                  _buildSignUpWithText(),
+                  _buildSignUpWithText(context),
                   _buildSocialBtnRow(),
                   _buildSignInBtn(context)
                 ],

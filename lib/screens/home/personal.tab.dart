@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/screens/update_info_screen/update_email_screen.dart';
+import 'package:travel_app/screens/update_info_screen/update_language_screen.dart';
 import 'package:travel_app/screens/update_info_screen/update_password_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PersonalTab extends ConsumerStatefulWidget {
   const PersonalTab({Key? key}) : super(key: key);
@@ -217,6 +219,19 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           userRef.birthday,
           true,
           () {},
+        ),
+        _buildItemLine(
+          Icons.translate_outlined,
+          Colors.lightBlue[100],
+          'Change your language',
+          AppLocalizations.of(context)!.languageName('vi'),
+          true,
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UpdateLanguageScreen()),
+            );
+          },
         ),
         // --------- NOTICE THIS ---------
 

@@ -1,4 +1,11 @@
 {
+  "@languageName": {
+    "placeholders": {
+      "langCode": {
+        "type": "String"
+      }
+    }
+  },
   "allDestination": "Tất cả các điểm đến",
   "authFailed": "Mật khẩu hoặc email không đúng ",
   "discountInfo": "Giảm giá hot & Thông tin mới nhất ",
@@ -17,6 +24,7 @@
   "haveNoHistory": "Bạn chưa có lịch sử đặt phòng khách sạn ",
   "history": "Lịch sử",
   "home": "Trang chủ",
+  "languageName": "{langCode, select, vi{Tiếng Việt} ja{Tiếng Nhật} en{Tiếng Anh} other{Unknown}}",
   "or": "Hoặc",
   "password": "Mật khẩu",
   "personal": "Cá nhân",
@@ -26,5 +34,6 @@
   "signUp": "Đăng ký ",
   "signUpWith": "Đăng ký bằng ",
   "topDestination": "Điểm đến hot",
+  "update": "Cập nhật",
   "yourHistory": "Lịch sử đặt phòng của bạn "
 }

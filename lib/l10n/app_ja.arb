@@ -1,4 +1,11 @@
 {
+  "@languageName": {
+    "placeholders": {
+      "langCode": {
+        "type": "String"
+      }
+    }
+  },
   "allDestination": "全ての旅行先",
   "authFailed": "パスワードあるいはメールが間違いました",
   "discountInfo": "最新情報・ホット割引",
@@ -17,6 +24,7 @@
   "haveNoHistory": "あなたはホテル予約の履歴はありません",
   "history": "履歴",
   "home": "ホーム",
+  "languageName": "{langCode, select, vi{ベトナム語} ja{日本語} en{英語} other{Unknown}}",
   "or": "あるいは",
   "password": "パスワード",
   "personal": "個人",
@@ -26,5 +34,6 @@
   "signUp": "サインアップ",
   "signUpWith": "以下のサービスでサイアップ",
   "topDestination": "旅行先のトップ",
+  "update": "更新",
   "yourHistory": "ホテル予約履歴"
 }

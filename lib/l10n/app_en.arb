@@ -1,4 +1,11 @@
 {
+  "@languageName": {
+    "placeholders": {
+      "langCode": {
+        "type": "String"
+      }
+    }
+  },
   "allDestination": "All Destination",
   "authFailed": "Authentication Failed !",
   "discountInfo": "Hot discounts & Latest Information",
@@ -17,6 +24,7 @@
   "haveNoHistory": "You haven't made any booking history yet.",
   "history": "History",
   "home": "Home",
+  "languageName": "{langCode, select, vi{Vietnamese} ja{Japanese} en{English} other{Unknown}}",
   "or": "OR",
   "password": "Password",
   "personal": "Personal",
@@ -26,5 +34,6 @@
   "signUp": "SIGN UP",
   "signUpWith": "Sign up with",
   "topDestination": "Top Destination",
+  "update": "Update",
   "yourHistory": "Your Booking History"
 }

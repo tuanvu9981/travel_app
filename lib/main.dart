@@ -47,7 +47,7 @@ class TravelAppState extends ConsumerState<TravelApp> {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: _locale ?? const Locale('vi'),
+      locale: _locale ?? const Locale('ja'),
       theme: ThemeData(
         primaryColor: const Color(0xFF3EBACE),
         scaffoldBackgroundColor: const Color(0xFFF3F5F7),

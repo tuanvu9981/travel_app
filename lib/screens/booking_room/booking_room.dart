@@ -424,9 +424,9 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                           horizontal: 22.5,
                           vertical: 7.5,
                         ),
-                        child: Text(
-                          AppLocalizations.of(context)!.allrooms,
-                          style: const TextStyle(
+                        child: const Text(
+                          'All rooms in our hotel',
+                          style: TextStyle(
                             fontFamily: 'DancingScript',
                             fontSize: 30.0,
                           ),

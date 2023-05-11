@@ -79,7 +79,7 @@ class BookingTabState extends ConsumerState<BookingTab> {
                       child: Row(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.yourHistory,
+                            'Your booking history',
                             style: _sloganStyle,
                           ),
                           Icon(

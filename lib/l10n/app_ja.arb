@@ -6,8 +6,30 @@
       }
     }
   },
+  "@roomStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "@roomLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "roomStatus": "{status, select, vacant{空き部屋} booked{予約された} staying{宿泊中} other{Unknown}}",
+  "roomLevel": "{level, select, economy{エコノミー} business{ビジネス} luxury{ラグジュアリー} other{Unknown}}",
   "allDestination": "全ての旅行先",
+  "allrooms": "我がホテルの全ての部屋",
+  "appliedPlace": "有効地",
   "authFailed": "パスワードあるいはメールが間違いました",
+  "bookingRoom": "部屋を予約",
+  "checkRoom": "部屋を見る",
+  "contacts": "連絡",
+  "details": "詳細",
   "discountInfo": "最新情報・ホット割引",
   "dontHaveAcc": "アカウントを持ってませんか？",
   "email": "メール",
@@ -15,6 +37,7 @@
   "enterFullname": "姓名を入力してください",
   "enterPassword": "パスワードを入力してください",
   "forgotPassword": "パスワードを忘れた？",
+  "from": "開始",
   "fullname": "姓名",
   "gAfternoon": "こんにちは",
   "gEvening": "こんばんは",
@@ -34,6 +57,8 @@
   "signUp": "サインアップ",
   "signUpWith": "以下のサービスでサイアップ",
   "topDestination": "旅行先のトップ",
+  "until": "終了",
   "update": "更新",
+  "validTime": "有効期限",
   "yourHistory": "ホテル予約履歴"
 }

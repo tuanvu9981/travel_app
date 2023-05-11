@@ -7,6 +7,7 @@ import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/utils/home.info.dart';
 import 'package:travel_app/utils/hotel.status.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingRoom extends ConsumerStatefulWidget {
   final String hotelId;
@@ -287,14 +288,19 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
     );
   }
 
-  Widget _buildStatusLine(RoomStatus roomStatus, double width) {
+  Widget _buildStatusLine(RoomStatus roomStatus, double width, bool isStatus) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: width, vertical: 10.0),
       child: Row(
         children: [
           roomStatus.icon,
           const SizedBox(width: 10.0),
-          roomStatus.text
+          Text(
+            isStatus == true
+                ? AppLocalizations.of(context)!.roomStatus(roomStatus.text)
+                : AppLocalizations.of(context)!.roomLevel(roomStatus.text),
+            style: const TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
+          ),
         ],
       ),
     );
@@ -304,9 +310,9 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Booking rooms',
-          style: TextStyle(
+        title: Text(
+          AppLocalizations.of(context)!.bookingRoom,
+          style: const TextStyle(
             fontSize: 18.0,
             fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
@@ -393,7 +399,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                             children: [
                               ...LStatus()
                                   .status
-                                  .map((e) => _buildStatusLine(e, 30.0))
+                                  .map((e) => _buildStatusLine(e, 30.0, true))
                                   .toList(),
                             ],
                           ),
@@ -404,7 +410,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                             children: [
                               ...LStatus()
                                   .levels
-                                  .map((e) => _buildStatusLine(e, 10.0))
+                                  .map((e) => _buildStatusLine(e, 10.0, false))
                                   .toList(),
                             ],
                           ),
@@ -418,9 +424,9 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                           horizontal: 22.5,
                           vertical: 7.5,
                         ),
-                        child: const Text(
-                          'All rooms in our hotel',
-                          style: TextStyle(
+                        child: Text(
+                          AppLocalizations.of(context)!.allrooms,
+                          style: const TextStyle(
                             fontFamily: 'DancingScript',
                             fontSize: 30.0,
                           ),

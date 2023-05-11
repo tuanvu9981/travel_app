@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/utils/home.info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DiscountInfoDetail extends StatelessWidget {
   final DiscountInfo discountInfo;
@@ -73,9 +74,9 @@ class DiscountInfoDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'News & Discount Information',
-          style: TextStyle(
+        title: Text(
+          AppLocalizations.of(context)!.discountInfo,
+          style: const TextStyle(
             fontSize: 18.0,
             fontFamily: 'VNPro',
             fontWeight: FontWeight.bold,
@@ -110,25 +111,25 @@ class DiscountInfoDetail extends StatelessWidget {
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
-                "1. Valid time",
+                "1. ${AppLocalizations.of(context)!.validTime}",
                 Text(
-                  'From $startDate, \nuntil $endDate',
+                  '${AppLocalizations.of(context)!.from} $startDate, \n${AppLocalizations.of(context)!.until} $endDate',
                   style: tNormalContent,
                 ),
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
-                "2. Information",
+                "2. ${AppLocalizations.of(context)!.details}",
                 Text(discountInfo.instruction!, style: tNormalContent),
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
-                "3. Applied Places",
+                "3. ${AppLocalizations.of(context)!.appliedPlace}",
                 Text(discountInfo.appliedPlace!, style: tNormalContent),
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
-                "4. Contacts",
+                "4. ${AppLocalizations.of(context)!.contacts}",
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: discountInfo.contact!

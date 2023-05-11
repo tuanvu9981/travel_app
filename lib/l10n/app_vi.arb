@@ -6,8 +6,30 @@
       }
     }
   },
+  "@roomStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "@roomLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "roomStatus": "{status, select, vacant{Phòng trống} booked{Đã được đặt} staying{Có người ở} other{Unknown}}",
+  "roomLevel": "{level, select, economy{Hạng bình dân} business{Hạng thương gia} luxury{Hạng cao cấp} other{Unknown}}",
   "allDestination": "Tất cả các điểm đến",
+  "allrooms": "Tất cả phòng trong khách sạn",
+  "appliedPlace": "Địa điểm áp dụng",
   "authFailed": "Mật khẩu hoặc email không đúng ",
+  "bookingRoom": "Đặt phòng",
+  "checkRoom": "Kiểm tra phòng trống",
+  "contacts": "Liên hệ",
+  "details": "Chi tiết",
   "discountInfo": "Giảm giá hot & Thông tin mới nhất ",
   "dontHaveAcc": "Chưa có tài khoản ? ",
   "email": "Email",
@@ -15,6 +37,7 @@
   "enterFullname": "Nhập họ và tên của bạn",
   "enterPassword": "Nhập mật khẩu của bạn",
   "forgotPassword": "Quên mật khẩu ? ",
+  "from": "Từ",
   "fullname": "Họ và tên",
   "gAfternoon": " Chào buổi chiều",
   "gEvening": " Chào buổi tối",
@@ -34,6 +57,8 @@
   "signUp": "Đăng ký ",
   "signUpWith": "Đăng ký bằng ",
   "topDestination": "Điểm đến hot",
+  "until": "đến",
   "update": "Cập nhật",
+  "validTime": "Thời gian áp dụng",
   "yourHistory": "Lịch sử đặt phòng của bạn "
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/screens/booking_room/booking_room.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HotelCard extends StatelessWidget {
   Hotel hotel;
@@ -110,18 +111,18 @@ class HotelCard extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        "Check available rooms",
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.checkRoom,
+                        style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontSize: 13.0,
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 5.0),
-                      Icon(
+                      const SizedBox(width: 5.0),
+                      const Icon(
                         Icons.arrow_forward,
                         size: 18.5,
                         color: Colors.blue,

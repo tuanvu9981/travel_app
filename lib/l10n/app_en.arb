@@ -6,8 +6,30 @@
       }
     }
   },
+  "@roomStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "@roomLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "roomStatus": "{status, select, vacant{Vacant} booked{Booked} staying{Staying} other{Unknown}}",
+  "roomLevel": "{level, select, economy{Economy} business{Business} luxury{Luxury} other{Unknown}}",
   "allDestination": "All Destination",
+  "allrooms": "All rooms in our hotel",
+  "appliedPlace": "Applied places",
   "authFailed": "Authentication Failed !",
+  "bookingRoom": "Booking rooms",
+  "checkRoom": "Check available rooms",
+  "contacts": "Contacts",
+  "details": "Details",
   "discountInfo": "Hot discounts & Latest Information",
   "dontHaveAcc": "Don't have an account ? ",
   "email": "Email",
@@ -15,6 +37,7 @@
   "enterFullname": "Enter your fullname",
   "enterPassword": "Enter your password",
   "forgotPassword": "Forgot your password ?",
+  "from": "From",
   "fullname": "Fullname",
   "gAfternoon": "Good afternoon",
   "gEvening": "Good evening",
@@ -34,6 +57,8 @@
   "signUp": "SIGN UP",
   "signUpWith": "Sign up with",
   "topDestination": "Top Destination",
+  "until": "until",
   "update": "Update",
+  "validTime": "Valid time",
   "yourHistory": "Your Booking History"
 }

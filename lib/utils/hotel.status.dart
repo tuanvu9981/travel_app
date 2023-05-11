@@ -1,63 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/utils/home.info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RoomStatus {
   Icon icon;
-  Text text;
+  String text;
   RoomStatus({required this.icon, required this.text});
 }
 
 class LStatus {
+  final statusStyle = const TextStyle(fontFamily: 'VNPro', fontSize: 16.0);
   final status = <RoomStatus>[
     RoomStatus(
       icon: Icon(Icons.circle, size: 22.5, color: Colors.green[300]),
-      text: const Text(
-        'Vacant',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      text: 'vacant',
     ),
     RoomStatus(
       icon: Icon(Icons.circle, size: 22.5, color: Colors.orange[200]),
-      text: const Text(
-        'Booked',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      text: 'booked',
     ),
     RoomStatus(
       icon: Icon(Icons.circle, size: 22.5, color: Colors.red[400]),
-      text: const Text(
-        'Staying',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      text: 'staying',
     )
   ];
 
   final levels = <RoomStatus>[
     RoomStatus(
       icon: const Icon(Icons.eco, size: 22.5, color: Colors.black54),
-      text: const Text(
-        'Economy',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      text: 'economy',
     ),
     RoomStatus(
-      icon: const Icon(
-        Icons.business_center,
-        size: 22.5,
-        color: Colors.black54,
-      ),
-      text: const Text(
-        'Business',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      icon: Icon(Icons.business_center, size: 22.5, color: Colors.black54),
+      text: 'business',
     ),
     RoomStatus(
       icon: const Icon(Icons.stars_rounded, size: 22.5, color: Colors.black54),
-      text: const Text(
-        'Luxury',
-        style: TextStyle(fontFamily: 'VNPro', fontSize: 16.0),
-      ),
+      text: 'luxury',
     ),
   ];
 

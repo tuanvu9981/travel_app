@@ -92,7 +92,7 @@ class ActivityCard extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.all(5.0),
-                      width: 70.0,
+                      width: 90.0,
                       decoration: BoxDecoration(
                         color: const Color(0xFFD8ECF1),
                         borderRadius: BorderRadius.circular(10.0),
@@ -104,7 +104,7 @@ class ActivityCard extends StatelessWidget {
                     const SizedBox(width: 20.0),
                     Container(
                       padding: const EdgeInsets.all(5.0),
-                      width: 70.0,
+                      width: 90.0,
                       decoration: BoxDecoration(
                         color: const Color(0xFFD8ECF1),
                         borderRadius: BorderRadius.circular(10.0),

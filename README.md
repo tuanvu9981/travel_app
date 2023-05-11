@@ -167,3 +167,111 @@ static Map<String, String> headers = {
 
 13. **Change Flutter default lauch icon**
 - [Change Flutter default lauch icon Instruction Video](https://www.youtube.com/watch?v=1VGlLjBxYQ4)
+
+14. **Internationalization**
+- **Problem**: Before, i installed **i18n** already to use DateFormat & render UI with appropriate form. But **flutter pub add flutter_localizations --sdk=flutter** has some conflicts with **i18n** version.
+- **Solution**: Remove **i18n** before, then install step by step the 2 following commands:
+```
+flutter pub add flutter_localizations --sdk=flutter
+flutter pub add intl:any
+``` 
+- The **pubspec.yaml** will look like this:
+```
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+```
+
+- Overriding **Locale(lang_code)** will affect to Widget involving with a specific language, such as **CalenderPicker**, like this:
+```
+children: <Widget>[
+    Localizations.override(
+        context: context,
+        locale: const Locale('vi'),
+        child: Builder(
+            builder: (context) {
+                return CalendarDatePicker(
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100),
+                    onDateChanged: (value) {},
+                );
+            },
+        ),
+    ),
+],
+```
+
+- Add below command to generate new language file 
+```
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/logos/
+```
+
+- Create **l10n.yaml** has the same level as **lib** folder.
+```
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+```
+
+- Create **l10n** folder inside **lib** folder, add the **app_<lang_code>.arb** files corresponding to the languages you'll use.
+
+- Download **i18n arb editor** extensions from VSCode to modify these arb files. These file using the same keyword, but different value corresponding to each language.
+
+- Run **flutter gen-l10n**, and **DONT REMOVE l10n.yaml** file. Then, import **import 'package:flutter_gen/gen_l10n/app_localizations.dart'** into dart files which you will implement multi-languages. If you cant import, restart VSCode.
+```
+import 'package:flutter_gen/gen_l10n/app_localizations.dart
+...
+
+return Column(
+  children: <Widget>[
+    Text(AppLocalizations.of(context)!.hello),
+  ],
+);
+```
+
+- If **app_en.arb** and **app_vi.arb** like this, Widget will render the language you set up in **main.dart** with **locale: Locale('vi')** ... 
+```
+{
+    "hello": "Hello"
+},
+{
+    "hello": "Xin chao"
+}
+```
+
+15. **Internationalization with Placeholder**
+
+- When a same **key** has multiple values in one languages, we need to use **placeholder**, especially with languages has plural forms, or change the form of the word corressponding with the gender of the subject.
+
+- English arb file
+```
+{
+    "@languageName": {
+        "placeholders": {
+            "langCode": {
+                "type": "String"
+            }
+        }
+    },
+    "languageName": "{langCode, select, vi{Vietnamese} ja{Japanese} en{English} other{Unknown}}",
+}
+```
+
+- If we want to show different string value, just give the languageName function different key 
+```
+Text(AppLocalizations.of(context)!.languageName('vi'))
+Text(AppLocalizations.of(context)!.languageName('en'))
+Text(AppLocalizations.of(context)!.languageName('ja'))
+```
+
+

@@ -224,13 +224,18 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           Icons.translate_outlined,
           Colors.lightBlue[100],
           'Change your language',
-          AppLocalizations.of(context)!.languageName('vi'),
+          AppLocalizations.of(context)!.languageName(userRef.systemLanguage!),
           true,
-          () {
-            Navigator.push(
+          () async {
+            final result = await Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => UpdateLanguageScreen()),
+              MaterialPageRoute(
+                builder: (context) => UpdateLanguageScreen(),
+              ),
             );
+            if (result != null && result == true) {
+              setState(() {});
+            }
           },
         ),
         // --------- NOTICE THIS ---------

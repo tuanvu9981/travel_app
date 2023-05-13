@@ -177,6 +177,61 @@ class AuthApi {
     return UpdateResponse(statusCode: -2, message: 'Access Token null');
   }
 
+  Future<UpdateResponse?> updateGeneral(User newUser) async {
+    var updateReponse = UpdateResponse(
+      statusCode: 200,
+      message: "Update successfully!",
+    );
+    String? accessToken = await _storageApi.getAccessToken();
+    if (accessToken != null) {
+      var response = await put(
+        Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/update-general"),
+        headers: {
+          ...ApiConst.headers,
+          "Authorization": "Bearer $accessToken",
+        },
+        body: jsonEncode(newUser),
+      );
+      switch (response.statusCode) {
+        case 200:
+          return updateReponse;
+        case 401:
+          final newAccessToken = await regenerateToken();
+          if (newAccessToken != null) {
+            var newResponse = await put(
+              Uri.http(ApiConst.baseUrl, "/api/v1/$endpoint/update-general"),
+              headers: {
+                ...ApiConst.headers,
+                "Authorization": "Bearer $newAccessToken",
+              },
+              body: jsonEncode(newUser),
+            );
+            switch (newResponse.statusCode) {
+              case 200:
+                return updateReponse;
+              case 400:
+                // Bad Request Exception
+                return UpdateResponse(
+                  statusCode: 400,
+                  message: jsonDecode(newResponse.body)['message'],
+                );
+              default:
+                return UpdateResponse(statusCode: -1, message: 'Unknown');
+            }
+          }
+          return UpdateResponse(statusCode: -2, message: 'Access Token null');
+        case 400:
+          return UpdateResponse(
+            statusCode: 400,
+            message: jsonDecode(response.body)['message'],
+          );
+        default:
+          return UpdateResponse(statusCode: -1, message: 'Unknown');
+      }
+    }
+    return UpdateResponse(statusCode: -2, message: 'Access Token null');
+  }
+
   // No need access token
   Future<bool> signUp(
     String? email,

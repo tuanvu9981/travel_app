@@ -7,6 +7,7 @@ class User {
   String? phoneNumber;
   String? birthday;
   num? money;
+  String? systemLanguage;
 
   User({
     this.id,
@@ -17,6 +18,7 @@ class User {
     this.phoneNumber,
     this.birthday,
     this.money,
+    this.systemLanguage,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class User {
     phoneNumber = json['phoneNumber'] as String;
     birthday = json['birthday'] as String;
     money = json['money'];
+    systemLanguage = json['systemLanguage'] as String;
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class User {
     data['phoneNumber'] = phoneNumber;
     data['birthday'] = birthday;
     data['id'] = id;
+    data['systemLanguage'] = systemLanguage;
     return data;
   }
 }

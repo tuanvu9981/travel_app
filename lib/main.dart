@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
+import 'package:travel_app/apis/language.api.dart';
+import 'package:travel_app/models/user.model.dart';
 import 'package:travel_app/router.dart';
+import 'package:riverpod/riverpod.dart';
 
 void main() {
   runApp(const ProviderScope(child: TravelApp()));
@@ -28,10 +30,16 @@ class TravelAppState extends ConsumerState<TravelApp> {
 
   Future<void> getUserData() async {
     final user = await ref.read(authProvider).getProfile();
+    // await LanguageApi().setLanguageCode(user?.systemLanguage ?? 'en');
     if (user != null) {
       ref.read(userProvider.notifier).update((state) => user);
     }
   }
+
+  // Future<void> initLocale() async {
+  //   String? systemLanguage = await LanguageApi().getLanguageCode();
+  //   setLocale(Locale(systemLanguage!));
+  // }
 
   @override
   void initState() {
@@ -42,12 +50,14 @@ class TravelAppState extends ConsumerState<TravelApp> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userProvider);
+
     return MaterialApp.router(
       title: 'Travel App',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: _locale ?? const Locale('ja'),
+      locale: Locale(user?.systemLanguage ?? 'en'),
       theme: ThemeData(
         primaryColor: const Color(0xFF3EBACE),
         scaffoldBackgroundColor: const Color(0xFFF3F5F7),
@@ -58,7 +68,6 @@ class TravelAppState extends ConsumerState<TravelApp> {
         // colorScheme secondary is equivalent to accentColor
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: ((context) {
-        final user = ref.watch(userProvider);
         return user != null ? loggedInRoute : loggedOutRoute;
       })),
       routeInformationParser: const RoutemasterParser(),

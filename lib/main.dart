@@ -15,6 +15,11 @@ void main() {
 class TravelApp extends ConsumerStatefulWidget {
   const TravelApp({Key? key}) : super(key: key);
 
+  static void setLocale(BuildContext context, Locale newLocale) {
+    TravelAppState? state = context.findAncestorStateOfType<TravelAppState>();
+    state?.updateLocale(newLocale);
+  }
+
   @override
   TravelAppState createState() => TravelAppState();
 }
@@ -22,7 +27,7 @@ class TravelApp extends ConsumerStatefulWidget {
 class TravelAppState extends ConsumerState<TravelApp> {
   Locale? _locale;
 
-  setLocale(Locale locale) {
+  void updateLocale(Locale locale) {
     setState(() {
       _locale = locale;
     });
@@ -30,22 +35,16 @@ class TravelAppState extends ConsumerState<TravelApp> {
 
   Future<void> getUserData() async {
     final user = await ref.read(authProvider).getProfile();
-    // await LanguageApi().setLanguageCode(user?.systemLanguage ?? 'en');
     if (user != null) {
       ref.read(userProvider.notifier).update((state) => user);
     }
+    updateLocale(Locale(user?.systemLanguage ?? 'en'));
   }
-
-  // Future<void> initLocale() async {
-  //   String? systemLanguage = await LanguageApi().getLanguageCode();
-  //   setLocale(Locale(systemLanguage!));
-  // }
 
   @override
   void initState() {
     super.initState();
     getUserData();
-    // Future.delayed(const Duration(seconds: 4));
   }
 
   @override
@@ -57,7 +56,7 @@ class TravelAppState extends ConsumerState<TravelApp> {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(user?.systemLanguage ?? 'en'),
+      locale: _locale,
       theme: ThemeData(
         primaryColor: const Color(0xFF3EBACE),
         scaffoldBackgroundColor: const Color(0xFFF3F5F7),

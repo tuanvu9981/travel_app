@@ -273,3 +273,32 @@ Text(AppLocalizations.of(context)!.languageName('vi'))
 Text(AppLocalizations.of(context)!.languageName('en'))
 Text(AppLocalizations.of(context)!.languageName('ja'))
 ```
+
+16. **Gradle version is incompatible with Java version**
+- **Solution**: Current Java version is 19.0, so the compatible Gradle version is 7.6. You need to upgrade Gradle version
+- Go to **android/gradle/wrapper**, modify gradle version from **7.4** to **7.6** in **gradle-wrapper.properties** file.
+
+17. **Change language**
+- Add a new function to search current MainAppState instance (here is TravelAppState)
+```
+class TravelApp extends ConsumerStatefulWidget {
+  const TravelApp({Key? key}) : super(key: key);
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    TravelAppState? state = context.findAncestorStateOfType<TravelAppState>();
+    state?.updateLocale(newLocale);
+  }
+
+  @override
+  TravelAppState createState() => TravelAppState();
+}
+```
+
+- Then, in another class, if you want to update new Locale, call TravelApp's static function to get current TravelAppState instance, then update Locale, or you'll get an error: "TravelAppState() is not initialized or not existed in Widget Tree"
+```
+onPressed: () {
+    newUser.state!.systemLanguage = _currentLanguage;
+    updateGeneral(newUser.state!, context);
+    TravelApp.setLocale(context, Locale(_currentLanguage!));
+},
+```

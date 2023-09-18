@@ -141,6 +141,7 @@ class UpdateLanguageScreenState extends ConsumerState<UpdateLanguageScreen> {
                   onPressed: () {
                     newUser.state!.systemLanguage = _currentLanguage;
                     updateGeneral(newUser.state!, context);
+                    TravelApp.setLocale(context, Locale(_currentLanguage!));
                   },
                   child: Text(
                     AppLocalizations.of(context)!.update,

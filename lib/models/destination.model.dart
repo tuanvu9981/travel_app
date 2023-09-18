@@ -1,6 +1,4 @@
 import 'package:travel_app/models/activity.model.dart';
-
-import 'activity.model.dart';
 import 'hotel.model.dart';
 
 class Destination {

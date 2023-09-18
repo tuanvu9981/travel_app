@@ -56,7 +56,7 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
         SizedBox(
           height: 170.0,
           width: 650.0,
-          child: discounts == null || discounts?.length == 0
+          child: discounts == null || discounts!.isEmpty
               ? Center(
                   child: CircularProgressIndicator(
                     color: Theme.of(context).primaryColor,
@@ -87,10 +87,12 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(12.5)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(12.5),
+                          ),
                           child: DiscountCard(
-                            imgUrl: discount.imageUrl,
-                            title: discount.title,
+                            imgUrl: discount.imageUrl!,
+                            title: discount.title!,
                           ),
                         ),
                       ),

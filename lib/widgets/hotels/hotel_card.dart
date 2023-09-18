@@ -4,8 +4,8 @@ import 'package:travel_app/screens/booking_room/booking_room.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HotelCard extends StatelessWidget {
-  Hotel hotel;
-  HotelCard({Key? key, required this.hotel}) : super(key: key);
+  final Hotel hotel;
+  const HotelCard({Key? key, required this.hotel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

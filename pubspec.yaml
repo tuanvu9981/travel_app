@@ -21,7 +21,7 @@ dependencies:
   flutter_riverpod: ^2.3.2
   routemaster: ^1.0.1
   shared_preferences: ^2.0.20
-  intl: ^0.17.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

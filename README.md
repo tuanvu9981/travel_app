@@ -273,5 +273,3 @@ Text(AppLocalizations.of(context)!.languageName('vi'))
 Text(AppLocalizations.of(context)!.languageName('en'))
 Text(AppLocalizations.of(context)!.languageName('ja'))
 ```
-
-

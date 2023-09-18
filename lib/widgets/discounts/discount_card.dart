@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DiscountCard extends StatelessWidget {
-  String? imgUrl;
-  String? title;
+  final String imgUrl;
+  final String title;
 
-  DiscountCard({
+  const DiscountCard({
     Key? key,
-    this.imgUrl,
-    this.title,
+    required this.imgUrl,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class DiscountCard extends StatelessWidget {
     return Column(
       children: [
         Image(
-          image: NetworkImage(imgUrl!),
+          image: NetworkImage(imgUrl),
           // height and weight here NO USE ????
           height: 100.0,
           width: 250.0,
@@ -33,7 +33,7 @@ class DiscountCard extends StatelessWidget {
             ),
           ),
           child: Text(
-            title!,
+            title,
             style: const TextStyle(
               fontSize: 12.0,
               fontFamily: 'VNPro',

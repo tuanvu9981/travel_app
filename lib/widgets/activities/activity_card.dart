@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/models/activity.model.dart';
 
 class ActivityCard extends StatelessWidget {
-  Activity activity;
-  ActivityCard({Key? key, required this.activity}) : super(key: key);
+  final Activity activity;
+  const ActivityCard({Key? key, required this.activity}) : super(key: key);
 
   Text _buildRatingStar(int rating) {
     String stars = '';

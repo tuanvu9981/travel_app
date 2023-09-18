@@ -16,9 +16,18 @@ class UpdateLanguageScreen extends ConsumerStatefulWidget {
 
 class UpdateLanguageScreenState extends ConsumerState<UpdateLanguageScreen> {
   final languageI18n = <LanguageI18>[
-    LanguageI18(languageCode: 'vi', languageAppLocal: 'vietnamese'),
-    LanguageI18(languageCode: 'en', languageAppLocal: 'english'),
-    LanguageI18(languageCode: 'ja', languageAppLocal: 'japanese'),
+    LanguageI18(
+        languageCode: 'vi',
+        languageAppLocal: 'vietnamese',
+        flagImageUrl: 'assets/images/vietnam_flag.png'),
+    LanguageI18(
+        languageCode: 'en',
+        languageAppLocal: 'english',
+        flagImageUrl: 'assets/images/usa_flag.png'),
+    LanguageI18(
+        languageCode: 'ja',
+        languageAppLocal: 'japanese',
+        flagImageUrl: 'assets/images/japan_flag.png'),
   ];
   final txtStyle = const TextStyle(
     fontSize: 20.0,
@@ -76,22 +85,51 @@ class UpdateLanguageScreenState extends ConsumerState<UpdateLanguageScreen> {
             const SizedBox(height: 25.0),
             ...languageI18n
                 .map(
-                  (e) => ListTile(
-                    title: Text(
-                      AppLocalizations.of(context)!.languageName(
-                        e.languageCode!,
-                      ),
-                      style: txtStyle,
+                  (e) => Container(
+                    height: 75.0,
+                    margin: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0.0, 2.0),
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                    leading: Radio<String>(
-                      activeColor: Theme.of(context).primaryColor,
-                      value: e.languageCode!,
-                      groupValue: _currentLanguage,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _currentLanguage = value;
-                        });
-                      },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Image.asset(e.flagImageUrl!, height: 60.0),
+                        ),
+                        const SizedBox(width: 10.0),
+                        Expanded(
+                          flex: 5,
+                          child: Text(
+                            AppLocalizations.of(context)!.languageName(
+                              e.languageCode!,
+                            ),
+                            style: txtStyle,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Radio<String>(
+                            activeColor: Theme.of(context).primaryColor,
+                            value: e.languageCode!,
+                            groupValue: _currentLanguage,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _currentLanguage = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )

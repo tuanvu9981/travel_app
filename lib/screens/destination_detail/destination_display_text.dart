@@ -41,6 +41,8 @@ class DestinationDisplayText extends StatelessWidget {
 }
 
 class LocationIcon extends StatelessWidget {
+  const LocationIcon({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Positioned(

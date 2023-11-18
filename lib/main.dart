@@ -3,10 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
-import 'package:travel_app/apis/language.api.dart';
-import 'package:travel_app/models/user.model.dart';
 import 'package:travel_app/router.dart';
-import 'package:riverpod/riverpod.dart';
 
 void main() {
   runApp(const ProviderScope(child: TravelApp()));

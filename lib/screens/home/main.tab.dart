@@ -4,7 +4,8 @@ import 'package:travel_app/widgets/destinations/destination_carousel.dart';
 import 'package:travel_app/widgets/discounts/discount_carousel.dart';
 
 class MainTab extends ConsumerWidget {
-  final _sloganStyle = TextStyle(fontSize: 30.0, fontFamily: 'DancingScript');
+  final _sloganStyle =
+      const TextStyle(fontSize: 30.0, fontFamily: 'DancingScript');
 
   MainTab({Key? key}) : super(key: key);
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/main.dart';
 import 'package:travel_app/models/language.i18.model.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../models/user.model.dart';
 

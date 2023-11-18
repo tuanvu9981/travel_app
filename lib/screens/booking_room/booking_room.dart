@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/booking-history.api.dart';
@@ -7,11 +8,10 @@ import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/utils/home.info.dart';
 import 'package:travel_app/utils/hotel.status.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingRoom extends ConsumerStatefulWidget {
   final String hotelId;
-  BookingRoom({required this.hotelId, Key? key}) : super(key: key);
+  const BookingRoom({required this.hotelId, Key? key}) : super(key: key);
 
   @override
   BookingRoomState createState() => BookingRoomState();
@@ -109,7 +109,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
         ),
       );
     } else {
-      return Container(
+      return SizedBox(
         height: 60,
         child: Column(
           children: [
@@ -197,7 +197,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                 ),
                 const SizedBox(height: 2.5),
                 Text(
-                  '${room.level!}',
+                  room.level!,
                   style: const TextStyle(
                     fontSize: 14.5,
                     fontFamily: 'VNPro',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'btm.nav.info.dart';
 
 class DestinationInfo {

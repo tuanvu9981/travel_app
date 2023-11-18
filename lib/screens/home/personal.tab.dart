@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/screens/update_info_screen/update_email_screen.dart';
 import 'package:travel_app/screens/update_info_screen/update_language_screen.dart';
 import 'package:travel_app/screens/update_info_screen/update_password_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PersonalTab extends ConsumerStatefulWidget {
   const PersonalTab({Key? key}) : super(key: key);
@@ -161,9 +161,9 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           ),
         ),
         const SizedBox(height: 5.0),
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Icon(Icons.circle, size: 18.5, color: Colors.lightGreen),
             SizedBox(width: 7.5),
             Text(
@@ -230,7 +230,7 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
             final result = await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => UpdateLanguageScreen(),
+                builder: (context) => const UpdateLanguageScreen(),
               ),
             );
             if (result != null && result == true) {
@@ -251,7 +251,8 @@ class PersonalTabState extends ConsumerState<PersonalTab> {
           () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => UpdatePasswordScreen()),
+              MaterialPageRoute(
+                  builder: (context) => const UpdatePasswordScreen()),
             );
           },
         ),

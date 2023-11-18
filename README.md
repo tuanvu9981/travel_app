@@ -302,3 +302,16 @@ onPressed: () {
     TravelApp.setLocale(context, Locale(_currentLanguage!));
 },
 ```
+
+### Automatically adding "const" and fix (Reference: [here](https://medium.com/@omershafique/say-goodbye-to-manual-const-typing-with-auto-const-in-flutter-eb2c904cc5a6))
+1. Open the command palette in VS-Code (**CMD+SHF+P**) or (**CTRL+SHF+P**)
+2. Search **Open User Settings**
+3. Click on **Open Settings Json Icon**
+4. Paste the following commands in **JSON** file
+```
+"editor.codeActionsOnSave": [
+    "source.organizeImports",
+    "source.fixAll"
+],
+```
+5. Now whenever you press **CMD+S** (Macbook) or **CTRL+S** it will automatically add **const** keywords wherever it is required. (applied only for dart !!)

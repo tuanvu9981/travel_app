@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/food.api.dart';
-import 'package:travel_app/widgets/foods/food_card.dart';
-import 'package:travel_app/widgets/hotels/hotel_card.dart';
-import '../../models/destination.model.dart';
 import 'package:travel_app/models/activity.model.dart';
 import 'package:travel_app/widgets/activities/activity_card.dart';
+import 'package:travel_app/widgets/foods/food_card.dart';
+import 'package:travel_app/widgets/hotels/hotel_card.dart';
+
+import './destination_display_text.dart';
+import './destination_image.dart';
+import '../../models/destination.model.dart';
 import '../../models/food.model.dart';
 import '../../models/hotel.model.dart';
-import './destination_image.dart';
-import './destination_display_text.dart';
 import '../../utils/destination.info.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
@@ -113,7 +114,7 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
                     country: widget.destination?.country,
                   ),
                 ),
-                LocationIcon()
+                const LocationIcon()
               ],
             ),
             // between big image and list view should not render a SizedBox !!!

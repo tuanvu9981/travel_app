@@ -93,7 +93,7 @@ class UpdatePasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
                 style: txtStyle,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
                   hintStyle: kHint,
                   hintText: 'Enter your current password',
                   suffixIcon: GestureDetector(
@@ -128,7 +128,7 @@ class UpdatePasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
                 style: txtStyle,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
                   hintText: 'Enter your new password',
                   hintStyle: kHint,
                   suffixIcon: GestureDetector(

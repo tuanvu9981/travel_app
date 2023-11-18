@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/utils/home.info.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DiscountInfoDetail extends StatelessWidget {
   final DiscountInfo discountInfo;
@@ -97,7 +97,8 @@ class DiscountInfoDetail extends StatelessWidget {
               ),
               const SizedBox(height: 15.0),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 12.5, vertical: 5.0),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12.5, vertical: 5.0),
                 width: double.infinity,
                 child: Text(
                   discountInfo.title!,

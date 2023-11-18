@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/booking-history.api.dart';
 import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/widgets/booking_history/booking_history_line.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingTab extends ConsumerStatefulWidget {
   const BookingTab({Key? key}) : super(key: key);
@@ -14,7 +14,8 @@ class BookingTab extends ConsumerStatefulWidget {
 }
 
 class BookingTabState extends ConsumerState<BookingTab> {
-  final _sloganStyle = TextStyle(fontSize: 28.0, fontFamily: 'DancingScript');
+  final _sloganStyle =
+      const TextStyle(fontSize: 28.0, fontFamily: 'DancingScript');
   BookingHistory? bookingHistory;
 
   Future<void> _fetchUserBookingHistory() async {

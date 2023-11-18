@@ -29,7 +29,8 @@ class LStatus {
       text: 'economy',
     ),
     RoomStatus(
-      icon: Icon(Icons.business_center, size: 22.5, color: Colors.black54),
+      icon:
+          const Icon(Icons.business_center, size: 22.5, color: Colors.black54),
       text: 'business',
     ),
     RoomStatus(

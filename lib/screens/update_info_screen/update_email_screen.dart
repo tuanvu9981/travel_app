@@ -96,7 +96,7 @@ class UpdateEmailScreenState extends ConsumerState<UpdateEmailScreen> {
                 style: txtStyle,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
                   hintStyle: kHint,
                 ),
               ),
@@ -113,7 +113,7 @@ class UpdateEmailScreenState extends ConsumerState<UpdateEmailScreen> {
                 style: txtStyle,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
                   hintText: 'Enter your new email',
                   hintStyle: kHint,
                 ),

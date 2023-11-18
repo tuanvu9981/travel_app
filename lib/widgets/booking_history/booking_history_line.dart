@@ -141,7 +141,8 @@ class BookingHistoryCard extends ConsumerWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
             decoration: _tDecoration,
             child: Column(
               children: [

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/const/text_style.const.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
       sMessenger.showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.authFailed),
-          duration: Duration(seconds: 5),
+          duration: const Duration(seconds: 5),
         ),
       );
     }
@@ -72,8 +72,8 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
             style: txtStyle,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 15.0),
-              suffixIcon: Icon(Icons.email, color: Colors.white),
+              contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
+              suffixIcon: const Icon(Icons.email, color: Colors.white),
               hintText: AppLocalizations.of(context)!.enterEmail,
               hintStyle: kHintTextStyle,
             ),
@@ -146,7 +146,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
       width: double.infinity, // width: 100%
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.white, //background color
+          backgroundColor: Colors.white, //background color
           // elevation: 5.0,
           padding: const EdgeInsets.all(8.5),
           shape: RoundedRectangleBorder(
@@ -278,7 +278,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: double.infinity,
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),

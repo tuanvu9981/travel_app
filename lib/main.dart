@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,7 +6,12 @@ import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/router.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: TravelApp()));
 }
 
@@ -46,7 +52,7 @@ class TravelAppState extends ConsumerState<TravelApp> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userProvider);
+    // final user = ref.watch(userProvider);
 
     return MaterialApp.router(
       title: 'Travel App',
@@ -64,7 +70,8 @@ class TravelAppState extends ConsumerState<TravelApp> {
         // colorScheme secondary is equivalent to accentColor
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: ((context) {
-        return user != null ? loggedInRoute : loggedOutRoute;
+        // return user != null ? loggedInRoute : loggedOutRoute;
+        return loggedInRoute;
       })),
       routeInformationParser: const RoutemasterParser(),
     );

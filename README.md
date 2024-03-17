@@ -315,3 +315,17 @@ onPressed: () {
 ],
 ```
 5. Now whenever you press **CMD+S** (Macbook) or **CTRL+S** it will automatically add **const** keywords wherever it is required. (applied only for dart !!)
+
+6. Install Firebase 
+- Error: command not found
+```
+tuanvu81@host81:~/flutter/travel_app$ flutterfire configure --project=travel-app-f9548
+flutterfire: command not found
+```
+
+- How to fix: 
+```
+tuanvu81@host81:~/flutter/travel_app$ 
+```
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+```

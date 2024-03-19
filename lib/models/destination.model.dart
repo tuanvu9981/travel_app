@@ -73,11 +73,12 @@ class Destination {
 
   Destination.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
+    String snapshotId,
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
     imageUrl = data?['imageUrl'];
-    id = data?['id'];
+    id = snapshotId;
 
     city = data?['city'] != null ? MultiLang.fromJson(data?['city']) : null;
     country =

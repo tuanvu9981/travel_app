@@ -5,8 +5,9 @@ import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/screens/discount-info/discount_info_detail.dart';
 import 'package:travel_app/widgets/discounts/discount_card.dart';
-import '../discounts/discount_header.dart';
+
 import '../../apis/discount.api.dart';
+import '../discounts/discount_header.dart';
 
 class DiscountCarousel extends ConsumerStatefulWidget {
   const DiscountCarousel({Key? key}) : super(key: key);
@@ -47,6 +48,7 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Column(
       children: [
         const Padding(
@@ -92,7 +94,7 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
                           ),
                           child: DiscountCard(
                             imgUrl: discount.imageUrl!,
-                            title: discount.title!,
+                            title: discount.title!.get(userLocale)!,
                           ),
                         ),
                       ),

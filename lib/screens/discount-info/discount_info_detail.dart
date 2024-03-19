@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/utils/home.info.dart';
 
-class DiscountInfoDetail extends StatelessWidget {
+class DiscountInfoDetail extends ConsumerWidget {
   final DiscountInfo discountInfo;
   late String startDate;
   late String endDate;
@@ -71,7 +73,8 @@ class DiscountInfoDetail extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -101,7 +104,7 @@ class DiscountInfoDetail extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12.5, vertical: 5.0),
                 width: double.infinity,
                 child: Text(
-                  discountInfo.title!,
+                  discountInfo.title!.get(userLocale)!,
                   style: const TextStyle(
                     fontFamily: 'VNPro',
                     fontSize: 20.0,
@@ -121,12 +124,18 @@ class DiscountInfoDetail extends StatelessWidget {
               const SizedBox(height: 15.0),
               _buildParagraph(
                 "2. ${AppLocalizations.of(context)!.details}",
-                Text(discountInfo.instruction!, style: tNormalContent),
+                Text(
+                  discountInfo.instruction!.get(userLocale)!,
+                  style: tNormalContent,
+                ),
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(
                 "3. ${AppLocalizations.of(context)!.appliedPlace}",
-                Text(discountInfo.appliedPlace!, style: tNormalContent),
+                Text(
+                  discountInfo.appliedPlace!.get(userLocale)!,
+                  style: tNormalContent,
+                ),
               ),
               const SizedBox(height: 15.0),
               _buildParagraph(

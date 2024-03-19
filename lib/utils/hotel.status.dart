@@ -39,13 +39,14 @@ class LStatus {
     ),
   ];
 
-  num calculateRoomPriceWithLevel(String level, num price) {
+  num calculateRoomPriceWithLevel(String level, String price) {
+    final prices = price.split(" ");
     if (level == 'economy') {
-      return price;
+      return int.parse(prices[0]);
     } else if (level == 'business') {
-      return price * 1.2;
+      return int.parse(prices[0]) * 1.2;
     } else {
-      return price * 1.5;
+      return int.parse(prices[0]) * 1.5;
     }
   }
 }

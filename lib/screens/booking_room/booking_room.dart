@@ -50,11 +50,12 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
       await HotelApi().updateHotelById(id, newHotel, newAccessToken!);
       final newHistory = History(
         hotelImgUrl: newHotel!.imageUrl,
-        hotelAddress: newHotel.address,
-        hotelName: newHotel.name,
+        hotelAddress: newHotel.address!.get('en'),
+        hotelName: newHotel.name!.get('en'),
         roomId: roomId,
         roomLevel: level,
-        price: LStatus().calculateRoomPriceWithLevel(level!, newHotel.price!),
+        price: LStatus()
+            .calculateRoomPriceWithLevel(level!, newHotel.price!.get('en')!),
         bookingDate: HomeInfoUtil().formatDateTime(DateTime.now()),
         checkInDate: HomeInfoUtil().formatDateTime(
           DateTime.now().add(const Duration(days: 1)),
@@ -69,11 +70,12 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
     // MOCK DATA
     final history = History(
       hotelImgUrl: newHotel!.imageUrl,
-      hotelAddress: newHotel.address,
-      hotelName: newHotel.name,
+      hotelAddress: newHotel.address!.get('en'),
+      hotelName: newHotel.name!.get('en'),
       roomId: roomId,
       roomLevel: level,
-      price: LStatus().calculateRoomPriceWithLevel(level!, newHotel.price!),
+      price: LStatus()
+          .calculateRoomPriceWithLevel(level!, newHotel.price!.get('en')!),
       bookingDate: DateTime.now().toString(),
       checkInDate: DateTime.now().add(const Duration(days: 3)).toString(),
       checkOutDate: DateTime.now().add(const Duration(days: 7)).toString(),
@@ -87,7 +89,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
     _fetchData(widget.hotelId);
   }
 
-  Widget? _buildMessageWithStatus(String? roomStatus, num? price) {
+  Widget? _buildMessageWithStatus(String? roomStatus, String price) {
     if (roomStatus == 'booked') {
       return const Text(
         'Someone booked this room.',
@@ -124,7 +126,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
             ),
             const SizedBox(height: 15.0),
             Text(
-              'Deposit: $price \$',
+              'Deposit: $price',
               style: const TextStyle(
                 fontFamily: 'VNPro',
                 fontSize: 15.0,
@@ -207,7 +209,8 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
               ],
             ),
           ),
-          content: _buildMessageWithStatus(room.status, hotel?.price),
+          content:
+              _buildMessageWithStatus(room.status, hotel!.price!.get('en')!),
           actions: _buildActionWithStatus(room.status, room.roomId, room.level),
         ),
       ),
@@ -348,7 +351,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                hotel?.name ?? "",
+                                hotel?.name!.get('en') ?? "",
                                 style: const TextStyle(
                                   fontFamily: 'VNPro',
                                   fontSize: 18.0,
@@ -371,7 +374,7 @@ class BookingRoomState extends ConsumerState<BookingRoom> {
                                         MediaQuery.of(context).size.width * 0.7,
                                     padding: const EdgeInsets.only(right: 10.0),
                                     child: Text(
-                                      hotel?.address ?? "",
+                                      hotel?.address!.get('en') ?? "",
                                       style: const TextStyle(
                                         fontFamily: 'VNPro',
                                         fontSize: 14.0,

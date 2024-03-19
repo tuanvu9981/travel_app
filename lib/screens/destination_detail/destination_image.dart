@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DestinationImage extends StatelessWidget {
-  String? imgUrl;
-  DestinationImage({Key? key, this.imgUrl}) : super(key: key);
+  final String? imgUrl;
+  const DestinationImage({Key? key, this.imgUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

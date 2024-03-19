@@ -4,7 +4,7 @@ import 'package:travel_app/models/booking-history.model.dart';
 import 'package:travel_app/utils/home.info.dart';
 
 class BookingHistoryCard extends ConsumerWidget {
-  History? userHistory;
+  final History? userHistory;
   int? stayedDays;
 
   BookingHistoryCard({

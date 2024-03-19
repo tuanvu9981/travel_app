@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/food.model.dart';
 
-class FoodCard extends StatelessWidget {
+class FoodCard extends ConsumerWidget {
   final Food food;
   const FoodCard({Key? key, required this.food}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Container(
       height: 330.0,
       padding: const EdgeInsets.all(10.0),
@@ -41,25 +44,13 @@ class FoodCard extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 9,
-                  child: Column(
-                    children: [
-                      Text(
-                        food.foodName ?? "",
-                        style: const TextStyle(
-                          fontFamily: 'VnPro',
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        food.english ?? "",
-                        style: const TextStyle(
-                          fontFamily: 'VNPro',
-                          fontSize: 12.5,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    food.foodName!.get(userLocale) ?? "",
+                    style: const TextStyle(
+                      fontFamily: 'VnPro',
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -89,7 +80,7 @@ class FoodCard extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    food.address ?? "",
+                    food.address!.get(userLocale) ?? "",
                     style: const TextStyle(
                       fontFamily: 'VNPro',
                       fontSize: 13.5,

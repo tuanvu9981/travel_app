@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/activity.model.dart';
 
-class ActivityCard extends ConsumerState {
+class ActivityCard extends ConsumerWidget {
   final Activity activity;
-  ActivityCard({Key? key, required this.activity});
+  const ActivityCard({super.key, required this.activity});
 
   Text _buildRatingStar(int rating) {
     String stars = '';
@@ -17,7 +17,7 @@ class ActivityCard extends ConsumerState {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Stack(
       children: [

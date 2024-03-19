@@ -15,8 +15,8 @@ import '../../models/hotel.model.dart';
 import '../../utils/destination.info.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
-  Destination? destination;
-  DestinationScreen({Key? key, this.destination}) : super(key: key);
+  final Destination? destination;
+  const DestinationScreen({Key? key, this.destination}) : super(key: key);
 
   @override
   DestinationScreenState createState() => DestinationScreenState();
@@ -66,6 +66,7 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -110,8 +111,8 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
                   left: 20.0,
                   bottom: 20.0, // SERIOUSLY BE WARED OF THIS !
                   child: DestinationDisplayText(
-                    city: widget.destination?.city,
-                    country: widget.destination?.country,
+                    city: widget.destination?.city!.get(userLocale),
+                    country: widget.destination?.country!.get(userLocale),
                   ),
                 ),
                 const LocationIcon()

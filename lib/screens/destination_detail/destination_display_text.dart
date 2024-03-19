@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DestinationDisplayText extends StatelessWidget {
-  String? city;
-  String? country;
-  DestinationDisplayText({Key? key, this.city, this.country}) : super(key: key);
+  final String? city;
+  final String? country;
+  const DestinationDisplayText({Key? key, this.city, this.country})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

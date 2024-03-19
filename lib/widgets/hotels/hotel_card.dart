@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/screens/booking_room/booking_room.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HotelCard extends StatelessWidget {
+class HotelCard extends ConsumerWidget {
   final Hotel hotel;
   const HotelCard({Key? key, required this.hotel}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Container(
       padding: const EdgeInsets.all(5.0),
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
@@ -47,7 +50,7 @@ class HotelCard extends StatelessWidget {
                     SizedBox(
                       width: 150.0,
                       child: Text(
-                        hotel.name ?? "",
+                        hotel.name!.get(userLocale) ?? "",
                         style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontSize: 16.0,
@@ -88,7 +91,7 @@ class HotelCard extends StatelessWidget {
                     SizedBox(
                       width: 180.0,
                       child: Text(
-                        hotel.address ?? "",
+                        hotel.address!.get(userLocale) ?? "",
                         style: const TextStyle(
                           fontFamily: 'VNPro',
                           fontSize: 12.0,

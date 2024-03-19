@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/activity.model.dart';
 
-class ActivityCard extends StatelessWidget {
+class ActivityCard extends ConsumerState {
   final Activity activity;
-  const ActivityCard({Key? key, required this.activity}) : super(key: key);
+  ActivityCard({Key? key, required this.activity});
 
   Text _buildRatingStar(int rating) {
     String stars = '';
@@ -16,6 +18,7 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Stack(
       children: [
         Container(
@@ -35,7 +38,7 @@ class ActivityCard extends StatelessWidget {
           ),
 
           child: Padding(
-            padding: EdgeInsets.fromLTRB(130.0, 20.0, 20.0, 20.0),
+            padding: const EdgeInsets.fromLTRB(130.0, 20.0, 20.0, 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,10 +47,10 @@ class ActivityCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 150.0,
                       child: Text(
-                        activity.name ?? "",
+                        activity.name!.get(userLocale) ?? "",
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w600,
@@ -60,7 +63,7 @@ class ActivityCard extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '\$${activity.price}',
+                          activity.price!.get(userLocale) ?? "",
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.w600,
@@ -77,44 +80,43 @@ class ActivityCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16.5),
-                Text(
-                  activity.type ?? "",
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black45,
+                Container(
+                  padding: const EdgeInsets.all(5.0),
+                  width: 90.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD8ECF1),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
+                  alignment: Alignment.center,
+                  // being center of box(container=div)
+                  child: Row(
+                      children: activity.type!
+                          .map<Widget>(
+                            (e) => Text(
+                              e,
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black45,
+                              ),
+                            ),
+                          )
+                          .toList()),
                 ),
                 const SizedBox(height: 5.0),
                 _buildRatingStar(activity.rating?.toInt() ?? 0),
                 const SizedBox(height: 12.5),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(5.0),
-                      width: 90.0,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFD8ECF1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      alignment: Alignment.center,
-                      // being center of box(container=div)
-                      child: Text(activity.startTimes![0]),
-                    ),
-                    const SizedBox(width: 20.0),
-                    Container(
-                      padding: const EdgeInsets.all(5.0),
-                      width: 90.0,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFD8ECF1),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      alignment: Alignment.center,
-                      // being center of box(container=div)
-                      child: Text(activity.startTimes![1]),
-                    )
-                  ],
-                )
+                Container(
+                  padding: const EdgeInsets.all(5.0),
+                  width: 90.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD8ECF1),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  alignment: Alignment.center,
+                  // being center of box(container=div)
+                  child: Text(activity.businessTime!),
+                ),
               ],
             ),
           ),

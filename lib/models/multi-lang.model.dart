@@ -15,4 +15,14 @@ class MultiLang {
     data['vi'] = vi;
     return data;
   }
+
+  String? get(String? locale) {
+    switch (locale) {
+      case "en":
+        return en;
+      case "vi":
+        return vi;
+    }
+    return null;
+  }
 }

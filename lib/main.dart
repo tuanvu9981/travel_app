@@ -36,6 +36,10 @@ class TravelAppState extends ConsumerState<TravelApp> {
     });
   }
 
+  Locale? getCurrentLocale() {
+    return _locale;
+  }
+
   Future<void> getUserData() async {
     final user = await ref.read(authProvider).getProfile();
     if (user != null) {

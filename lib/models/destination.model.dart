@@ -1,12 +1,14 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:travel_app/models/activity.model.dart';
-import 'hotel.model.dart';
+import 'package:travel_app/models/hotel.model.dart';
+import 'package:travel_app/models/multi-lang.model.dart';
 
 class Destination {
   String? id;
   String? imageUrl;
-  String? city;
-  String? country;
-  String? description;
+  MultiLang? city;
+  MultiLang? country;
+  MultiLang? description;
   List<Activity>? activities;
   List<Hotel>? hotels;
 
@@ -23,9 +25,12 @@ class Destination {
   Destination.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     imageUrl = json['imageUrl'];
-    city = json['city'];
-    country = json['country'];
-    description = json['description'];
+    city = json['city'] != null ? MultiLang.fromJson(json['city']) : null;
+    country =
+        json['country'] != null ? MultiLang.fromJson(json['country']) : null;
+    description = json['description'] != null
+        ? MultiLang.fromJson(json['description'])
+        : null;
 
     if (json['activities'] != null) {
       List<Map<String, dynamic>> mapActivities =
@@ -53,9 +58,9 @@ class Destination {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['imageUrl'] = imageUrl;
-    data['city'] = city;
-    data['country'] = country;
-    data['description'] = description;
+    data['city'] = city != null ? city!.toJson() : null;
+    data['country'] = country != null ? country!.toJson() : null;
+    data['description'] = description != null ? description!.toJson() : null;
 
     if (activities != null) {
       data['activities'] = activities!.map((v) => v.toJson()).toList();
@@ -64,5 +69,33 @@ class Destination {
       data['hotels'] = hotels!.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  Destination.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final data = snapshot.data();
+    imageUrl = data?['imageUrl'];
+    id = data?['id'];
+
+    city = data?['city'] != null ? MultiLang.fromJson(data?['city']) : null;
+    country =
+        data?['country'] != null ? MultiLang.fromJson(data?['country']) : null;
+    description = data?['description'] != null
+        ? MultiLang.fromJson(data?['description'])
+        : null;
+
+    if (data?['hotels'] != null) {
+      List<Map<String, dynamic>> mapHotels =
+          data?['hotels'].cast<Map<String, dynamic>>();
+      hotels = mapHotels.map((c) => Hotel.fromJson(c)).toList();
+    }
+
+    if (data?['activities'] != null) {
+      List<Map<String, dynamic>> mapActivities =
+          data?['activities'].cast<Map<String, dynamic>>();
+      activities = mapActivities.map((c) => Activity.fromJson(c)).toList();
+    }
   }
 }

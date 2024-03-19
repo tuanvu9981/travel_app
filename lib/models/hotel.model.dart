@@ -1,3 +1,6 @@
+import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:travel_app/models/multi-lang.model.dart';
+
 class Room {
   String? roomId;
   String? status;
@@ -68,9 +71,9 @@ class Floor {
 class Hotel {
   String? id;
   String? imageUrl;
-  String? name;
-  String? address;
-  num? price;
+  MultiLang? name;
+  MultiLang? address;
+  MultiLang? price;
   List<Floor>? floors;
 
   Hotel({
@@ -84,9 +87,10 @@ class Hotel {
   Hotel.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     imageUrl = json['imageUrl'];
-    name = json['name'];
-    address = json['address'];
-    price = json['price'];
+    name = json['name'] != null ? MultiLang.fromJson(json['name']) : null;
+    address =
+        json['address'] != null ? MultiLang.fromJson(json['address']) : null;
+    price = json['price'] != null ? MultiLang.fromJson(json['price']) : null;
 
     if (json['floors'] != null) {
       List<Map<String, dynamic>> mapFloors =
@@ -103,14 +107,30 @@ class Hotel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['imageUrl'] = imageUrl;
-    data['name'] = name;
-    data['address'] = address;
-    data['price'] = price;
     data['id'] = id;
+    data['name'] = name != null ? name!.toJson() : null;
+    data['address'] = address != null ? name!.toJson() : null;
+    data['price'] = price != null ? price!.toJson() : null;
 
     if (floors != null) {
       data['floors'] = floors!.map((f) => f.toJson()).toList();
     }
     return data;
+  }
+
+  Hotel.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final data = snapshot.data();
+    imageUrl = data?['imageUrl'];
+    name = data?['name'] != null ? MultiLang.fromJson(data?['name']) : null;
+    price = data?['price'] != null ? MultiLang.fromJson(data?['price']) : null;
+
+    if (data?['floors'] != null) {
+      List<Map<String, dynamic>> mapFloors =
+          data?['floors'].cast<Map<String, dynamic>>();
+      floors = mapFloors.map((c) => Floor.fromJson(c)).toList();
+    }
   }
 }

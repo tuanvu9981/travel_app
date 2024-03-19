@@ -1,12 +1,11 @@
 import "package:cloud_firestore/cloud_firestore.dart";
-
-import "multi-lang.model.dart";
+import "package:travel_app/models/multi-lang.model.dart";
 
 class Activity {
   List<String>? type;
   String? imageUrl;
   String? businessTime;
-  int? rating;
+  num? rating;
   MultiLang? price;
   MultiLang? name;
 

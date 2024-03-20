@@ -5,7 +5,7 @@ class FoodApiFirestore {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final foodCollection = "food";
 
-  Future<List<Food>> getFoodByDestinationId(String destinationId) async {
+  Future<List<Food>?> getFoodByDestinationId(String destinationId) async {
     final querySnapshot = await db
         .collection(foodCollection)
         .where("destinationId", isEqualTo: destinationId)

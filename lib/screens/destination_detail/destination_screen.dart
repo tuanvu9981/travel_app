@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/food.api.dart';
+import 'package:travel_app/firestore/food.api.dart';
 import 'package:travel_app/models/activity.model.dart';
 import 'package:travel_app/widgets/activities/activity_card.dart';
 import 'package:travel_app/widgets/foods/food_card.dart';
@@ -56,11 +57,23 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
     });
   }
 
+  Future<void> _fetchDataFirestore(String? id) async {
+    List<Food>? newData = await FoodApiFirestore().getFoodByDestinationId(id!);
+    if (newData != null) {
+      setState(() {
+        foodList = newData;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    // Future.delayed(Duration.zero, () {
+    //   _fetchData(widget.destination?.id);
+    // });
     Future.delayed(Duration.zero, () {
-      _fetchData(widget.destination?.id);
+      _fetchDataFirestore(widget.destination?.id);
     });
   }
 

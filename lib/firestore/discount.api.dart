@@ -5,7 +5,7 @@ class DiscountApiFirestore {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final discountCollection = "discount";
 
-  Future<List<DiscountInfo>> getAllDiscountInfos() async {
+  Future<List<DiscountInfo>?> getAllDiscountInfos() async {
     final querySnapshot = await db.collection(discountCollection).get();
     List<DiscountInfo> result = [];
     for (var docSnapshot in querySnapshot.docs) {

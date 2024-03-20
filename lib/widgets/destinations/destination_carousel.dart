@@ -2,10 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
+import 'package:travel_app/firestore/destination.api.dart';
 import 'package:travel_app/models/destination.model.dart';
 import 'package:travel_app/screens/destination_detail/destination_screen.dart';
 import 'package:travel_app/widgets/destinations/destination_card/destination_card.dart';
 import 'package:travel_app/widgets/destinations/destination_header.dart';
+
 import '../../apis/destination.api.dart';
 
 class DestinationCarousel extends ConsumerStatefulWidget {
@@ -39,10 +41,21 @@ class DestinationCarouselState extends ConsumerState<DestinationCarousel> {
     }
   }
 
+  Future<void> _fetchDataFirestore() async {
+    List<Destination>? newData =
+        await DestinationApiFirestore().getTopDestinations();
+    if (newData != null) {
+      setState(() {
+        destinations = newData;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, _fetchData);
+    // Future.delayed(Duration.zero, _fetchData);
+    Future.delayed(Duration.zero, _fetchDataFirestore);
   }
 
   @override

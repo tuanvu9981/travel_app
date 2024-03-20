@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
+import 'package:travel_app/firestore/discount.api.dart';
 import 'package:travel_app/models/discount.model.dart';
 import 'package:travel_app/screens/discount-info/discount_info_detail.dart';
 import 'package:travel_app/widgets/discounts/discount_card.dart';
@@ -40,10 +41,21 @@ class DiscountCarouselState extends ConsumerState<DiscountCarousel> {
     }
   }
 
+  Future<void> _fetchDataFirestore() async {
+    List<DiscountInfo>? newData =
+        await DiscountApiFirestore().getAllDiscountInfos();
+    if (newData != null) {
+      setState(() {
+        discounts = newData;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    // _fetchData();
+    _fetchDataFirestore();
   }
 
   @override

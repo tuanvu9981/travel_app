@@ -9,7 +9,7 @@ class DestinationApiFirestore {
   final destinationCollection = "destination";
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
-  Future<List<Destination>> getAllDestinations() async {
+  Future<List<Destination>?> getAllDestinations() async {
     final querySnapshot = await db.collection(destinationCollection).get();
     List<Destination> result = [];
     List<Activity> activities = [];
@@ -39,8 +39,8 @@ class DestinationApiFirestore {
     return result;
   }
 
-  Future<List<Destination>> getTopDestinations() async {
+  Future<List<Destination>?> getTopDestinations() async {
     final destinations = await getAllDestinations();
-    return destinations.sublist(0, 5);
+    return destinations?.sublist(0, 5);
   }
 }

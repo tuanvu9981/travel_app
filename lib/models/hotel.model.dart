@@ -120,12 +120,16 @@ class Hotel {
 
   Hotel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
+    String documentId,
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
     imageUrl = data?['imageUrl'];
+    id = documentId;
     name = data?['name'] != null ? MultiLang.fromJson(data?['name']) : null;
     price = data?['price'] != null ? MultiLang.fromJson(data?['price']) : null;
+    address =
+        data?['address'] != null ? MultiLang.fromJson(data?['address']) : null;
 
     if (data?['floors'] != null) {
       List<Map<String, dynamic>> mapFloors =

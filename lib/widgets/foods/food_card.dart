@@ -56,7 +56,7 @@ class FoodCard extends ConsumerWidget {
                 Expanded(
                   flex: 5,
                   child: Text(
-                    "\$${food.price}",
+                    food.price!.get(userLocale) ?? "",
                     style: TextStyle(
                       fontFamily: 'VNPro',
                       fontSize: 18.0,

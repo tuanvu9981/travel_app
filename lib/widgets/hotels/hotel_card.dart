@@ -11,6 +11,10 @@ class HotelCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print("address: ${hotel.address?.en}");
+    print("name: ${hotel.name?.en}");
+    print("price: ${hotel.price?.en}");
+    print("imageUrl: ${hotel.imageUrl}");
     final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Container(
       padding: const EdgeInsets.all(5.0),
@@ -63,7 +67,7 @@ class HotelCard extends ConsumerWidget {
                     Column(
                       children: [
                         Text(
-                          "\$${hotel.price}",
+                          hotel.price!.get(userLocale) ?? "",
                           style: TextStyle(
                             fontFamily: 'VNPro',
                             fontSize: 16.0,
@@ -141,5 +145,3 @@ class HotelCard extends ConsumerWidget {
     );
   }
 }
-
-List<Room>? rooms;

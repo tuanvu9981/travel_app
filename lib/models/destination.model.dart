@@ -72,11 +72,11 @@ class Destination {
   }
 
   Destination.fromFirestore(
-    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    Map<String, dynamic>? snapshot,
     String snapshotId,
     SnapshotOptions? options,
   ) {
-    final data = snapshot.data();
+    final data = snapshot;
     imageUrl = data?['imageUrl'];
     id = snapshotId;
 
@@ -87,16 +87,20 @@ class Destination {
         ? MultiLang.fromJson(data?['description'])
         : null;
 
-    if (data?['hotels'] != null) {
-      List<Map<String, dynamic>> mapHotels =
-          data?['hotels'].cast<Map<String, dynamic>>();
-      hotels = mapHotels.map((c) => Hotel.fromJson(c)).toList();
-    }
+    // hotels and activities are already Hotel type and Activity type when call api
 
-    if (data?['activities'] != null) {
-      List<Map<String, dynamic>> mapActivities =
-          data?['activities'].cast<Map<String, dynamic>>();
-      activities = mapActivities.map((c) => Activity.fromJson(c)).toList();
-    }
+    // if (data?['hotels'] != null) {
+    //   List<Map<String, dynamic>> mapHotels =
+    //       data?['hotels'].cast<Map<String, dynamic>>();
+    //   hotels = mapHotels.map((c) => Hotel.fromJson(c)).toList();
+    // }
+    hotels = data?['hotels'];
+
+    // if (data?['activities'] != null) {
+    //   List<Map<String, dynamic>> mapActivities =
+    //       data?['activities'].cast<Map<String, dynamic>>();
+    //   activities = mapActivities.map((c) => Activity.fromJson(c)).toList();
+    // }
+    activities = data?['activities'];
   }
 }

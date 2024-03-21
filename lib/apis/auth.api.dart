@@ -1,13 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:travel_app/apis/storage.api.dart';
 import 'package:travel_app/models/token.model.dart';
 import 'package:travel_app/models/user.model.dart';
+
 import 'api.const.dart';
-import 'dart:convert';
 
 final authProvider = Provider((ref) => AuthApi(storageApi: StorageApi()));
-final userProvider = StateProvider<User?>((ref) => null);
+final userProvider = StateProvider<User?>(
+  (ref) => User(
+      id: "",
+      email: "tuanvu@gmail.com",
+      fullname: "Vũ Tuấn Đạt",
+      avatarUrl:
+          "https://firebasestorage.googleapis.com/v0/b/travel-app-f9548.appspot.com/o/NewYork%2Factivities%2Fnew-york-city-central.jpg?alt=media&token=3832dd13-e75e-4066-a874-fad045154993",
+      role: "",
+      phoneNumber: "070 5543 8769",
+      birthday: "2000-01-09",
+      money: 1832800,
+      systemLanguage: "vi"),
+);
 
 class UpdateResponse {
   int statusCode;

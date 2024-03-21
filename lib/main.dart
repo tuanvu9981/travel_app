@@ -8,7 +8,8 @@ import 'package:travel_app/router.dart';
 
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

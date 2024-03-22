@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +23,7 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
   );
   var passwordEditor = TextEditingController();
   var emailEditor = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> signIn(
     BuildContext context,
@@ -38,6 +40,34 @@ class SignInScreenState extends ConsumerState<SignInScreen> {
         navigator.replace('/');
       }
     } else {
+      sMessenger.showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.authFailed),
+          duration: const Duration(seconds: 5),
+        ),
+      );
+    }
+  }
+
+  Future<void> signInFirebase(
+    BuildContext context,
+    String email,
+    String password,
+  ) async {
+    final sMessenger = ScaffoldMessenger.of(context);
+    final navigator = Routemaster.of(context);
+    try {
+      // MAKE CLEAR !!!
+      // final result = await auth.signInWithEmailAndPassword(
+      //   email: email,
+      //   password: password,
+      // );
+      // final user = await ref.read(authProvider).getProfile();
+      // if (user != null) {
+      //   ref.read(userProvider.notifier).update((state) => user);
+      //   navigator.replace('/');
+      // }
+    } catch (e) {
       sMessenger.showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.authFailed),

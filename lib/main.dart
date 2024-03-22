@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/router.dart';
 
 import 'firebase_options.dart';
@@ -37,27 +37,24 @@ class TravelAppState extends ConsumerState<TravelApp> {
     });
   }
 
-  Locale? getCurrentLocale() {
-    return _locale;
-  }
-
-  Future<void> getUserData() async {
-    final user = await ref.read(authProvider).getProfile();
-    if (user != null) {
-      ref.read(userProvider.notifier).update((state) => user);
-    }
-    updateLocale(Locale(user?.systemLanguage ?? 'en'));
-  }
+  // Future<void> getUserData() async {
+  //   final user = await ref.read(authProvider).getProfile();
+  //   if (user != null) {
+  //     ref.read(userProvider.notifier).update((state) => user);
+  //   }
+  //   updateLocale(Locale(user?.systemLanguage ?? 'en'));
+  // }
 
   @override
   void initState() {
     super.initState();
-    getUserData();
+    // getUserData();
   }
 
   @override
   Widget build(BuildContext context) {
     // final user = ref.watch(userProvider);
+    FirebaseAuth auth = FirebaseAuth.instance;
 
     return MaterialApp.router(
       title: 'Travel App',
@@ -75,8 +72,11 @@ class TravelAppState extends ConsumerState<TravelApp> {
         // colorScheme secondary is equivalent to accentColor
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: ((context) {
-        // return user != null ? loggedInRoute : loggedOutRoute;
-        return loggedInRoute;
+        User? user;
+        auth.authStateChanges().listen((User? fbUser) {
+          user = fbUser;
+        });
+        return user != null ? loggedInRoute : loggedOutRoute;
       })),
       routeInformationParser: const RoutemasterParser(),
     );

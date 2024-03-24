@@ -6,13 +6,6 @@
       }
     }
   },
-  "@roomStatus": {
-    "placeholders": {
-      "status": {
-        "type": "String"
-      }
-    }
-  },
   "@roomLevel": {
     "placeholders": {
       "level": {
@@ -20,15 +13,22 @@
       }
     }
   },
-  "roomStatus": "{status, select, vacant{空き部屋} booked{予約された} staying{宿泊中} other{Unknown}}",
-  "roomLevel": "{level, select, economy{エコノミー} business{ビジネス} luxury{ラグジュアリー} other{Unknown}}",
+  "@roomStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
   "allDestination": "全ての旅行先",
   "allrooms": "我がホテルの全ての部屋",
   "appliedPlace": "有効地",
   "authFailed": "パスワードあるいはメールが間違いました",
   "bookingRoom": "部屋を予約",
+  "businessTime": "営業時間",
   "checkRoom": "部屋を見る",
   "contacts": "連絡",
+  "culture_experience": "文化体験",
   "details": "詳細",
   "discountInfo": "最新情報・ホット割引",
   "dontHaveAcc": "アカウントを持ってませんか？",
@@ -36,6 +36,7 @@
   "enterEmail": "メールを入力してください",
   "enterFullname": "姓名を入力してください",
   "enterPassword": "パスワードを入力してください",
+  "food_tour": "フードツアー",
   "forgotPassword": "パスワードを忘れた？",
   "from": "開始",
   "fullname": "姓名",
@@ -48,10 +49,15 @@
   "history": "履歴",
   "home": "ホーム",
   "languageName": "{langCode, select, vi{ベトナム語} ja{日本語} en{英語} other{Unknown}}",
+  "local_market": "地方市場",
   "or": "あるいは",
   "password": "パスワード",
   "personal": "個人",
+  "religious_place": "宗教聖地",
+  "roomLevel": "{level, select, economy{エコノミー} business{ビジネス} luxury{ラグジュアリー} other{Unknown}}",
+  "roomStatus": "{status, select, vacant{空き部屋} booked{予約された} staying{宿泊中} other{Unknown}}",
   "seeAll": "全てを見る",
+  "sigh_seeing": "観光",
   "signIn": "サインイン",
   "signInWith": "以下のサービスでサイイン",
   "signUp": "サインアップ",

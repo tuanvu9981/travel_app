@@ -5,6 +5,7 @@ import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/firestore/destination.api.dart';
 import 'package:travel_app/models/destination.model.dart';
 import 'package:travel_app/screens/destination_detail/destination_screen.dart';
+import 'package:travel_app/utils/load.keys.dart';
 import 'package:travel_app/widgets/destinations/destination_card/destination_card.dart';
 import 'package:travel_app/widgets/destinations/destination_header.dart';
 
@@ -44,6 +45,9 @@ class DestinationCarouselState extends ConsumerState<DestinationCarousel> {
   Future<void> _fetchDataFirestore() async {
     List<Destination>? newData =
         await DestinationApiFirestore().getTopDestinations();
+
+    final mapLocale = await loadLocaleMap();
+    ref.read(mapLocaleProvider.notifier).update((state) => mapLocale);
     if (newData != null) {
       setState(() {
         destinations = newData;

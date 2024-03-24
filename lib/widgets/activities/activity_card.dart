@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/activity.model.dart';
@@ -7,27 +8,39 @@ class ActivityCard extends ConsumerWidget {
   final Activity activity;
   const ActivityCard({super.key, required this.activity});
 
-  Text _buildRatingStar(int rating) {
-    String stars = '';
-    for (int i = 0; i < rating; i++) {
-      stars += '⭐ ';
-    }
-    // stars.trim()
-    return Text(stars);
+  Widget buildInfoBox(String text, Color? bgColor, Color? textColor) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: bgColor ?? const Color.fromARGB(255, 212, 239, 252),
+      ),
+      padding: const EdgeInsets.all(3.5),
+      margin: const EdgeInsets.only(right: 4.0, top: 4.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontFamily: 'VNPro',
+          fontSize: 12.5,
+          fontWeight: FontWeight.w600,
+          color: textColor ?? const Color.fromARGB(255, 106, 200, 243),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userLocale = ref.watch(userProvider)!.systemLanguage;
+    final mapLocale = ref.watch(mapLocaleProvider);
     return Stack(
       children: [
         Container(
           margin: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
-          height: 180.0,
+          height: 190.0,
           width: double.infinity, // ?????
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(10.0),
             boxShadow: const [
               BoxShadow(
                 color: Colors.black26,
@@ -48,75 +61,67 @@ class ActivityCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 150.0,
-                      child: Text(
-                        activity.name!.get(userLocale) ?? "",
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'VNPro',
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          activity.price!.get(userLocale) ?? "",
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.greenAccent,
-                            fontFamily: 'VNPro',
+                      width: 200.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            activity.name!.get(userLocale) ?? "",
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'VNPro',
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        const Text(
-                          'per pax',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                activity.price!.get(userLocale) ?? "",
+                                style: const TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.greenAccent,
+                                  fontFamily: 'VNPro',
+                                ),
+                              ),
+                              Container(
+                                width: 60.0,
+                                padding: const EdgeInsets.all(2.5),
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "${activity.rating} ⭐",
+                                  style: const TextStyle(
+                                    fontSize: 13.5,
+                                    fontFamily: 'VNPro',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16.5),
-                Container(
-                  padding: const EdgeInsets.all(5.0),
-                  width: 90.0,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFD8ECF1),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  alignment: Alignment.center,
-                  // being center of box(container=div)
-                  child: Row(
-                      children: activity.type!
-                          .map<Widget>(
-                            (e) => Text(
-                              e,
-                              style: const TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          )
-                          .toList()),
-                ),
                 const SizedBox(height: 5.0),
-                _buildRatingStar(activity.rating?.toInt() ?? 0),
-                const SizedBox(height: 12.5),
-                Container(
-                  padding: const EdgeInsets.all(5.0),
-                  width: 90.0,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFD8ECF1),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  alignment: Alignment.center,
-                  // being center of box(container=div)
-                  child: Text(activity.businessTime!),
+                Wrap(
+                  children: activity.type!
+                      .map<Widget>(
+                        (e) =>
+                            buildInfoBox(mapLocale[userLocale][e], null, null),
+                      )
+                      .toList(),
                 ),
+                const SizedBox(height: 12.5),
+                buildInfoBox(
+                  "${AppLocalizations.of(context)!.businessTime}: ${activity.businessTime}",
+                  Colors.transparent,
+                  Colors.greenAccent,
+                )
               ],
             ),
           ),

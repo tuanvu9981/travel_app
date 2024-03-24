@@ -6,13 +6,6 @@
       }
     }
   },
-  "@roomStatus": {
-    "placeholders": {
-      "status": {
-        "type": "String"
-      }
-    }
-  },
   "@roomLevel": {
     "placeholders": {
       "level": {
@@ -20,15 +13,22 @@
       }
     }
   },
-  "roomStatus": "{status, select, vacant{Vacant} booked{Booked} staying{Staying} other{Unknown}}",
-  "roomLevel": "{level, select, economy{Economy} business{Business} luxury{Luxury} other{Unknown}}",
+  "@roomStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
   "allDestination": "All Destination",
   "allrooms": "All rooms in our hotel",
   "appliedPlace": "Applied places",
   "authFailed": "Authentication Failed !",
   "bookingRoom": "Booking rooms",
+  "businessTime": "Business time",
   "checkRoom": "Check available rooms",
   "contacts": "Contacts",
+  "culture_experience": "Culture experience",
   "details": "Details",
   "discountInfo": "Hot discounts & Latest Information",
   "dontHaveAcc": "Don't have an account ? ",
@@ -36,6 +36,7 @@
   "enterEmail": "Enter your email",
   "enterFullname": "Enter your fullname",
   "enterPassword": "Enter your password",
+  "food_tour": "Food tour",
   "forgotPassword": "Forgot your password ?",
   "from": "From",
   "fullname": "Fullname",
@@ -48,10 +49,15 @@
   "history": "History",
   "home": "Home",
   "languageName": "{langCode, select, vi{Vietnamese} ja{Japanese} en{English} other{Unknown}}",
+  "local_market": "Local market",
   "or": "OR",
   "password": "Password",
   "personal": "Personal",
+  "religious_place": "Religious place",
+  "roomLevel": "{level, select, economy{Economy} business{Business} luxury{Luxury} other{Unknown}}",
+  "roomStatus": "{status, select, vacant{Vacant} booked{Booked} staying{Staying} other{Unknown}}",
   "seeAll": "See All",
+  "sigh_seeing": "Sign seeing",
   "signIn": "SIGN IN",
   "signInWith": "Sign in with",
   "signUp": "SIGN UP",

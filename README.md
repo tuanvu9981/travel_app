@@ -229,7 +229,7 @@ output-localization-file: app_localizations.dart
 
 - Run **flutter gen-l10n**, and **DONT REMOVE l10n.yaml** file. Then, import **import 'package:flutter_gen/gen_l10n/app_localizations.dart'** into dart files which you will implement multi-languages. If you cant import, restart VSCode.
 ```
-import 'package:flutter_gen/gen_l10n/app_localizations.dart
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'
 ...
 
 return Column(
@@ -322,10 +322,53 @@ onPressed: () {
 tuanvu81@host81:~/flutter/travel_app$ flutterfire configure --project=travel-app-f9548
 flutterfire: command not found
 ```
-
 - How to fix: 
 ```
 tuanvu81@host81:~/flutter/travel_app$ 
-```
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+```
+
+7. Add Firebase to **main.dart** file activating functions (**WidgetsFlutterBinding.ensureInitialized() is necessary**)
+```
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const ProviderScope(child: TravelApp()));
+}
+```
+
+8. DocumentSnapshot object is immutable.
+- These 2 assign command below are NOT WORKING !
+```
+docSnapshot.data()["activities"] = activities;
+docSnapshot.data()["hotels"] = hotels;
+```
+- Instead of that, create a copy of snapshot document and assign
+```
+var processedDocSnapshot = docSnapshot.data();
+processedDocSnapshot["activities"] = activities;
+processedDocSnapshot["hotels"] = hotels;
+```
+
+9. Manage Authentication
+- Reference: https://firebase.google.com/docs/auth/flutter/manage-users
+- 
+
+10. Manage data access
+- Reference: https://firebase.google.com/docs/firestore/security/get-started
+
+11. For Map type
+- Error: 
+```
+var localeMap = <String, dynamic>{};
+localeMap[lang]![key] = value;
+```
+
+- Solution: 
+```
+var localeMap = <String, dynamic>{};
+localeMap[lang] = <String, String>{};
+localeMap[lang]![key] = value;
 ```

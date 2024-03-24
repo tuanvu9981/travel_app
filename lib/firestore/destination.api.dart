@@ -14,9 +14,7 @@ class DestinationApiFirestore {
     List<Destination> result = [];
     List<Activity> activities = [];
     List<Hotel> hotels = [];
-    int counter = 0;
     for (var docSnapshot in querySnapshot.docs) {
-      print("counter: $counter");
       final activityIds = docSnapshot.data()["activities"];
       final hotelIds = docSnapshot.data()["hotels"];
       activities = [];
@@ -44,7 +42,6 @@ class DestinationApiFirestore {
       result.add(
         Destination.fromFirestore(processedDocSnapshot, docSnapshot.id, null),
       );
-      counter += 1;
     }
     return result;
   }

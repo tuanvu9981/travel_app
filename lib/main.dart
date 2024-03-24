@@ -72,11 +72,12 @@ class TravelAppState extends ConsumerState<TravelApp> {
         // colorScheme secondary is equivalent to accentColor
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: ((context) {
-        User? user;
-        auth.authStateChanges().listen((User? fbUser) {
-          user = fbUser;
-        });
-        return user != null ? loggedInRoute : loggedOutRoute;
+        // User? user;
+        // auth.authStateChanges().listen((User? fbUser) {
+        //   user = fbUser;
+        // });
+        // return user != null ? loggedInRoute : loggedOutRoute;
+        return loggedInRoute;
       })),
       routeInformationParser: const RoutemasterParser(),
     );

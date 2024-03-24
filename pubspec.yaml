@@ -42,6 +42,7 @@ flutter:
   assets:
     - assets/images/
     - assets/logos/
+    - lib/l10n/
 
   fonts:
     - family: DancingScript

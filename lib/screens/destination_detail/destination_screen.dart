@@ -4,6 +4,7 @@ import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/food.api.dart';
 import 'package:travel_app/firestore/food.api.dart';
 import 'package:travel_app/models/activity.model.dart';
+import 'package:travel_app/models/hotel.model.dart';
 import 'package:travel_app/widgets/activities/activity_card.dart';
 import 'package:travel_app/widgets/foods/food_card.dart';
 import 'package:travel_app/widgets/hotels/hotel_card.dart';
@@ -12,7 +13,6 @@ import './destination_display_text.dart';
 import './destination_image.dart';
 import '../../models/destination.model.dart';
 import '../../models/food.model.dart';
-import '../../models/hotel.model.dart';
 import '../../utils/destination.info.dart';
 
 class DestinationScreen extends ConsumerStatefulWidget {
@@ -79,92 +79,109 @@ class DestinationScreenState extends ConsumerState<DestinationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Stack(
-              children: [
-                DestinationImage(imgUrl: widget.destination?.imageUrl ?? ""),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 20.0,
+            DestinationImage(imgUrl: widget.destination?.imageUrl ?? ""),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10.0,
+                vertical: 20.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back),
+                    iconSize: 30.0,
+                    color: Colors.black,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Row(
                     children: [
                       IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () => {},
+                        icon: const Icon(Icons.search),
                         iconSize: 30.0,
                         color: Colors.black,
                       ),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () => {},
-                            icon: const Icon(Icons.search),
-                            iconSize: 30.0,
-                            color: Colors.black,
-                          ),
-                          IconButton(
-                            onPressed: () => {},
-                            icon: const Icon(Icons.sort_outlined),
-                            iconSize: 30.0,
-                            color: Colors.black,
-                          ),
-                        ],
-                      )
+                      IconButton(
+                        onPressed: () => {},
+                        icon: const Icon(Icons.sort_outlined),
+                        iconSize: 30.0,
+                        color: Colors.black,
+                      ),
                     ],
-                  ),
-                ),
-                Positioned(
-                  left: 20.0,
-                  bottom: 20.0, // SERIOUSLY BE WARED OF THIS !
-                  child: DestinationDisplayText(
-                    city: widget.destination?.city!.get(userLocale),
-                    country: widget.destination?.country!.get(userLocale),
-                  ),
-                ),
-                const LocationIcon()
-              ],
+                  )
+                ],
+              ),
             ),
-            // between big image and list view should not render a SizedBox !!!
-            Expanded(
-              child: _currentTab == 0
-                  ? ListView.builder(
-                      padding: _paddingForTab,
-                      itemCount: widget.destination?.activities?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Activity activity =
-                            widget.destination!.activities![index];
-                        return ActivityCard(activity: activity);
-                      },
-                    )
-                  : _currentTab == 1
-                      ? GridView.builder(
-                          padding: _paddingGrid,
-                          itemCount: foodList?.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.73,
-                          ),
+            Positioned(
+              left: 20.0,
+              top: size.width * 0.75 - 100.0, // SERIOUSLY BE WARED OF THIS !
+              child: DestinationDisplayText(
+                city: widget.destination?.city!.get(userLocale),
+                country: widget.destination?.country!.get(userLocale),
+              ),
+            ),
+            const LocationIcon(),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(
+                0,
+                size.width * 0.75 - 25,
+                0,
+                0,
+              ),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(18.0),
+                    topRight: Radius.circular(18.0),
+                  ),
+                ),
+                height: double.infinity,
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: _currentTab == 0
+                      ? ListView.builder(
+                          padding: _paddingForTab,
+                          itemCount: widget.destination?.activities?.length,
                           itemBuilder: (BuildContext context, int index) {
-                            Food food = foodList![index];
-                            return FoodCard(food: food);
+                            Activity activity =
+                                widget.destination!.activities![index];
+                            return ActivityCard(activity: activity);
                           },
                         )
-                      : ListView.builder(
-                          padding: _paddingForTab,
-                          itemCount: widget.destination?.hotels?.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            Hotel hotel = widget.destination!.hotels![index];
-                            return HotelCard(hotel: hotel);
-                          },
-                        ),
+                      : _currentTab == 1
+                          ? GridView.builder(
+                              padding: _paddingGrid,
+                              itemCount: foodList?.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.73,
+                              ),
+                              itemBuilder: (BuildContext context, int index) {
+                                Food food = foodList![index];
+                                return FoodCard(food: food);
+                              },
+                            )
+                          : ListView.builder(
+                              padding: _paddingForTab,
+                              itemCount: widget.destination?.hotels?.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                Hotel hotel =
+                                    widget.destination!.hotels![index];
+                                return HotelCard(hotel: hotel);
+                              },
+                            ),
+                ),
+              ),
             ),
           ],
         ),

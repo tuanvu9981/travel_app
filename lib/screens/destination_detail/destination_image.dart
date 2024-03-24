@@ -21,10 +21,10 @@ class DestinationImage extends StatelessWidget {
       child: Hero(
         tag: imgUrl ?? "",
         child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(30.0),
-            bottomRight: Radius.circular(30.0),
-          ),
+          // borderRadius: const BorderRadius.only(
+          //   bottomLeft: Radius.circular(30.0),
+          //   bottomRight: Radius.circular(30.0),
+          // ),
           child: Image(
             image: NetworkImage(
               imgUrl ?? "",

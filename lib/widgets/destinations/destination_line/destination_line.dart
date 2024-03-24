@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/models/destination.model.dart';
 
-class DestinationLine extends StatelessWidget {
+class DestinationLine extends ConsumerWidget {
   final Destination destination;
   const DestinationLine({
     Key? key,
@@ -15,7 +17,8 @@ class DestinationLine extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Container(
       padding: const EdgeInsets.all(15.0),
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -46,7 +49,7 @@ class DestinationLine extends StatelessWidget {
                   const Icon(Icons.location_on, size: 25.0, color: Colors.red),
                   const SizedBox(width: 10.0),
                   Text(
-                    "${destination.city}, ${destination.country}",
+                    "${destination.city!.get(userLocale)}, ${destination.country!.get(userLocale)}",
                     style: _textStl,
                   )
                 ],

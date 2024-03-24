@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DescriptionWhiteBox extends StatelessWidget {
   final int length;
   final String description;
 
-  DescriptionWhiteBox({required this.length, required this.description});
+  const DescriptionWhiteBox({
+    super.key,
+    required this.length,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +29,14 @@ class DescriptionWhiteBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$length activities',
+                '$length ${AppLocalizations.of(context)!.activities}',
                 style: const TextStyle(
-                  fontSize: 22.0,
-                  fontFamily: 'Mukta',
+                  fontSize: 14.5,
+                  fontFamily: 'VNPro',
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 2.5),
+              const SizedBox(height: 17.5),
               Text(
                 description,
                 style: const TextStyle(

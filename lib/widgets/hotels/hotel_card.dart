@@ -11,10 +11,6 @@ class HotelCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("address: ${hotel.address?.en}");
-    print("name: ${hotel.name?.en}");
-    print("price: ${hotel.price?.en}");
-    print("imageUrl: ${hotel.imageUrl}");
     final userLocale = ref.watch(userProvider)!.systemLanguage;
     return Container(
       padding: const EdgeInsets.all(5.0),
@@ -47,41 +43,27 @@ class HotelCard extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 150.0,
-                      child: Text(
-                        hotel.name!.get(userLocale) ?? "",
-                        style: const TextStyle(
-                          fontFamily: 'VNPro',
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                SizedBox(
+                  width: 205.0,
+                  child: Text(
+                    hotel.name!.get(userLocale) ?? "",
+                    style: const TextStyle(
+                      fontFamily: 'VNPro',
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          hotel.price!.get(userLocale) ?? "",
-                          style: TextStyle(
-                            fontFamily: 'VNPro',
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green.shade600,
-                          ),
-                        ),
-                        const Text(
-                          'per night',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Text(
+                  hotel.price!.get(userLocale) ?? "",
+                  style: TextStyle(
+                    fontFamily: 'VNPro',
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green.shade600,
+                  ),
                 ),
                 const SizedBox(height: 12.5),
                 Row(

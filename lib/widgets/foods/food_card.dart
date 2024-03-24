@@ -32,7 +32,7 @@ class FoodCard extends ConsumerWidget {
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
             child: Image(
               width: 150.0,
-              height: 95.0,
+              height: 100.0,
               image: NetworkImage(food.imageUrl ?? ""),
               fit: BoxFit.cover,
             ),
@@ -44,12 +44,15 @@ class FoodCard extends ConsumerWidget {
               children: [
                 Expanded(
                   flex: 9,
-                  child: Text(
-                    food.foodName!.get(userLocale) ?? "",
-                    style: const TextStyle(
-                      fontFamily: 'VnPro',
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      food.foodName!.get(userLocale) ?? "",
+                      style: const TextStyle(
+                        fontFamily: 'VnPro',
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -59,7 +62,7 @@ class FoodCard extends ConsumerWidget {
                     food.price!.get(userLocale) ?? "",
                     style: TextStyle(
                       fontFamily: 'VNPro',
-                      fontSize: 18.0,
+                      fontSize: 13.5,
                       fontWeight: FontWeight.bold,
                       color: Colors.green.shade600,
                     ),

@@ -372,3 +372,15 @@ var localeMap = <String, dynamic>{};
 localeMap[lang] = <String, String>{};
 localeMap[lang]![key] = value;
 ```
+
+12. Load data from file and using json, 
+```
+rootBundle.loadString("lib/l10n/$fileName").then((file) { ...
+```
+- This command using **AssetBundle** widget to load file, so remember to declare assets file path in **pubspec.yaml**
+```
+assets:
+    - assets/images/
+    - assets/logos/
+    - lib/l10n/
+```

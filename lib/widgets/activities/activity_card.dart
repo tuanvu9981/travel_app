@@ -20,7 +20,7 @@ class ActivityCard extends ConsumerWidget {
         text,
         style: TextStyle(
           fontFamily: 'VNPro',
-          fontSize: 12.5,
+          fontSize: 12.0,
           fontWeight: FontWeight.w600,
           color: textColor ?? const Color.fromARGB(255, 106, 200, 243),
         ),

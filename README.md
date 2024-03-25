@@ -354,7 +354,10 @@ processedDocSnapshot["hotels"] = hotels;
 
 9. Manage Authentication
 - Reference: https://firebase.google.com/docs/auth/flutter/manage-users
-- 
+- Get Auth Instance:
+```
+FirebaseAuth auth = FirebaseAuth.instance;
+```
 
 10. Manage data access
 - Reference: https://firebase.google.com/docs/firestore/security/get-started

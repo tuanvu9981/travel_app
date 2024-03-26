@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:travel_app/apis/auth.api.dart';
 import 'package:travel_app/apis/destination.api.dart';
 import 'package:travel_app/firestore/destination.api.dart';
@@ -57,50 +58,57 @@ class DestinationAllListState extends ConsumerState<DestinationAllList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Text(
-              AppLocalizations.of(context)!.allDestination,
-              style: const TextStyle(fontFamily: 'VNPro', fontSize: 22.5),
-            ),
-            const SizedBox(width: 7.5),
-            const Icon(
-              Icons.travel_explore_sharp,
-              size: 30.0,
-              color: Colors.white,
-            ),
-          ],
+    final navigator = Routemaster.of(context);
+    return WillPopScope(
+      onWillPop: () async {
+        navigator.replace('/');
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Text(
+                AppLocalizations.of(context)!.allDestination,
+                style: const TextStyle(fontFamily: 'VNPro', fontSize: 22.5),
+              ),
+              const SizedBox(width: 7.5),
+              const Icon(
+                Icons.travel_explore_sharp,
+                size: 30.0,
+                color: Colors.white,
+              ),
+            ],
+          ),
+          backgroundColor: Theme.of(context).primaryColorLight,
         ),
-        backgroundColor: Theme.of(context).primaryColorLight,
-      ),
-      body: SafeArea(
-        child: destinations == null || destinations!.isEmpty
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.lightBlue,
-                ),
-              )
-            : ListView.builder(
-                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                itemCount: destinations?.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    child: DestinationLine(destination: destinations![index]),
-                    onTap: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DestinationScreen(
-                            destination: destinations![index],
+        body: SafeArea(
+          child: destinations == null || destinations!.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.lightBlue,
+                  ),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                  itemCount: destinations?.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      child: DestinationLine(destination: destinations![index]),
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DestinationScreen(
+                              destination: destinations![index],
+                            ),
                           ),
                         ),
-                      ),
-                    },
-                  );
-                },
-              ),
+                      },
+                    );
+                  },
+                ),
+        ),
       ),
     );
   }
